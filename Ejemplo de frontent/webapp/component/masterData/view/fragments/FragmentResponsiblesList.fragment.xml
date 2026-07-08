@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <TableSelectDialog
+        confirm="onValidateFieldFromFragment('inputResponsiblesCreate')"
+        id="FragmentResponsiblesList"
+        title="{i18n>selectResponsibles}"
+        items="{
+            path: 'odata>/Responsables',
+            sorter: {
+                path: 'id',
+                descending: true
+            }
+        }">
+        <ColumnListItem>
+            <cells>
+                <Text text="{odata>id}" />
+                <Text text="{odata>cargo}" />
+                <Text text="{odata>nombre_responsable}" />
+                <Text
+                    text="{= ${odata>codigo_centro_logistico} + ' ' + ${odata>centro_logistico}}" />
+                <Text text="{= ${odata>codigo_centro_costo} + ' ' + ${odata>centro_costo}}" />
+            </cells>
+        </ColumnListItem>
+        <columns>
+            <Column width="3em">
+                <header>
+                    <Text text="{i18n>columnIdResponsibles}" />
+                </header>
+            </Column>
+            <Column width="5em">
+                <header>
+                    <Text text="{i18n>columnPositionResponsibles}" />
+                </header>
+            </Column>
+            <Column width="12em">
+                <header>
+                    <Text text="{i18n>columnNameResponsibles}" />
+                </header>
+            </Column>
+            <Column width="12em">
+                <header>
+                    <Text text="{i18n>columnCLResponsibles}" />
+                </header>
+            </Column>
+            <Column width="12em">
+                <header>
+                    <Text text="{i18n>columnCCResponsibles}" />
+                </header>
+            </Column>
+        </columns>
+    </TableSelectDialog>
+</core:FragmentDefinition>

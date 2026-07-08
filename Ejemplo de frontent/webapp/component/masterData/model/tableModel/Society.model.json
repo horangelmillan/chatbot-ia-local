@@ -1,0 +1,24 @@
+{
+    "mFormCreate": {},
+    "mFormEdit": {},
+    "mConfigForm": {
+        "noToUperCase": ["codigo"],
+        "toUperCaseAll": true
+    },
+    "mConfigExcel": {
+        "idTable": "tableSociety",
+        "fileName": "Sociedades"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/master_data/society",
+        "URIFragmentFolder": "Society",
+        "idTable": "tableSociety",
+        "idFragment": "FragmentSociety",
+        "mColumnsSearch": {
+            "aColumnsS": [["descripcion", 50]],
+            "aColumnsN": [["codigo", 4]],
+            "aColumnsD": []
+        }
+    }
+}

@@ -1,0 +1,56 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.portal.controller.Portal"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0">
+	<Page
+        id="pageApp"
+        showSubHeader="false"
+        showFooter="{/showFooter}"
+        class="sapUiResponsivePadding--footer">
+		<customHeader>
+			<f:ShellBar
+                title="{i18n>titleApp}"
+                showNavButton="{/showButtonNavBack}"
+                navButtonPressed="onNavBack">
+				<f:menu>
+					<Menu>
+						<MenuItem text="Datos Maestros" icon="sap-icon://database" press="onNavTo('RouteComponent')" />
+						<MenuItem text="Inventario" icon="sap-icon://activities" press="onNavTo('RouteAssetInventory')" />
+					</Menu>
+				</f:menu>
+				<!-- Botón de perfil con menú desplegable -->
+				<f:profile>
+					<Avatar initials="UI" press="onProfilePress" />
+				</f:profile>
+			</f:ShellBar>
+		</customHeader>
+		<content>
+			<App id="appPortal" />
+		</content>
+		<footer>
+			<OverflowToolbar width="100%">
+				<content>
+					<Bar design="Footer">
+						<contentMiddle>
+							<ScrollContainer focusable="false" height="auto" horizontal="true" vertical="false" width="100%">
+								<content>
+									<Text class="sapUiSmallMarginEnd" text="Desarrollado por: MundoCloud S.A.S" />
+									<Text text="|" />
+									<Text class="sapUiSmallMarginEnd sapUiSmallMarginBegin" text="Framework: OpenUI5" />
+									<Text text="|" />
+									<Text class="sapUiSmallMarginEnd sapUiSmallMarginBegin" text="Versión: 1.129.0" />
+									<Text text="|" />
+									<Text class="sapUiSmallMarginBegin" text="© 2024 Todos los derechos reservados." />
+								</content>
+							</ScrollContainer>
+						</contentMiddle>
+					</Bar>
+				</content>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

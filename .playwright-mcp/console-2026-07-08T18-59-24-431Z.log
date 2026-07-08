@@ -1,0 +1,17 @@
+[      33ms] [INFO] 2026-07-08 13:59:24 Device API logging initialized - DEVICE @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:1172
+[     119ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[     119ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[     130ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[     130ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[     135ms] [ERROR] 2026-07-08 13:59:24.566300 failed to load JavaScript resource: chatbot/ui/Component-preload.js -  sap.ui.ModuleSystem @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[     136ms] [ERROR] 2026-07-08 13:59:24.566600 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[     141ms] [ERROR] 2026-07-08 13:59:24.571500 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[   13824ms] [INFO] 2026-07-08 13:59:38 Device API logging initialized - DEVICE @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:1172
+[   13916ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[   13916ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[   13932ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[   13932ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[   13938ms] [ERROR] 2026-07-08 13:59:38.368900 failed to load JavaScript resource: chatbot/ui/Component-preload.js -  sap.ui.ModuleSystem @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[   13938ms] [ERROR] 2026-07-08 13:59:38.369100 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[   13944ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/i18n/i18n_en.properties:0
+[   13947ms] [ERROR] 2026-07-08 13:59:38.377600 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46

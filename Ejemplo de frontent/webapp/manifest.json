@@ -1,0 +1,121 @@
+{
+    "_version": "1.58.0",
+    "sap.app": {
+        "id": "com.mundocloud.assetmanagement",
+        "title": "my first UI5 app",
+        "type": "application",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "DataSourceApp": {
+                "uri": "model/App.model.json"
+            }
+        },
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": ["", "en"]
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.129.0",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.f": {},
+                "sap.ui.integration": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/styles.css"
+                }
+            ]
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "rootView": {
+            "viewName": "com.mundocloud.assetmanagement.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        },
+        "models": {
+            "ModelApp": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceApp"
+            },
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.mundocloud.assetmanagement.i18n.i18n",
+                    "fallbackLocale": "",
+                    "async": true,
+                    "supportedLocales": ["", "en"]
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "path": "com.mundocloud.assetmanagement.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "transition": "slide",
+                "clearControlAggregation": false,
+                "async": true,
+                "type": "View",
+                "viewPath": "com.mundocloud.assetmanagement.view"
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "RouteComponentPortal",
+                    "target": {
+                        "name": "TargetComponentPortal",
+                        "propagateTitle": "true",
+                        "prefix": "portal"
+                    }
+                }
+            ],
+            "targets": {
+                "TargetComponentPortal": {
+                    "name": "TargetComponentPortal",
+                    "type": "Component",
+                    "id": "componentPortal",
+                    "usage": "ComponentPortal",
+                    "transition": "slide",
+                    "clearControlAggregation": false
+                }
+            }
+        },
+        "config": {
+            "sample": {
+                "stretch": true
+            }
+        },
+        "componentUsages": {
+            "ComponentPortal": {
+                "name": "com.mundocloud.assetmanagement.component.portal",
+                "settings": {},
+                "componentData": {},
+                "lazy": true
+            }
+        }
+    }
+}

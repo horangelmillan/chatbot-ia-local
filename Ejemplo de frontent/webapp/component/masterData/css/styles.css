@@ -1,0 +1,4 @@
+.customRoundedImage {
+    border-radius: 50px; /* Cambia este valor según el grado de redondez deseado */
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+}

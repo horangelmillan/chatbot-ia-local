@@ -1,0 +1,77 @@
+- generic [active] [ref=e1]:
+  - textbox [ref=e2]:
+    - /placeholder: Search
+  - generic [ref=e3]:
+    - heading "~ /" [level=1] [ref=e4]:
+      - link "~" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - text: /
+    - list [ref=e6]:
+      - listitem [ref=e7]:
+        - generic [ref=e8]: Name
+        - generic [ref=e9]: Size
+        - generic [ref=e10]: Modified
+        - generic [ref=e11]: Project
+      - listitem [ref=e12]:
+        - link "controller/ 0 Bytes 8/7/2026, 1:50:55 p. m. chatbot.ui" [ref=e13] [cursor=pointer]:
+          - /url: /controller/
+          - generic [ref=e14]: controller/
+          - generic [ref=e15]: 0 Bytes
+          - generic [ref=e16]: 8/7/2026, 1:50:55 p. m.
+          - generic [ref=e17]: chatbot.ui
+      - listitem [ref=e18]:
+        - link "i18n/ 0 Bytes 8/7/2026, 1:50:56 p. m. chatbot.ui" [ref=e19] [cursor=pointer]:
+          - /url: /i18n/
+          - generic [ref=e20]: i18n/
+          - generic [ref=e21]: 0 Bytes
+          - generic [ref=e22]: 8/7/2026, 1:50:56 p. m.
+          - generic [ref=e23]: chatbot.ui
+      - listitem [ref=e24]:
+        - link "model/ 0 Bytes 8/7/2026, 1:50:55 p. m. chatbot.ui" [ref=e25] [cursor=pointer]:
+          - /url: /model/
+          - generic [ref=e26]: model/
+          - generic [ref=e27]: 0 Bytes
+          - generic [ref=e28]: 8/7/2026, 1:50:55 p. m.
+          - generic [ref=e29]: chatbot.ui
+      - listitem [ref=e30]:
+        - link "resources/ 0 Bytes 8/7/2026, 1:52:42 p. m. sap.m" [ref=e31] [cursor=pointer]:
+          - /url: /resources/
+          - generic [ref=e32]: resources/
+          - generic [ref=e33]: 0 Bytes
+          - generic [ref=e34]: 8/7/2026, 1:52:42 p. m.
+          - generic [ref=e35]: sap.m
+      - listitem [ref=e36]:
+        - link "test-resources/ 0 Bytes 8/7/2026, 1:52:43 p. m. sap.ui.core" [ref=e37] [cursor=pointer]:
+          - /url: /test-resources/
+          - generic [ref=e38]: test-resources/
+          - generic [ref=e39]: 0 Bytes
+          - generic [ref=e40]: 8/7/2026, 1:52:43 p. m.
+          - generic [ref=e41]: sap.ui.core
+      - listitem [ref=e42]:
+        - link "view/ 0 Bytes 8/7/2026, 1:50:51 p. m. chatbot.ui" [ref=e43] [cursor=pointer]:
+          - /url: /view/
+          - generic [ref=e44]: view/
+          - generic [ref=e45]: 0 Bytes
+          - generic [ref=e46]: 8/7/2026, 1:50:51 p. m.
+          - generic [ref=e47]: chatbot.ui
+      - listitem [ref=e48]:
+        - link "Component.js 253 Bytes 8/7/2026, 1:50:45 p. m. chatbot.ui" [ref=e49] [cursor=pointer]:
+          - /url: /Component.js
+          - generic [ref=e50]: Component.js
+          - generic [ref=e51]: 253 Bytes
+          - generic [ref=e52]: 8/7/2026, 1:50:45 p. m.
+          - generic [ref=e53]: chatbot.ui
+      - listitem [ref=e54]:
+        - link "index.html 968 Bytes 8/7/2026, 1:56:44 p. m. chatbot.ui" [ref=e55] [cursor=pointer]:
+          - /url: /index.html
+          - generic [ref=e56]: index.html
+          - generic [ref=e57]: 968 Bytes
+          - generic [ref=e58]: 8/7/2026, 1:56:44 p. m.
+          - generic [ref=e59]: chatbot.ui
+      - listitem [ref=e60]:
+        - link "manifest.json 906 Bytes 8/7/2026, 1:57:34 p. m. chatbot.ui" [ref=e61] [cursor=pointer]:
+          - /url: /manifest.json
+          - generic [ref=e62]: manifest.json
+          - generic [ref=e63]: 906 Bytes
+          - generic [ref=e64]: 8/7/2026, 1:57:34 p. m.
+          - generic [ref=e65]: chatbot.ui

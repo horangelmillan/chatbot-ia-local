@@ -1,0 +1,69 @@
+<c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="FragmentCostCenter"
+        title="{i18n>titleCostCenter}"
+        afterClose="onAfterClose"
+        afterOpen="onAfterOpenDialog"
+        class="sapUiSizeCompact">
+        <HBox id="formContainerCreate">
+            <f:SimpleForm id="FormCostCenter">
+                <f:content>
+                    <Label text="{i18n>columnCodCostCenter}" />
+                    <Input
+                        id="InputCodCostCenter"
+                        required="true"
+                        maxLength="10"
+                        change="onValidateField"
+                        placeholder="{i18n>placeHolderCodeCostCenter}"
+                        value="{/mFormCreate/codigo}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <Label text="{i18n>columnDescriptionCostCenter}" />
+                    <Input
+                        id="InputDescriptionCostCenter"
+                        placeholder="{i18n>placeHolderDescriptionCostCenter}"
+                        required="true"
+                        maxLength="50"
+                        change="onValidateField"
+                        value="{/mFormCreate/descripcion}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <Label text="{i18n>columnResponsableCostCenter}" />
+                    <Input
+                        id="inputResponsiblesCreate"
+                        showClearIcon="true"
+                        liveChange="onClearValues($event, '/mFormCreate/id_responsable')"
+                        placeholder="{i18n>placeholderResponsibles}"
+                        required="false"
+                        change="onValidateField"
+                        showValueHelp="true"
+                        valueHelpRequest="onOpenResponsiblesList('oDialogCreate', 'FragmentResponsiblesList', '/mFormCreate')"
+                        value="{
+                            path: '/mResponsibles/nombre_responsable'
+                        }">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            id="btnAddCreate"
+                            text="{i18n>btnSave}"
+                            type="Accept"
+                            press="onSave" />
+                        <Button
+                            id="btnCancelCreate"
+                            text="{i18n>btnCancel}"
+                            type="Reject"
+                            press="onCloseDialog('FragmentCostCenter')" />
+                    </OverflowToolbar>
+                </f:content>
+            </f:SimpleForm>
+        </HBox>
+    </Dialog>
+</c:FragmentDefinition>

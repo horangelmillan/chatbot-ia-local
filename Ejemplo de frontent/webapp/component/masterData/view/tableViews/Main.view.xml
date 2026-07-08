@@ -1,0 +1,29 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.masterData.controller.tableController.Main"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    class="sapUiSizeCompact"
+    height="100%">
+	<m:Page class="sapUiContentPadding">
+		<m:customHeader>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer />
+				<c:Icon src="sap-icon://database" alt="Cart" size="1.5rem" />
+				<m:Title text="{i18n>mainTitle}" titleStyle="H1" class="sapUiTinyMarginBeginEnd" />
+				<m:ToolbarSpacer />
+			</m:OverflowToolbar>
+		</m:customHeader>
+		<m:content>
+			<m:Carousel
+                loop="true"
+                class="sapUiContentPadding"
+                arrowsPlacement="PageIndicator"
+                busyIndicatorDelay="0">
+				<m:Image src="/images/image.png" alt="Asset Management" height="100%" class="customRoundedImage" />
+			</m:Carousel>
+		</m:content>
+	</m:Page>
+</mvc:View>

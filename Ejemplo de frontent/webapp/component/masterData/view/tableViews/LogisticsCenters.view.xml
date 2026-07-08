@@ -1,0 +1,128 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.masterData.controller.tableController.LogisticsCenters"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    class="sapUiSizeCompact"
+    height="100%"
+    xmlns:rm="sap.ui.table.rowmodes">
+	<m:Page class="sapUiContentPadding" id="logisticsCenters">
+		<m:customHeader>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer />
+				<c:Icon src="sap-icon://factory" alt="Cart" size="1rem" />
+				<m:Title text="{i18n>titleLogisticsCenters}" titleStyle="H2" class="sapUiTinyMarginBeginEnd" />
+				<m:ToolbarSpacer />
+			</m:OverflowToolbar>
+		</m:customHeader>
+		<m:content>
+			<Table
+                id="tableLogisticsCenters"
+                selectionMode="None"
+                rows="{
+					path: 'odata>/LogisticsCenters',
+					sorter: {
+						path: 'id',
+						descending: true
+					}
+				}"
+                alternateRowColors="true"
+                enableCellFilter="true"
+                enableColumnFreeze="true"
+                fixedColumnCount="1"
+                enableBusyIndicator="true"
+                busyIndicatorDelay="0">
+				<rowMode>
+					<rm:Auto />
+				</rowMode>
+				<extension>
+					<m:OverflowToolbar class="sapUiSmallMarginTopBottom" style="Clear">
+						<m:Button
+                            id="addButtonLogisticsCenters"
+                            type="Emphasized"
+                            icon="sap-icon://add-document"
+                            text="{i18n>buttonCreate}"
+                            press="onOpenDialogCreate" />
+						<m:Button
+                            id="exportButtonLogisticsCenters"
+                            type="Accept"
+                            icon="sap-icon://excel-attachment"
+                            text="{i18n>buttonExport}"
+                            press="onExportExcel" />
+						<m:ToolbarSpacer />
+						<m:SearchField placeholder="{i18n>placeholderSearch}" width="50%" search="onSearch" />
+						<m:Button id="btnUpdateDateLogisticsCenters" icon="sap-icon://refresh" press="onRefresh" />
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column filterProperty="id" sortProperty="id" autoResizable="true" width="7rem">
+						<m:Label text="ID" />
+						<template>
+							<m:Link text="{odata>id}" press="onOpenDialogEdit" />
+						</template>
+					</Column>
+					<Column filterProperty="codigo" sortProperty="codigo" autoResizable="true">
+						<m:Label text="Código" />
+						<template>
+							<m:Text text="{odata>codigo}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="descripcion" sortProperty="descripcion" autoResizable="true">
+						<m:Label text="Descripción" />
+						<template>
+							<m:Text text="{odata>descripcion}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="cargo" sortProperty="cargo" autoResizable="true">
+						<m:Label text="Cargo Responsable" />
+						<template>
+							<m:Text text="{odata>cargo}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="nombre_responsable" sortProperty="nombre_responsable" autoResizable="true">
+						<m:Label text="Responsable" />
+						<template>
+							<m:Text text="{odata>nombre_responsable}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="criterio_1" width="5em" sortProperty="criterio_1" autoResizable="true">
+						<m:Label text="Criterio 1" />
+						<template>
+							<m:Text text="{odata>criterio_1}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="criterio_2" width="5em" sortProperty="criterio_2" autoResizable="true">
+						<m:Label text="Criterio 2" />
+						<template>
+							<m:Text text="{odata>criterio_2}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="criterio_3" width="5em" sortProperty="criterio_3" autoResizable="true">
+						<m:Label text="Criterio 3" />
+						<template>
+							<m:Text text="{odata>criterio_3}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="criterio_4" width="5em" sortProperty="criterio_4" autoResizable="true">
+						<m:Label text="Criterio 4" />
+						<template>
+							<m:Text text="{odata>criterio_4}" wrapping="false" />
+						</template>
+					</Column>
+										<Column
+                        filterProperty="clave_clasificacion"
+                        width="10em"
+                        sortProperty="clave_clasificacion"
+                        autoResizable="true">
+						<m:Label text="Clave de clasificación" />
+						<template>
+							<m:Text text="{odata>clave_clasificacion}" wrapping="false" />
+						</template>
+					</Column>
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
+</mvc:View>

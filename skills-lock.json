@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "sapui5": {
+      "source": "secondsky/sap-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/sapui5/skills/sapui5/SKILL.md",
+      "computedHash": "32739f16f2348000090676a377533ce775e12c9c76948066da652cb09d0e66ba"
+    },
+    "sapui5-cli": {
+      "source": "secondsky/sap-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/sapui5-cli/skills/sapui5-cli/SKILL.md",
+      "computedHash": "145034d441b585f04ddb201e6b0de8f6e1dcb120bd0b7e879b74d0ddf78d6c27"
+    }
+  }
+}

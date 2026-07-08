@@ -1,0 +1,390 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.assetInventory.controller.Main"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    class="sapUiSizeCompact"
+    height="100%"
+    xmlns:rm="sap.ui.table.rowmodes">
+    <m:Page class="sapUiResponsiveContentPadding" id="inventory">
+        <!-- Mover customHeader directamente a Page -->
+        <m:customHeader>
+            <m:OverflowToolbar>
+                <m:ToolbarSpacer />
+                <c:Icon src="sap-icon://crm-sales" alt="Cart" size="1.5rem" />
+                <m:Title
+                    text="{i18n>titleInventoryAsset}"
+                    titleStyle="H2"
+                    class="sapUiTinyMarginBeginEnd" />
+                <m:ToolbarSpacer />
+            </m:OverflowToolbar>
+        </m:customHeader>
+        <m:content>
+            <Table
+                class="sapUiLargeMarginBottom"
+                selectionBehavior="Row"
+                id="tableAssetInventory"
+                selectionMode="None"
+                rows="{
+                    path: 'odata>/AssetInventory',
+                    sorter: {
+                        path: 'id',
+                        descending: true
+                    }
+                }"
+                alternateRowColors="true"
+                enableCellFilter="true"
+                enableColumnFreeze="true"
+                fixedColumnCount="1"
+                enableBusyIndicator="true"
+                busyIndicatorDelay="0">
+                <rowMode>
+                    <rm:Auto />
+                </rowMode>
+                <extension>
+                    <m:OverflowToolbar class="sapUiSmallMarginTopBottom" style="Clear">
+                        <m:Button
+                            id="addButtonAssetInventory"
+                            type="Emphasized"
+                            icon="sap-icon://add-document"
+                            text="{i18n>buttonCreate}"
+                            press="onNavTo('RouteFormCreate')" />
+                        <m:Button
+                            id="exportButtonAssetInventory"
+                            type="Accept"
+                            icon="sap-icon://excel-attachment"
+                            text="{i18n>buttonExport}"
+                            press="onExportExcel" />
+                        <m:ToolbarSpacer />
+                        <m:SearchField
+                            placeholder="{i18n>placeholderSearch}"
+                            width="50%"
+                            search="onSearch" />
+                        <m:Button
+                            id="btnUpdateDateAssetInventory"
+                            icon="sap-icon://refresh"
+                            press="onRefresh" />
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column filterProperty="id" sortProperty="id" width="7em" autoResizable="true">
+                        <m:Label text="ID" />
+                        <template>
+                            <m:Link text="{odata>id}" press="onOpenFormEdit" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="fecha_diligenciamiento"
+                        sortProperty="fecha_diligenciamiento"
+                        width="14em"
+                        autoResizable="true">
+                        <m:Label text="Fecha Diligenciamiento" />
+                        <template>
+                            <m:Text
+                                text="{
+                                    path: 'odata>fecha_diligenciamiento',
+                                    type: 'sap.ui.model.odata.type.Date',
+                                    formatter: '.formatDateTime'
+                                }"
+                                wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="codigo_sociedad"
+                        sortProperty="codigo_sociedad"
+                        width="6em"
+                        autoResizable="true">
+                        <m:Label text="Sociedad" />
+                        <template>
+                            <m:Text text="{odata>codigo_sociedad}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="descripcion_sociedad"
+                        sortProperty="descripcion_sociedad"
+                        width="11em"
+                        autoResizable="true">
+                        <m:Label text="Descripción Sociedad" />
+                        <template>
+                            <m:Text text="{odata>descripcion_sociedad}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="numero_activo"
+                        sortProperty="numero_activo"
+                        width="10em"
+                        autoResizable="true">
+                        <m:Label text="Número de activo fijo" />
+                        <template>
+                            <m:Text text="{odata>numero_activo}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="sub_numero_activo"
+                        sortProperty="sub_numero_activo"
+                        width="10em"
+                        autoResizable="true">
+                        <m:Label text="Subnúmero del activo" />
+                        <template>
+                            <m:Text text="{odata>sub_numero_activo}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="codigo_clase_activo"
+                        sortProperty="codigo_clase_activo"
+                        width="10em"
+                        autoResizable="true">
+                        <m:Label text="Clase de activo fijo" />
+                        <template>
+                            <m:Text text="{odata>codigo_clase_activo}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="descripcion_activo_1"
+                        sortProperty="descripcion_activo_1"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Descripción de activo fijo 1" />
+                        <template>
+                            <m:Text text="{odata>descripcion_activo_1}" wrapping="true" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="descripcion_activo_2"
+                        sortProperty="descripcion_activo_2"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Descripción de activo fijo 2" />
+                        <template>
+                            <m:Text text="{odata>descripcion_activo_2}" wrapping="true" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="numero_serie"
+                        sortProperty="numero_serie"
+                        width="8em"
+                        autoResizable="true">
+                        <m:Label text="Número de serie" />
+                        <template>
+                            <m:Text text="{odata>numero_serie}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="numero_inventario"
+                        sortProperty="numero_inventario"
+                        width="10em"
+                        autoResizable="true">
+                        <m:Label text="Número de inventario" />
+                        <template>
+                            <m:Text text="{odata>numero_inventario}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="cantidad"
+                        sortProperty="cantidad"
+                        width="5em"
+                        autoResizable="true">
+                        <m:Label text="Cantidad" />
+                        <template>
+                            <m:Text text="{odata>cantidad}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="unidad_medida"
+                        sortProperty="unidad_medida"
+                        width="11em"
+                        autoResizable="true">
+                        <m:Label text="Unidad de medida base" />
+                        <template>
+                            <m:Text text="{odata>unidad_medida}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="cuenta_proveedor"
+                        sortProperty="cuenta_proveedor"
+                        width="14em"
+                        autoResizable="true">
+                        <m:Label text="Número de cuenta de proveedor" />
+                        <template>
+                            <m:Text text="{odata>cuenta_proveedor}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="nombre_proveedor"
+                        sortProperty="nombre_proveedor"
+                        width="15em"
+                        autoResizable="true">
+                        <m:Label text="Nombre de proveedor de activo fijo" />
+                        <template>
+                            <m:Text text="{odata>nombre_proveedor}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="fabricante"
+                        sortProperty="fabricante"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Fabricante del activo fijo" />
+                        <template>
+                            <m:Text text="{odata>fabricante}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="nombre_pais"
+                        sortProperty="nombre_pais"
+                        width="15em"
+                        autoResizable="true">
+                        <m:Label text="País/región de origen del activo fijo" />
+                        <template>
+                            <m:Text text="{odata>nombre_pais}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="codigo_centro_costo"
+                        sortProperty="codigo_centro_costo"
+                        width="8em"
+                        autoResizable="true">
+                        <m:Label text="Centro de coste" />
+                        <template>
+                            <m:Text text="{odata>codigo_centro_costo}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="nombre_responsable_cc"
+                        sortProperty="nombre_responsable_cc"
+                        width="16em"
+                        autoResizable="true">
+                        <m:Label text="Centro de coste responsable de AF" />
+                        <template>
+                            <m:Text text="{odata>nombre_responsable_cc}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="codigo_orden_interna"
+                        sortProperty="codigo_orden_interna"
+                        width="6em"
+                        autoResizable="true">
+                        <m:Label text="Orden CO" />
+                        <template>
+                            <m:Text text="{odata>codigo_orden_interna}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="codigo_centro_logistico"
+                        sortProperty="codigo_centro_logistico"
+                        width="8em"
+                        autoResizable="true">
+                        <m:Label text="Centro Logistico" />
+                        <template>
+                            <m:Text text="{odata>codigo_centro_logistico}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="criterio_1"
+                        sortProperty="criterio_1"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Criterio de clasificación 1" />
+                        <template>
+                            <m:Text text="{odata>criterio_1}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="criterio_2"
+                        sortProperty="criterio_2"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Criterio de clasificación 2" />
+                        <template>
+                            <m:Text text="{odata>criterio_2}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="criterio_3"
+                        sortProperty="criterio_3"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Criterio de clasificación 3" />
+                        <template>
+                            <m:Text text="{odata>criterio_3}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="criterio_4"
+                        sortProperty="criterio_4"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Criterio de clasificación 4" />
+                        <template>
+                            <m:Text text="{odata>criterio_4}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="clave_clasificacion"
+                        sortProperty="clave_clasificacion"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Clave de clasificación 5" />
+                        <template>
+                            <m:Text text="{odata>clave_clasificacion}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="nombre_responsable_cl"
+                        sortProperty="nombre_responsable_cl"
+                        width="13em"
+                        autoResizable="true">
+                        <m:Label text="Responsable Centro Logistico" />
+                        <template>
+                            <m:Text text="{odata>nombre_responsable_cl}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="nombre_responsable_activo"
+                        sortProperty="nombre_responsable_activo"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Responsable de Activo Fijo" />
+                        <template>
+                            <m:Text text="{odata>nombre_responsable_activo}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="diligenciado_por"
+                        sortProperty="diligenciado_por"
+                        width="12em"
+                        autoResizable="true">
+                        <m:Label text="Formato Diligenciado por" />
+                        <template>
+                            <m:Text text="{odata>diligenciado_por}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column
+                        filterProperty="fecha_registro"
+                        sortProperty="fecha_registro"
+                        width="14em"
+                        autoResizable="true">
+                        <m:Label text="Fecha de registro" />
+                        <template>
+                            <m:Text
+                                text="{
+                                    path: 'odata>fecha_registro',
+                                    type: 'sap.ui.model.odata.type.Date',
+                                    formatter: '.formatDateTime'
+                                }"
+                                wrapping="false" />
+                        </template>
+                        <!--                         <customData>
+                            <c:CustomData
+                                key="filterType"
+                                value="dateRange"
+                            />
+                        </customData> -->
+                    </Column>
+                </columns>
+            </Table>
+        </m:content>
+    </m:Page>
+</mvc:View>

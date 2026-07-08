@@ -1,0 +1,61 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.masterData.controller.MasterData"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:tnt="sap.tnt">
+	<tnt:ToolPage id="MasterData">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button
+                    id="sideNavigationToggleButton"
+                    icon="sap-icon://menu2"
+                    type="Transparent"
+                    press=".onSideNavButtonPress"
+                    text="Datos Maestros">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<SearchField placeholder="Buscar maestra" search="onSearch" />
+				<ToolbarSpacer width="20px" />
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation
+                id="mainToolPageSideNavigator"
+                selectedKey="{/ToolPage/selectedKey}"
+                itemSelect=".onItemSelect">
+				<tnt:NavigationList id="navigationList" items="{
+						path: '/ToolPage/navigation'
+					}">
+					<tnt:NavigationListItem
+                        text="{title}"
+                        icon="{icon}"
+                        enabled="{enabled}"
+                        expanded="{expanded}"
+                        key="{key}"
+                        visible="{visible}" />
+				</tnt:NavigationList>
+				<tnt:fixedItem>
+					<tnt:NavigationList id="fixedNavigationList" items="{
+							path: '/ToolPage/fixedNavigation'
+						}">
+						<tnt:NavigationListItem
+                            text="{title}"
+                            icon="{icon}"
+                            enabled="{enabled}"
+                            expanded="{expanded}"
+                            key="{key}"
+                            visible="{visible}" />
+					</tnt:NavigationList>
+				</tnt:fixedItem>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="componentApp" />
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

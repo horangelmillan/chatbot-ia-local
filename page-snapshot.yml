@@ -1,0 +1,17 @@
+- generic [active] [ref=f3e1]:
+  - generic:
+    - status
+    - status
+  - generic [ref=f3e5]:
+    - banner
+    - generic [ref=f3e10]:
+      - banner [ref=f3e11]:
+        - heading "Chat" [level=2] [ref=f3e14]
+      - list [ref=f3e17]:
+        - listitem [ref=f3e18]:
+          - generic [ref=f3e19]: No hay mensajes todavia
+      - contentinfo [ref=f3e21]:
+        - toolbar "Acciones de pie de página" [ref=f3e22]:
+          - textbox "Escribe tu mensaje..." [ref=f3e25]
+          - button "Enviar" [disabled] [ref=f3e26]:
+            - generic [ref=f3e28]: Enviar

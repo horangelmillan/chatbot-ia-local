@@ -1,0 +1,24 @@
+{
+    "mFormCreate": {},
+    "mFormEdit": {},
+    "mConfigForm": {
+        "noToUperCase": ["codigo"],
+        "toUperCaseAll": true
+    },
+    "mConfigExcel": {
+        "idTable": "tableInternalOrders",
+        "fileName": "Ordenes Internas"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/master_data/internal_orders",
+        "URIFragmentFolder": "InternalOrders",
+        "idTable": "tableInternalOrders",
+        "idFragment": "FragmentInternalOrders",
+        "mColumnsSearch": {
+            "aColumnsS": [["descripcion", 50]],
+            "aColumnsN": [["codigo", 12]],
+            "aColumnsD": []
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "mExcludesProperties": {
+        "nombre_responsable": true
+    },
+    "mFormCreate": {},
+    "mFormEdit": {},
+    "mConfigForm": {
+        "noToUperCase": ["codigo"],
+        "toUperCaseAll": true
+    },
+    "mConfigExcel": {
+        "idTable": "tableCostCenter",
+        "fileName": "Centros de Costo"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/master_data/cost_center",
+        "URLFragments": "com.mundocloud.assetmanagement.component.masterData.view.fragments.",
+        "URIFragmentFolder": "CostCenter",
+        "idTable": "tableCostCenter",
+        "idFragment": "FragmentCostCenter",
+        "mColumnsSearch": {
+            "aColumnsS": [
+                ["descripcion", 50],
+                ["nombre_responsable", 100],
+                ["cargo", 50]
+            ],
+            "aColumnsN": [["id"], ["codigo", 10]],
+            "aColumnsD": []
+        }
+    }
+}

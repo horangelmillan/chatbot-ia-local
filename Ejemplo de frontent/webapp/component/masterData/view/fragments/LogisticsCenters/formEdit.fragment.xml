@@ -1,0 +1,101 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="FragmentLogisticsCentersEdit"
+        title="{i18n>titleLogisticsCenters}"
+        afterClose="onAfterCloseEdit"
+        afterOpen="onAfterOpenDialog"
+        class="sapUiSizeCompact">
+        <HBox id="formContainerEdit">
+            <f:SimpleForm id="formLogisticsCentersEdit">
+                <f:content>
+                    <Label text="{i18n>columnCodLogisticsCenters}" />
+                    <Input
+                        id="InputCodLogisticsCenters"
+                        required="true"
+                        maxLength="4"
+                        change="onValidateField"
+                        placeholder="{i18n>placeHolderCode}"
+                        value="{/mFormEdit/codigo}"
+                        enabled="{/mConfigView/mEditMode}">
+                        <customData>
+                            <core:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <Label text="{i18n>columnDescriptionLogisticsCenters}" />
+                    <Input
+                        id="InputDescriptionLogisticsCenters"
+                        placeholder="{i18n>placeHolderDescriptionLogisticsCenters}"
+                        required="true"
+                        maxLength="50"
+                        change="onValidateField"
+                        value="{/mFormEdit/descripcion}"
+                        enabled="{/mConfigView/mEditMode}">
+                        <customData>
+                            <core:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <Label text="{i18n>columnResponsableLogisticsCenters}" />
+                        <Input
+                        id="inputResponsiblesEdit"
+                        showClearIcon="true"
+                        liveChange="onClearValues($event, '/mFormEdit/id_responsable')"
+                        placeholder="{i18n>placeholderResponsibles}"
+                        required="false"
+                        change="onValidateField"
+                        showValueHelp="true"
+                        valueHelpRequest="onOpenResponsiblesList('oDialogEdit', 'FragmentResponsiblesList', '/mFormEdit')"
+                        value="{
+                            path: '/mResponsibles/nombre_responsable'
+                        }">
+                        <customData>
+                            <core:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>                    
+
+                    <Label text="{i18n>columnCriteriaLogisticsCenters}" />
+                    <MultiInput
+                        id="multiInputCriteriaEdit"
+                        required="false"
+                        placeholder="{i18n>placeholderCriteria}"
+                        showSuggestion="false"
+                        maxTokens="4"
+                        showClearIcon="true"
+                        showValueHelp="true"
+                        maxLength="4"
+                        tokenUpdate="onUpdateMultiInput"
+                        valueHelpRequest="onOpenCriteriaList($event, 'oDialogEdit','FragmentCriteriaList','/mFormEdit')">
+                        <customData>
+                            <core:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </MultiInput>
+                    <Label text="{i18n>columnClassificationKey}" />
+                    <Input
+                        id="InputClassificationKey"
+                        required="false"
+                        maxLength="8"
+                        change="onValidateField"
+                        placeholder="{i18n>placeHolderClassificationKey}"
+                        value="{/mFormEdit/criterios/clave_clasificacion}">
+                        <customData>
+                            <core:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            id="btnAddEdit"
+                            text="{i18n>btnSave}"
+                            type="Accept"
+                            press="onEdit"
+                            enabled="{/mConfigView/mEditMode}" />
+                        <Button
+                            id="btnCancelEdit"
+                            text="{i18n>btnCancel}"
+                            type="Reject"
+                            press="onCloseDialog('FragmentLogisticsCentersEdit')" />
+                    </OverflowToolbar>
+                </f:content>
+            </f:SimpleForm>
+        </HBox>
+    </Dialog>
+</core:FragmentDefinition>

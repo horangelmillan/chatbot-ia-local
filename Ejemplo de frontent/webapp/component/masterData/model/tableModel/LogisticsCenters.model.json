@@ -1,0 +1,35 @@
+{
+    "mCriteria": [],
+    "mFormCreate": {},
+    "mFormEdit": {},
+    "mConfigForm": {
+        "noToUperCase": ["codigo"],
+        "toUperCaseAll": true
+    },
+    "mConfigExcel": {
+        "idTable": "tableLogisticsCenters",
+        "fileName": "Centros Logísticos"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/master_data/logistics_centers",
+        "URLFragments": "com.mundocloud.assetmanagement.component.masterData.view.fragments.",
+        "URIFragmentFolder": "LogisticsCenters",
+        "idTable": "tableLogisticsCenters",
+        "idFragment": "FragmentLogisticsCenters",
+        "mColumnsSearch": {
+            "aColumnsS": [
+                ["descripcion", 50],
+                ["nombre_responsable", 100],
+                ["cargo", 50],
+                ["criterio_1", 4],
+                ["criterio_2", 4],
+                ["criterio_3", 4],
+                ["criterio_4", 4],
+                ["clave_clasificacion", 8]
+            ],
+            "aColumnsN": [["id"], ["codigo", 4]],
+            "aColumnsD": []
+        }
+    }
+}

@@ -1,0 +1,340 @@
+{
+    "_version": "1.58.0",
+    "sap.app": {
+        "id": "com.mundocloud.assetmanagement.component.masterData",
+        "type": "component",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "DataSourceComponent": {
+                "uri": "model/MasterData.model.json"
+            },
+            "DataSourceAssetClass": {
+                "uri": "model/tableModel/AssetClass.model.json"
+            },
+            "DataSourceCountries": {
+                "uri": "model/tableModel/Countries.model.json"
+            },
+            "DataSourceCostCenter": {
+                "uri": "model/tableModel/CostCenter.model.json"
+            },
+            "DataSourceCurrency": {
+                "uri": "model/tableModel/Currency.model.json"
+            },
+            "DataSourceInternalOrders": {
+                "uri": "model/tableModel/InternalOrders.model.json"
+            },
+            "DataSourceLog": {
+                "uri": "model/tableModel/Log.model.json"
+            },
+            "DataSourceLogisticsCenters": {
+                "uri": "model/tableModel/LogisticsCenters.model.json"
+            },
+            "DataSourceProviders": {
+                "uri": "model/tableModel/Providers.model.json"
+            },
+            "DataSourceResponsible": {
+                "uri": "model/tableModel/Responsible.model.json"
+            },
+            "DataSourceSociety": {
+                "uri": "model/tableModel/Society.model.json"
+            },
+            "DataSourceUnitsMeasurement": {
+                "uri": "model/tableModel/UnitsMeasurement.model.json"
+            },
+            "odata": {
+                "uri": "URL_ODATA_SERVICE",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": ["", "en"]
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.129.0",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.f": {},
+                "sap.ui.integration": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/styles.css"
+                }
+            ]
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "handleValidation": true,
+        "rootView": {
+            "viewName": "com.mundocloud.assetmanagement.component.masterData.view.MasterData",
+            "type": "XML",
+            "async": true,
+            "id": "MasterData"
+        },
+        "models": {
+            "ModelComponent": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceComponent"
+            },
+            "ModelAssetClass": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceAssetClass"
+            },
+            "ModelCountries": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceCountries"
+            },
+            "ModelCostCenter": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceCostCenter"
+            },
+            "ModelCurrency": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceCurrency"
+            },
+            "ModelInternalOrders": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceInternalOrders"
+            },
+            "ModelLog": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceLog"
+            },
+            "ModelLogisticsCenters": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceLogisticsCenters"
+            },
+            "ModelProviders": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceProviders"
+            },
+            "ModelResponsible": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceResponsible"
+            },
+            "ModelSociety": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceSociety"
+            },
+            "ModelUnitsMeasurement": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceUnitsMeasurement"
+            },
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.mundocloud.assetmanagement.component.masterData.i18n.i18n",
+                    "fallbackLocale": "",
+                    "async": true,
+                    "supportedLocales": ["", "en"]
+                }
+            },
+            "odata": {
+                "dataSource": "odata",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "groupId": "$direct",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "operationMode": "Server"
+                },
+                "type": "sap.ui.model.odata.v4.ODataModel"
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "path": "com.mundocloud.assetmanagement.component.masterData.view.tableViews",
+                "controlId": "componentApp",
+                "controlAggregation": "pages",
+                "transition": "slide",
+                "clearControlAggregation": false,
+                "async": true,
+                "bypassed": {
+                    "target": "TargetNotFound"
+                }
+            },
+            "routes": [
+                {
+                    "name": "RouteMain",
+                    "pattern": "",
+                    "target": ["TargetMain"]
+                },
+                {
+                    "name": "RouteAssetClass",
+                    "pattern": "asset-class",
+                    "target": ["TargetAssetClass"]
+                },
+                {
+                    "name": "RouteContries",
+                    "pattern": "countries",
+                    "target": ["TargetContries"]
+                },
+                {
+                    "name": "RouteCostCenter",
+                    "pattern": "cost-center",
+                    "target": ["TargetCostCenter"]
+                },
+                {
+                    "name": "RouteCurrency",
+                    "pattern": "currency",
+                    "target": ["TargetCurrency"]
+                },
+                {
+                    "name": "RouteInternalOrders",
+                    "pattern": "internal-orders",
+                    "target": ["TargetInternalOrders"]
+                },
+                {
+                    "name": "RouteLog",
+                    "pattern": "log",
+                    "target": ["TargetLog"]
+                },
+                {
+                    "name": "RouteLogisticsCenters",
+                    "pattern": "logistics-centers",
+                    "target": ["TargetLogisticsCenters"]
+                },
+                {
+                    "name": "RouteProviders",
+                    "pattern": "providers",
+                    "target": ["TargetProviders"]
+                },
+                {
+                    "name": "RouteResponsible",
+                    "pattern": "responsible",
+                    "target": ["TargetResponsible"]
+                },
+                {
+                    "name": "RouteSociety",
+                    "pattern": "society",
+                    "target": ["TargetSociety"]
+                },
+                {
+                    "name": "RouteUnitsMeasurement",
+                    "pattern": "units-measurement",
+                    "target": ["TargetUnitsMeasurement"]
+                }
+            ],
+            "targets": {
+                "TargetNotFound": {
+                    "type": "View",
+                    "path": "com.mundocloud.assetmanagement.component.masterData.view",
+                    "id": "notFound",
+                    "name": "NotFound",
+                    "transition": "slide"
+                },
+                "TargetMain": {
+                    "type": "View",
+                    "id": "main",
+                    "name": "Main",
+                    "title": "Principal",
+                    "transition": "slide",
+                    "level": 0
+                },
+                "TargetAssetClass": {
+                    "type": "View",
+                    "id": "assetClass",
+                    "name": "AssetClass",
+                    "title": "Clases de Activos",
+                    "transition": "slide"
+                },
+                "TargetContries": {
+                    "type": "View",
+                    "id": "contries",
+                    "name": "Contries",
+                    "title": "Países",
+                    "transition": "slide"
+                },
+                "TargetCostCenter": {
+                    "type": "View",
+                    "id": "costCenter",
+                    "name": "CostCenter",
+                    "title": "Centros de Costos",
+                    "transition": "slide"
+                },
+                "TargetCurrency": {
+                    "type": "View",
+                    "id": "currency",
+                    "name": "Currency",
+                    "title": "Moneda",
+                    "transition": "slide"
+                },
+                "TargetInternalOrders": {
+                    "type": "View",
+                    "id": "internalOrders",
+                    "name": "InternalOrders",
+                    "title": "Ordenes Internas",
+                    "transition": "slide"
+                },
+                "TargetLog": {
+                    "type": "View",
+                    "id": "log",
+                    "name": "Log",
+                    "title": "Logs",
+                    "transition": "slide"
+                },
+                "TargetLogisticsCenters": {
+                    "type": "View",
+                    "id": "logisticsCenters",
+                    "name": "LogisticsCenters",
+                    "title": "Centros Logísticos",
+                    "transition": "slide"
+                },
+                "TargetProviders": {
+                    "type": "View",
+                    "id": "providers",
+                    "name": "Providers",
+                    "title": "Proveedores",
+                    "transition": "slide"
+                },
+                "TargetResponsible": {
+                    "type": "View",
+                    "id": "responsible",
+                    "name": "Responsible",
+                    "title": "Responsables",
+                    "transition": "slide"
+                },
+                "TargetSociety": {
+                    "type": "View",
+                    "id": "society",
+                    "name": "Society",
+                    "title": "Sociedades",
+                    "transition": "slide"
+                },
+                "TargetUnitsMeasurement": {
+                    "type": "View",
+                    "id": "unitsMeasurement",
+                    "name": "UnitsMeasurement",
+                    "title": "Unidades de Medida",
+                    "transition": "slide"
+                }
+            }
+        }
+    }
+}

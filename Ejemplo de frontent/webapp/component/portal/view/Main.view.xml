@@ -1,0 +1,40 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.portal.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f">
+	<ScrollContainer height="100%" width="100%" vertical="true">
+		<f:GridContainer id="grid1" class="sapUiMediumMargin" snapToRow="true">
+			<f:layout>
+				<f:GridContainerSettings gap="20px" />
+			</f:layout>
+			<f:layoutXS>
+				<f:GridContainerSettings gap="20px" />
+			</f:layoutXS>
+			<GenericTile
+                header="Datos Maestros"
+                subheader="Base de información"
+                width="100%"
+                press="onNavTo('RouteComponent')">
+				<layoutData>
+					<f:GridContainerItemLayoutData minRows="2" columns="2" />
+				</layoutData>
+				<TileContent footer="Asset Management">
+					<ImageContent src="sap-icon://database" />
+				</TileContent>
+			</GenericTile>
+			<GenericTile
+                header="Inventario"
+                subheader="Proceso core"
+                width="100%"
+                press="onNavTo('RouteAssetInventory')">
+				<layoutData>
+					<f:GridContainerItemLayoutData minRows="2" columns="2" />
+				</layoutData>
+				<TileContent footer="Asset Management">
+					<ImageContent src="sap-icon://activities" />
+				</TileContent>
+			</GenericTile>
+		</f:GridContainer>
+	</ScrollContainer>
+</mvc:View>

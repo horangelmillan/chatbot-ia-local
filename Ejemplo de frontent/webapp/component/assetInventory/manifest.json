@@ -1,0 +1,171 @@
+{
+    "_version": "1.58.0",
+    "sap.app": {
+        "id": "com.mundocloud.assetmanagement.component.assetInventory",
+        "type": "component",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "DataSourceApp": {
+                "uri": "model/App.model.json"
+            },
+            "DataSourceMain": {
+                "uri": "model/Main.model.json"
+            },
+            "DataSourceForm": {
+                "uri": "model/Form.model.json"
+            },
+            "DataSourceFormEdit": {
+                "uri": "model/assetInventory/FormEdit.model.json"
+            },
+            "odata": {
+                "uri": "URL_ODATA_SERVICE",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": ["", "en"]
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.129.0",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.f": {},
+                "sap.ui.integration": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/styles.css"
+                }
+            ]
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "handleValidation": true,
+        "rootView": {
+            "viewName": "com.mundocloud.assetmanagement.component.assetInventory.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "appAssetInventory"
+        },
+        "models": {
+            "ModelApp": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceApp"
+            },
+            "ModelMain": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceMain"
+            },
+            "ModelForm": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceForm"
+            },
+            "ModelFormEdit": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceFormEdit"
+            },
+            "odata": {
+                "dataSource": "odata",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "groupId": "$direct",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "operationMode": "Server"
+                },
+                "type": "sap.ui.model.odata.v4.ODataModel"
+            },
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.mundocloud.assetmanagement.component.assetInventory.i18n.i18n",
+                    "fallbackLocale": "",
+                    "async": true,
+                    "supportedLocales": ["", "en"]
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "path": "com.mundocloud.assetmanagement.component.assetInventory.view",
+                "controlId": "appAssetInventory",
+                "controlAggregation": "pages",
+                "transition": "slide",
+                "clearControlAggregation": false,
+                "async": true,
+                "bypassed": {
+                    "target": "TargetNotFound"
+                }
+            },
+            "routes": [
+                {
+                    "name": "RouteMain",
+                    "pattern": "",
+                    "target": ["TargetMain"]
+                },
+                {
+                    "name": "RouteFormCreate",
+                    "pattern": "formCreate",
+                    "target": ["TargetFormCreate"]
+                },
+                {
+                    "name": "RouteFormEdit",
+                    "pattern": "formEdit/{id}",
+                    "target": ["TargetFormEdit"]
+                }
+            ],
+            "targets": {
+                "TargetMain": {
+                    "type": "View",
+                    "id": "main",
+                    "name": "Main",
+                    "title": "Principal",
+                    "transition": "slide",
+                    "level": 0
+                },
+                "TargetFormCreate": {
+                    "type": "View",
+                    "path": "com.mundocloud.assetmanagement.component.assetInventory.view.assetInventory",
+                    "id": "formCreate",
+                    "name": "FormCreate",
+                    "transition": "slide",
+                    "level": 1
+                },
+                "TargetFormEdit": {
+                    "type": "View",
+                    "path": "com.mundocloud.assetmanagement.component.assetInventory.view.assetInventory",
+                    "id": "formEdit",
+                    "name": "FormEdit",
+                    "transition": "slide",
+                    "level": 1
+                }
+            }
+        }
+    }
+}

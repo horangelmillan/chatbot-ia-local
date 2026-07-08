@@ -1,0 +1,49 @@
+{
+    "mConfigExcel": {
+        "idTable": "tableAssetInventory",
+        "fileName": "Inventario de activos"
+    },
+    "mExcelUtils": {
+        "mProgresBar": {
+            "valorProgreso": 0,
+            "valorProgresoString": "0"
+        },
+        "mTempOdata": []
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "idTable": "tableAssetInventory",
+        "mColumnsSearch": {
+            "aColumnsS": [
+                ["codigo_sociedad", 4],
+                ["descripcion_sociedad", 50],
+                ["numero_activo", 12],
+                ["sub_numero_activo", 4],
+                ["codigo_clase_activo", 8],
+                ["descripcion_clase_activo", 50],
+                ["numero_serie", 18],
+                ["numero_inventario", 10],
+                ["unidad_medida", 3],
+                ["cuenta_proveedor", 255],
+                ["nombre_proveedor", 100],
+                ["nombre_pais", 100],
+                ["codigo_centro_costo", 10],
+                ["nombre_responsable_cc", 100],
+                ["codigo_orden_interna", 12],
+                ["codigo_centro_logistico", 4],
+                ["nombre_responsable_cl", 100],
+                ["nombre_responsable_activo", 100],
+                ["criterio_1", 4],
+                ["criterio_2", 4],
+                ["criterio_3", 4],
+                ["criterio_4", 4],
+                ["clave_clasificacion", 8],
+                ["fabricante", 50],
+                ["diligenciado_por", 50],
+                ["descripcion_activo_1", 50],
+                ["descripcion_activo_2", 50]
+            ],
+            "aColumnsN": [["cantidad"], ["id"]]
+        }
+    }
+}

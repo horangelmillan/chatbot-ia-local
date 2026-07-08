@@ -1,0 +1,68 @@
+<c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="FragmentAssetClassEdit"
+        title="{i18n>titleAssetClass}"
+        afterClose="onAfterCloseEdit"
+        afterOpen="onAfterOpenDialog"
+        class="sapUiSizeCompact">
+        <HBox id="formContainerEdit">
+            <f:SimpleForm id="formAssetClassEdit">
+                <!-- <OverflowToolbar id="toolbarEdition">
+                    <ToolbarSpacer />
+                    <MessageStrip
+                        showIcon="true"
+                        text="{i18n>messageStripEdition}"
+                        visible="{=!${/mConfigView/mEditMode}}"
+                    />
+                    <Switch
+                        change="fnEnabledEdition"
+                        state="{/mConfigView/mEditMode}"
+                    />
+                </OverflowToolbar> -->
+                <f:content>
+                    <Label text="{i18n>columnCodAssetClass}" />
+                    <Input
+                        id="InputCodAssetClass"
+                        required="true"
+                        maxLength="8"
+                        change="onValidateField"
+                        placeholder="{i18n>placeHolderCode}"
+                        value="{/mFormEdit/codigo}"
+                        enabled="{/mConfigView/mEditMode}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <Label text="{i18n>columnDescriptionAssetClass}" />
+                    <Input
+                        id="InputDescriptionAssetClass"
+                        placeholder="{i18n>placeHolderDescriptionAssetClass}"
+                        required="true"
+                        maxLength="50"
+                        change="onValidateField"
+                        value="{/mFormEdit/descripcion}"
+                        enabled="{/mConfigView/mEditMode}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <Label text="{i18n>columnDescription2AssetClass}" />
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            id="btnAddEdit"
+                            text="{i18n>btnSave}"
+                            type="Accept"
+                            press="onEdit"
+                            enabled="{/mConfigView/mEditMode}" />
+                        <Button
+                            id="btnCancelEdit"
+                            text="{i18n>btnCancel}"
+                            type="Reject"
+                            press="onCloseDialog('FragmentAssetClassEdit')" />
+                    </OverflowToolbar>
+                </f:content>
+            </f:SimpleForm>
+        </HBox>
+    </Dialog>
+</c:FragmentDefinition>

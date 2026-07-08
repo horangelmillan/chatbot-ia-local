@@ -1,0 +1,27 @@
+{
+    "mFormCreate": {},
+    "mFormEdit": {},
+    "mConfigForm": {
+        "noToUperCase": ["id"],
+        "toUperCaseAll": true
+    },
+    "mConfigExcel": {
+        "idTable": "tableContries",
+        "fileName": "Paises"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/master_data/countries",
+        "URIFragmentFolder": "Countries",
+        "idTable": "tableContries",
+        "idFragment": "FragmentCountries",
+        "mColumnsSearch": {
+            "aColumnsS": [
+                ["nombre", 50],
+                ["codigo_iso", 3]
+            ],
+            "aColumnsN": [],
+            "aColumnsD": []
+        }
+    }
+}

@@ -1,0 +1,117 @@
+{
+    "ToolPage": {
+        "selectedKey": "AssetClass",
+        "navigation": [
+            {
+                "title": "Inicio",
+                "icon": "sap-icon://home",
+                "expanded": true,
+                "items": [],
+                "key": "Main",
+                "route": "RouteMain",
+                "visible": true
+            },
+            {
+                "title": "Clases de Activos",
+                "icon": "sap-icon://business-by-design",
+                "expanded": true,
+                "items": [],
+                "key": "AssetClass",
+                "route": "RouteAssetClass",
+                "visible": true
+            },
+            {
+                "title": "Centros de Costos",
+                "icon": "sap-icon://customer-financial-fact-sheet",
+                "expanded": true,
+                "items": [],
+                "key": "CostCenter",
+                "route": "RouteCostCenter",
+                "visible": true
+            },
+            {
+                "title": "Centros Logisticos",
+                "icon": "sap-icon://factory",
+                "expanded": true,
+                "items": [],
+                "key": "LogisticsCenters",
+                "route": "RouteLogisticsCenters",
+                "visible": true
+            },
+            {
+                "title": "Monedas",
+                "icon": "sap-icon://money-bills",
+                "expanded": true,
+                "items": [],
+                "key": "Currency",
+                "route": "RouteCurrency",
+                "visible": false
+            },
+            {
+                "title": "Ordenes Internas",
+                "icon": "sap-icon://activity-items",
+                "expanded": true,
+                "items": [],
+                "key": "InternalOrders",
+                "route": "RouteInternalOrders",
+                "visible": true
+            },
+            {
+                "title": "Paises",
+                "icon": "sap-icon://world",
+                "expanded": true,
+                "items": [],
+                "key": "Contries",
+                "route": "RouteContries",
+                "visible": true
+            },
+            {
+                "title": "Proveedores",
+                "icon": "sap-icon://cart-approval",
+                "expanded": true,
+                "items": [],
+                "key": "Providers",
+                "route": "RouteProviders",
+                "visible": true
+            },
+            {
+                "title": "Responsables",
+                "icon": "sap-icon://account",
+                "expanded": true,
+                "items": [],
+                "key": "Responsible",
+                "route": "RouteResponsible",
+                "visible": true
+            },
+            {
+                "title": "Sociedades",
+                "icon": "sap-icon://building",
+                "expanded": true,
+                "items": [],
+                "key": "Society",
+                "route": "RouteSociety",
+                "visible": true
+            },
+            {
+                "title": "Unidades de Medida",
+                "icon": "sap-icon://measurement-document",
+                "expanded": true,
+                "items": [],
+                "key": "UnitsMeasurement",
+                "route": "RouteUnitsMeasurement",
+                "visible": true
+            }
+        ],
+        "fixedNavigation": [
+            {
+                "icon": "sap-icon://notes",
+                "title": "Log",
+                "expanded": false,
+                "enabled": true,
+                "key": "Log",
+                "route": "RouteLog",
+                "visible": false
+            }
+        ]
+    }
+}

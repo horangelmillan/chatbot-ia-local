@@ -1,0 +1,16 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.portal.controller.NotFound"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0">
+    <IllustratedMessage
+        description="Intente de nuevo mas tarde."
+        illustrationType="sapIllus-UnableToLoad"
+        title="Ups, no se encontró ninguna página.">
+        <additionalContent>
+            <Button text="Ir al inicio" press="onNavBack" />
+        </additionalContent>
+    </IllustratedMessage>
+</mvc:View>

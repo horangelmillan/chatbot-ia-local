@@ -1,0 +1,27 @@
+{
+    "mFormCreate": {},
+    "mFormEdit": {},
+    "mConfigForm": {
+        "noToUperCase": ["id"],
+        "toUperCaseAll": true
+    },
+    "mConfigExcel": {
+        "idTable": "tableResponsible",
+        "fileName": "Responsables"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/people/responsibles",
+        "URIFragmentFolder": "Responsible",
+        "idTable": "tableResponsible",
+        "idFragment": "FragmentResponsible",
+        "mColumnsSearch": {
+            "aColumnsS": [
+                ["cargo", 50],
+                ["nombre_responsable", 100]
+            ],
+            "aColumnsN": [["id"]],
+            "aColumnsD": []
+        }
+    }
+}

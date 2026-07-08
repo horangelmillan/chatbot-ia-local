@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Dialog title="Exportar a excel" id="FragmentProgresBar" class="sapUiSizeCompact">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Label text="Descargando datos..." />
+                <ProgressIndicator
+                    percentValue="{/mExcelUtils/mProgresBar/valorProgreso}"
+                    displayValue="{/mExcelUtils/mProgresBar/valorProgresoString}"
+                    class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiSmallMarginRight sapUiSmallMarginLeft" />
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="Cancelar" press="fnOnCancelExportExcel" />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

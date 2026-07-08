@@ -1,0 +1,26 @@
+#messageList {
+  flex: 1;
+  overflow-y: auto;
+}
+.userItem {
+  display: flex;
+  justify-content: flex-end;
+}
+.assistantItem {
+  display: flex;
+  justify-content: flex-start;
+}
+.userBubble .sapMVBox {
+  background: #cce5ff;
+  border-radius: 12px 12px 4px 12px;
+  padding: 10px 14px;
+  margin: 4px 8px;
+  max-width: 60%;
+}
+.assistantBubble .sapMVBox {
+  background: #f0f0f0;
+  border-radius: 12px 12px 12px 4px;
+  padding: 10px 14px;
+  margin: 4px 8px;
+  max-width: 60%;
+}

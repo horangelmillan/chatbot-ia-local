@@ -1,0 +1,52 @@
+<c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="FragmentCountries"
+        title="{i18n>titleCountries}"
+        afterClose="onAfterClose"
+        afterOpen="onAfterOpenDialog"
+        class="sapUiSizeCompact">
+        <HBox id="formContainerCreate">
+            <f:SimpleForm id="FormCountries">
+                <f:content>
+                    <Label text="{i18n>columnNameCountries}" />
+                    <Input
+                        id="InputNameCountries"
+                        required="true"
+                        maxLength="50"
+                        change="onValidateField"
+                        placeholder="{i18n>placeHolderNameCountries}"
+                        value="{/mFormCreate/nombre}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <Label text="{i18n>columnCodISOCountries}" />
+                    <Input
+                        id="InputCodISOCountries"
+                        placeholder="{i18n>placeHolderCodISOCountries}"
+                        required="true"
+                        maxLength="3"
+                        change="onValidateField"
+                        value="{/mFormCreate/codigo_iso}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            id="btnAddCreate"
+                            text="{i18n>btnSave}"
+                            type="Accept"
+                            press="onSave" />
+                        <Button
+                            id="btnCancelCreate"
+                            text="{i18n>btnCancel}"
+                            type="Reject"
+                            press="onCloseDialog('FragmentCountries')" />
+                    </OverflowToolbar>
+                </f:content>
+            </f:SimpleForm>
+        </HBox>
+    </Dialog>
+</c:FragmentDefinition>

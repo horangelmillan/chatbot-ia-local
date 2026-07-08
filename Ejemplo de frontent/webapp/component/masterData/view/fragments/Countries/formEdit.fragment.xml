@@ -1,0 +1,67 @@
+<c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="FragmentCountriesEdit"
+        title="{i18n>titleCountries}"
+        afterClose="onAfterCloseEdit"
+        afterOpen="onAfterOpenDialog"
+        class="sapUiSizeCompact">
+        <HBox id="formContainerEdit">
+            <f:SimpleForm id="formCountriesEdit">
+                <!-- <OverflowToolbar id="toolbarEdition">
+                    <ToolbarSpacer />
+                    <MessageStrip
+                        showIcon="true"
+                        text="{i18n>messageStripEdition}"
+                        visible="{=!${/mConfigView/mEditMode}}"
+                    />
+                    <Switch
+                        change="fnEnabledEdition"
+                        state="{/mConfigView/mEditMode}"
+                    />
+                </OverflowToolbar> -->
+                <f:content>
+                    <Label text="{i18n>columnNameCountries}" />
+                    <Input
+                        id="InputNameCountries"
+                        required="true"
+                        maxLength="50"
+                        change="onValidateField"
+                        placeholder="{i18n>placeHolderNameCountries}"
+                        value="{/mFormEdit/nombre}"
+                        enabled="{/mConfigView/mEditMode}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <Label text="{i18n>columnCodISOCountries}" />
+                    <Input
+                        id="InputCodISOCountries"
+                        placeholder="{i18n>placeHolderCodISOCountries}"
+                        required="true"
+                        maxLength="3"
+                        change="onValidateField"
+                        value="{/mFormEdit/codigo_iso}"
+                        enabled="{/mConfigView/mEditMode}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            id="btnAddEdit"
+                            text="{i18n>btnSave}"
+                            type="Accept"
+                            press="onEdit"
+                            enabled="{/mConfigView/mEditMode}" />
+                        <Button
+                            id="btnCancelEdit"
+                            text="{i18n>btnCancel}"
+                            type="Reject"
+                            press="onCloseDialog('FragmentCountriesEdit')" />
+                    </OverflowToolbar>
+                </f:content>
+            </f:SimpleForm>
+        </HBox>
+    </Dialog>
+</c:FragmentDefinition>

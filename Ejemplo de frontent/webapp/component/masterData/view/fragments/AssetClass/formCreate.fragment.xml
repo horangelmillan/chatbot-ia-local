@@ -1,0 +1,52 @@
+<c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="FragmentAssetClass"
+        title="{i18n>titleAssetClass}"
+        afterClose="onAfterClose"
+        afterOpen="onAfterOpenDialog"
+        class="sapUiSizeCompact">
+        <HBox id="formContainerCreate">
+            <f:SimpleForm id="FormAssetClass">
+                <f:content>
+                    <Label text="{i18n>columnCodAssetClass}" />
+                    <Input
+                        id="InputCodAssetClass"
+                        required="true"
+                        maxLength="8"
+                        change="onValidateField"
+                        placeholder="{i18n>placeHolderCode}"
+                        value="{/mFormCreate/codigo}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <Label text="{i18n>columnDescriptionAssetClass}" />
+                    <Input
+                        id="InputDescriptionAssetClass"
+                        placeholder="{i18n>placeHolderDescriptionAssetClass}"
+                        required="true"
+                        maxLength="50"
+                        change="onValidateField"
+                        value="{/mFormCreate/descripcion}">
+                        <customData>
+                            <c:CustomData key="required" value="true" writeToDom="true" />
+                        </customData>
+                    </Input>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            id="btnAddCreate"
+                            text="{i18n>btnSave}"
+                            type="Accept"
+                            press="onSave" />
+                        <Button
+                            id="btnCancelCreate"
+                            text="{i18n>btnCancel}"
+                            type="Reject"
+                            press="onCloseDialog('FragmentAssetClass')" />
+                    </OverflowToolbar>
+                </f:content>
+            </f:SimpleForm>
+        </HBox>
+    </Dialog>
+</c:FragmentDefinition>

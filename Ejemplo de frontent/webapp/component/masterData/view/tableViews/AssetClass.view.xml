@@ -1,0 +1,82 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.masterData.controller.tableController.AssetClass"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    class="sapUiSizeCompact"
+    height="100%"
+    xmlns:rm="sap.ui.table.rowmodes">
+	<m:Page class="sapUiContentPadding" id="assetClass">
+		<m:customHeader>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer />
+				<c:Icon src="sap-icon://business-by-design" alt="Cart" size="1rem" />
+				<m:Title text="{i18n>titleAssetClass}" titleStyle="H2" class="sapUiTinyMarginBeginEnd" />
+				<m:ToolbarSpacer />
+			</m:OverflowToolbar>
+		</m:customHeader>
+		<m:content>
+			<Table
+                id="tableAssetClass"
+                selectionMode="None"
+                rows="{
+					path: 'odata>/AssetClasses',
+					sorter: {
+						path: 'id',
+						descending: true
+					}
+				}"
+                alternateRowColors="true"
+                enableCellFilter="true"
+                enableColumnFreeze="true"
+                fixedColumnCount="1"
+                enableBusyIndicator="true"
+                busyIndicatorDelay="0">
+				<rowMode>
+					<rm:Auto />
+				</rowMode>
+				<extension>
+					<m:OverflowToolbar class="sapUiSmallMarginTopBottom" style="Clear">
+						<m:Button
+                            id="addButtonAssetClass"
+                            type="Emphasized"
+                            icon="sap-icon://add-document"
+                            text="{i18n>buttonCreate}"
+                            press="onOpenDialogCreate" />
+						<m:Button
+                            id="exportButtonAssetClass"
+                            type="Accept"
+                            icon="sap-icon://excel-attachment"
+                            text="{i18n>buttonExport}"
+                            press="onExportExcel" />
+						<m:ToolbarSpacer />
+						<m:SearchField placeholder="{i18n>placeholderSearch}" width="50%" search="onSearch" />
+						<m:Button id="btnUpdateDateAssetClass" icon="sap-icon://refresh" press="onRefresh" />
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column filterProperty="id" sortProperty="id" width="7em">
+						<m:Label text="ID" />
+						<template>
+							<m:Text text="{odata>id}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="codigo" sortProperty="codigo" autoResizable="true">
+						<m:Label text="Código" />
+						<template>
+							<m:Link text="{odata>codigo}" press="onOpenDialogEdit" />
+						</template>
+					</Column>
+					<Column filterProperty="descripcion" sortProperty="descripcion" autoResizable="true">
+						<m:Label text="Descripción" />
+						<template>
+							<m:Text text="{odata>descripcion}" wrapping="false" />
+						</template>
+					</Column>
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
+</mvc:View>

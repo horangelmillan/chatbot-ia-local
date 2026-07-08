@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <TableSelectDialog
+        confirm="onValidateFieldFromFragment('inputAssetClassCreate')"
+        id="FragmentAssetClassList"
+        title="{i18n>selectAssetClass}"
+        items="{
+            path: 'odata>/AssetClasses',
+            sorter: {
+                path: 'id',
+                descending: true
+            }
+        }">
+        <ColumnListItem>
+            <cells>
+                <Text text="{odata>id}" />
+                <Text text="{odata>codigo}" />
+                <Text text="{odata>descripcion}" />
+            </cells>
+        </ColumnListItem>
+        <columns>
+            <Column width="3em">
+                <header>
+                    <Text text="{i18n>columnIdAssetClass}" />
+                </header>
+            </Column>
+            <Column width="5em">
+                <header>
+                    <Text text="{i18n>columnCodeAssetClass}" />
+                </header>
+            </Column>
+            <Column width="12em">
+                <header>
+                    <Text text="{i18n>columnDescriptionAssetClass}" />
+                </header>
+            </Column>
+        </columns>
+    </TableSelectDialog>
+</core:FragmentDefinition>

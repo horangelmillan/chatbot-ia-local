@@ -1,0 +1,41 @@
+{
+    "tiles": [
+        {
+            "header": "Datos Maestros 2",
+            "subheader": "Base de información",
+            "footer": "AssetManagement",
+            "icon": "sap-icon://database",
+            "press": "onNavTo('RouteComponent')"
+        },
+        {
+            "header": "Manage Activity Master Data Type",
+            "subheader": "Subtitle",
+            "icon": "sap-icon://activities"
+        },
+        {
+            "header": "Cumulative Totals",
+            "subheader": "Subtitle",
+            "value": "12",
+            "unit": "Unit",
+            "footer": "Footer Text"
+        },
+        {
+            "header": "Travel and Expenses",
+            "subheader": "Access Concur",
+            "icon": "sap-icon://travel-expense"
+        },
+        {
+            "header": "Success Map",
+            "subheader": "Access Success Map",
+            "unit": "EUR",
+            "footer": "Current Quarter",
+            "icon": "sap-icon://map-3"
+        },
+        {
+            "header": "My Team Calendar",
+            "footer": "Current Quarter",
+            "unit": "EUR",
+            "icon": "sap-icon://check-availability"
+        }
+    ]
+}

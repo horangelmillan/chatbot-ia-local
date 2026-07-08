@@ -1,0 +1,24 @@
+{
+    "mFormCreate": {},
+    "mFormEdit": {},
+    "mConfigForm": {
+        "noToUperCase": ["codigo"],
+        "toUperCaseAll": true
+    },
+    "mConfigExcel": {
+        "idTable": "tableAssetClass",
+        "fileName": "Clases_de_Activos"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/master_data/asset_class",
+        "URIFragmentFolder": "AssetClass",
+        "idTable": "tableAssetClass",
+        "idFragment": "FragmentAssetClass",
+        "mColumnsSearch": {
+            "aColumnsS": [["descripcion", 50]],
+            "aColumnsN": [["codigo", 8], ["id"]],
+            "aColumnsD": []
+        }
+    }
+}

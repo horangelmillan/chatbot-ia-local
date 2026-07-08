@@ -1,0 +1,9 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.assetInventory.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0">
+	<App id="appAssetInventory" />
+</mvc:View>

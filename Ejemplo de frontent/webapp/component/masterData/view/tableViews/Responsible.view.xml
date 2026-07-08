@@ -1,0 +1,95 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.masterData.controller.tableController.Responsible"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    class="sapUiSizeCompact"
+    height="100%"
+    xmlns:rm="sap.ui.table.rowmodes">
+	<m:Page class="sapUiContentPadding" id="responsible">
+		<m:customHeader>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer />
+				<c:Icon src="sap-icon://account" alt="Cart" size="1rem" />
+				<m:Title text="{i18n>titleResponsible}" titleStyle="H2" class="sapUiTinyMarginBeginEnd" />
+				<m:ToolbarSpacer />
+			</m:OverflowToolbar>
+		</m:customHeader>
+		<m:content>
+			<Table
+                id="tableResponsible"
+                selectionMode="None"
+                rows="{
+					path: 'odata>/Responsables',
+					sorter: {
+						path: 'id',
+						descending: true
+					}
+				}"
+                alternateRowColors="true"
+                enableCellFilter="true"
+                enableColumnFreeze="true"
+                fixedColumnCount="1"
+                enableBusyIndicator="true"
+                busyIndicatorDelay="0">
+				<rowMode>
+					<rm:Auto />
+				</rowMode>
+				<extension>
+					<m:OverflowToolbar class="sapUiSmallMarginTopBottom" style="Clear">
+						<m:Button
+                            id="addButtonResponsible"
+                            type="Emphasized"
+                            icon="sap-icon://add-document"
+                            text="{i18n>buttonCreate}"
+                            press="onOpenDialogCreate" />
+						<m:Button
+                            id="exportButtonResponsible"
+                            type="Accept"
+                            icon="sap-icon://excel-attachment"
+                            text="{i18n>buttonExport}"
+                            press="onExportExcel" />
+						<m:ToolbarSpacer />
+						<m:SearchField placeholder="{i18n>placeholderSearch}" width="50%" search="onSearch" />
+						<m:Button id="btnUpdateDateResponsible" icon="sap-icon://refresh" press="onRefresh" />
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column filterProperty="id" sortProperty="id" autoResizable="true" width="7rem">
+						<m:Label text="ID" />
+						<template>
+							<m:Link text="{odata>id}" press="onOpenDialogEdit" />
+						</template>
+					</Column>
+					<Column filterProperty="cargo" sortProperty="cargo" autoResizable="true">
+						<m:Label text="Cargo" />
+						<template>
+							<m:Text text="{odata>cargo}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="nombre_responsable" sortProperty="nombre_responsable" autoResizable="true">
+						<m:Label text="Responsable" />
+						<template>
+							<m:Text text="{odata>nombre_responsable}" wrapping="false" />
+						</template>
+					</Column>
+                    <!-- <Column
+                        width="5em"
+                        hAlign="Center"
+                    >
+                        <m:Label text="" />
+                        <template>
+                            <m:CheckBox
+                                enabled="false"
+                                displayOnly="true"
+                                selected="{= ${odata>bloqueo} === 'true' ? true : false}"
+                            />
+                        </template>
+                    </Column> -->
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
+</mvc:View>

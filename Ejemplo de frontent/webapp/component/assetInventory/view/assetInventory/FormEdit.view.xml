@@ -1,0 +1,464 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.assetInventory.controller.assetInventory.FormEdit"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    height="100%">
+    <Page id="FormEdit" showHeader="false" floatingFooter="true">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:Form id="MainForm" editable="true">
+                    <f:title>
+                        <core:Title text="{i18n>titleForm}" />
+                    </f:title>
+                    <f:layout>
+                        <f:ColumnLayout columnsM="2" columnsL="4" columnsXL="4" />
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <f:FormElement label="Sociedad">
+                                    <f:fields>
+                                        <Input
+                                            id="inputSocietiesEdit"
+                                            liveChange="onClearValues($event, '/mFormEdit/id_sociedad')"
+                                            showClearIcon="true"
+                                            placeholder="{i18n>placeholderSocieties}"
+                                            required="true"
+                                            change="onValidateField"
+                                            showValueHelp="true"
+                                            valueHelpRequest="onOpenSocietiesList($event,'FormEdit', 'FragmentSocietiesList', '/mFormEdit')"
+                                            value="{
+                                                path: '/mFormEdit/excludes/descripcion_sociedad'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Centro Logistico">
+                                    <f:fields>
+                                        <Input
+                                            liveChange="onClearValues($event, '/mFormEdit/id_centro_logistico')"
+                                            showClearIcon="true"
+                                            id="inputLogisticsCentersEdit"
+                                            placeholder="{i18n>placeholderLogisticsCenters}"
+                                            required="true"
+                                            change="onValidateField"
+                                            showValueHelp="true"
+                                            valueHelpRequest="onOpenLogisticsCentersList($event,'FormEdit', 'FragmentLogisticsCentersList', '/mFormEdit')"
+                                            value="{
+                                                path: '/mFormEdit/excludes/descripcion_centro_logistico'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Centro de costo">
+                                    <f:fields>
+                                        <Input
+                                            id="inputCostCentersEdit"
+                                            liveChange="onClearValues($event, '/mFormEdit/id_centro_costo')"
+                                            showClearIcon="true"
+                                            placeholder="{i18n>placeholderCostCenters}"
+                                            required="false"
+                                            change="onValidateField"
+                                            showValueHelp="true"
+                                            valueHelpRequest="onOpenCostCentersList($event,'FormEdit', 'FragmentCostCentersList', '/mFormEdit')"
+                                            value="{
+                                                path: '/mFormEdit/excludes/descripcion_centro_costo'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Orden Interna">
+                                    <f:fields>
+                                        <Input
+                                            liveChange="onClearValues($event, '/mFormEdit/id_orden_interna')"
+                                            showClearIcon="true"
+                                            id="inputInternalOrdersEdit"
+                                            placeholder="{i18n>placeholderInternalOrders}"
+                                            required="false"
+                                            change="onValidateField"
+                                            showValueHelp="true"
+                                            valueHelpRequest="onOpenInternalOrdersList($event,'FormEdit', 'FragmentInternalOrdersList', '/mFormEdit')"
+                                            value="{
+                                                path: '/mFormEdit/excludes/descripcion_orden_interna'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Diligenciado por">
+                                    <f:fields>
+                                        <Input
+                                            id="inputCompletedByEdit"
+                                            value="{/mFormEdit/diligenciado_por}"
+                                            placeholder="Seleccione un usuario ..."
+                                            required="false"
+                                            maxLength="50">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Fecha de diligenciamiento">
+                                    <f:fields>
+                                        <DateTimePicker
+                                            enabled="false"
+                                            maxDate="{/mConfigView/max_date}"
+                                            showTimezone="true"
+                                            valueFormat="yyyy-MM-ddTHH:mm:ssXX"
+                                            placeholder="Seleccione la fecha ..."
+                                            id="datetimepickerCompletedDate"
+                                            afterValueHelpOpen="onMaxDate"
+                                            required="true"
+                                            value="{
+                                                path: '/mFormEdit/fecha_diligenciamiento'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </DateTimePicker>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Descripción de activo 1">
+                                    <f:fields>
+                                        <Input
+                                            id="inputDescriptionOneEdit"
+                                            value="{/mFormEdit/activo/descripcion_1}"
+                                            placeholder="Escriba una descripción..."
+                                            required="true"
+                                            maxLength="50">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Descripción de activo 2">
+                                    <f:fields>
+                                        <Input
+                                            id="inputDescriptionTwoEdit"
+                                            value="{/mFormEdit/activo/descripcion_2}"
+                                            placeholder="Escriba una descripción..."
+                                            required="false"
+                                            maxLength="50">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+                <f:Form id="FormAssets" editable="true">
+                    <f:title>
+                        <core:Title text="{i18n>titleFormAsset}" />
+                    </f:title>
+                    <f:layout>
+                        <f:ColumnLayout columnsM="2" columnsL="3" columnsXL="4" />
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer title="General">
+                            <f:formElements>
+                                <f:FormElement label="Número de activo fijo">
+                                    <f:fields>
+                                        <Input
+                                            id="inputAssetNumberEdit"
+                                            value="{/mFormEdit/activo/numero_activo}"
+                                            placeholder="Digite el número de activo..."
+                                            required="false"
+                                            maxLength="12">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Sub-número de activo fijo">
+                                    <f:fields>
+                                        <Input
+                                            id="inputSubAssetNumberEdit"
+                                            value="{/mFormEdit/activo/sub_numero_activo}"
+                                            placeholder="Digite el sub número de activo..."
+                                            required="false"
+                                            maxLength="4">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Número de serie">
+                                    <f:fields>
+                                        <Input
+                                            id="inputSerieNumberEdit"
+                                            placeholder="{i18n>placeholderSerieNumber}"
+                                            required="false"
+                                            change="onValidateField"
+                                            value="{
+                                                path: '/mFormEdit/activo/numero_serie'
+                                            }"
+                                            maxLength="18">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Número de inventario">
+                                    <f:fields>
+                                        <Input
+                                            id="inputInventoryNumberEdit"
+                                            placeholder="{i18n>placeholderInventoryNumber}"
+                                            required="false"
+                                            change="onValidateField"
+                                            value="{
+                                                path: '/mFormEdit/activo/numero_inventario'
+                                            }"
+                                            maxLength="10">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="País">
+                                    <f:fields>
+                                        <Input
+                                            id="inputCountriesEdit"
+                                            showClearIcon="true"
+                                            liveChange="onClearValues($event, '/mFormEdit/activo/id_pais')"
+                                            placeholder="{i18n>placeholderCountries}"
+                                            required="true"
+                                            change="onValidateField"
+                                            showValueHelp="true"
+                                            valueHelpRequest="onOpenCountriesList($event,'FormEdit', 'FragmentCountriesList', '/mFormEdit/activo')"
+                                            value="{
+                                                path: '/mFormEdit/excludes/nombre_pais'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Fabricante">
+                                    <f:fields>
+                                        <Input
+                                            id="inputManufacturerEdit"
+                                            placeholder="{i18n>placeholderManufacturer}"
+                                            required="false"
+                                            change="onValidateField"
+                                            value="{
+                                                path: '/mFormEdit/activo/fabricante'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                        <f:FormContainer title="Tipos y Medidas">
+                            <f:formElements>
+                                <f:FormElement label="Clase de activo">
+                                    <f:fields>
+                                        <Input
+                                            id="inputAssetClassEdit"
+                                            showClearIcon="true"
+                                            liveChange="onClearValues($event, '/mFormEdit/activo/id_clase_activo')"
+                                            placeholder="{i18n>placeholderAssetClass}"
+                                            required="true"
+                                            change="onValidateField"
+                                            showValueHelp="true"
+                                            valueHelpRequest="onOpenAssetClassList($event,'FormEdit', 'FragmentAssetClassList', '/mFormEdit/activo')"
+                                            value="{
+                                                path: '/mFormEdit/excludes/descripcion_clase_activo'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Unidad de medida">
+                                    <f:fields>
+                                        <Input
+                                            id="inputUnitsMeasurementEdit"
+                                            showClearIcon="true"
+                                            liveChange="onClearValues($event, '/mFormEdit/activo/id_unidad_medida')"
+                                            placeholder="{i18n>placeholderUnitsMeasurement}"
+                                            required="true"
+                                            change="onValidateField"
+                                            showValueHelp="true"
+                                            valueHelpRequest="onOpenUnitsMeasurementList($event,'FormEdit', 'FragmentUnitsMeasurementList', '/mFormEdit/activo')"
+                                            value="{
+                                                path: '/mFormEdit/excludes/descripcion_unidad_medida'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Cantidad">
+                                    <f:fields>
+                                        <Input
+                                            id="inputAmountEdit"
+                                            liveChange="onLiveChangeAmount"
+                                            placeholder="{i18n>placeholderAmount}"
+                                            required="true"
+                                            change="onValidateField"
+                                            value="{
+                                                path: '/mFormEdit/activo/cantidad',
+                                                type: 'sap.ui.model.type.Integer'
+                                            }"
+                                            maxLength="13">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                        <f:FormContainer title="Personas">
+                            <f:formElements>
+                                <f:FormElement label="Proveedor">
+                                    <f:fields>
+                                        <Input
+                                            id="inputProvidersEdit"
+                                            showClearIcon="true"
+                                            liveChange="onClearValues($event, '/mFormEdit/activo/id_proveedor')"
+                                            placeholder="{i18n>placeholderProviders}"
+                                            required="false"
+                                            change="onValidateField"
+                                            showValueHelp="true"
+                                            valueHelpRequest="onOpenProvidersList($event,'FormEdit', 'FragmentProvidersList', '/mFormEdit/activo')"
+                                            value="{
+                                                path: '/mFormEdit/excludes/nombre_proveedor'
+                                            }"
+                                            width="100%">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                        <Button
+                                            icon="sap-icon://add"
+                                            press="onOpenDialogCreateProvider">
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="2"
+                                                    cellsLarge="1" />
+                                            </layoutData>
+                                        </Button>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Responsable">
+                                    <f:fields>
+                                        <Input
+                                            id="inputResponsiblesEdit"
+                                            showClearIcon="true"
+                                            liveChange="onClearValues($event, '/mFormEdit/activo/id_responsable')"
+                                            placeholder="{i18n>placeholderResponsibles}"
+                                            required="false"
+                                            change="onValidateField"
+                                            showValueHelp="true"
+                                            valueHelpRequest="onOpenResponsiblesList($event,'FormEdit', 'FragmentResponsiblesList', '/mFormEdit/activo')"
+                                            value="{
+                                                path: '/mFormEdit/excludes/nombre_responsable_activo'
+                                            }">
+                                            <customData>
+                                                <core:CustomData
+                                                    key="required"
+                                                    value="true"
+                                                    writeToDom="true" />
+                                            </customData>
+                                        </Input>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+            </VBox>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button text="{i18n>btnSave}" press="onEdit" />
+                <ToolbarSpacer />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

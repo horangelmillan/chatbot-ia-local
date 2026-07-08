@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <TableSelectDialog
+        confirm="onValidateFieldFromFragment('multiInputCriteriaCreate')"
+        id="FragmentProvidersList"
+        title="{i18n>selectProviders}"
+        items="{
+            path: 'odata>/Providers',
+            sorter: {
+                path: 'id',
+                descending: true
+            }
+        }">
+        <ColumnListItem>
+            <cells>
+                <Text text="{odata>id}" />
+                <Text text="{odata>nombre_proveedor}" />
+                <Text text="{odata>numero_cuenta}" />
+            </cells>
+        </ColumnListItem>
+        <columns>
+            <Column width="3em">
+                <header>
+                    <Text text="{i18n>columnIdProviders}" />
+                </header>
+            </Column>
+            <Column width="5em">
+                <header>
+                    <Text text="{i18n>columnNameProviders}" />
+                </header>
+            </Column>
+            <Column width="12em">
+                <header>
+                    <Text text="{i18n>columnAccountNumberProviders}" />
+                </header>
+            </Column>
+        </columns>
+    </TableSelectDialog>
+</core:FragmentDefinition>

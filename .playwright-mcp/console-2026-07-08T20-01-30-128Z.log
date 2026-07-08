@@ -1,0 +1,94 @@
+[     450ms] [INFO] 2026-07-08 15:01:30 Device API logging initialized - DEVICE @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:1172
+[     531ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/favicon.ico:0
+[     571ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[     571ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[     574ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[     574ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[     574ms] [ERROR] 2026-07-08 15:01:30.702300 failed to load JavaScript resource: chatbot/ui/Component-preload.js -  sap.ui.ModuleSystem @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[     575ms] [ERROR] 2026-07-08 15:01:30.702900 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[     597ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/i18n/i18n_en.properties:0
+[     600ms] [ERROR] 2026-07-08 15:01:30.728500 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  111806ms] [INFO] 2026-07-08 15:03:21 Device API logging initialized - DEVICE @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:1172
+[  111979ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[  111979ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[  111997ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[  111997ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[  111998ms] [ERROR] 2026-07-08 15:03:22.126200 failed to load JavaScript resource: chatbot/ui/Component-preload.js -  sap.ui.ModuleSystem @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  111998ms] [ERROR] 2026-07-08 15:03:22.126600 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  112005ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/i18n/i18n_en.properties:0
+[  112008ms] [ERROR] 2026-07-08 15:03:22.136400 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  112036ms] [ERROR] 2026-07-08 15:03:22.164000 [FUTURE FATAL] factory function .itemFactory not found! -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  112038ms] [ERROR] 2026-07-08 15:03:22.165800 Component.create() failed - Error: Missing template or factory function for aggregation items of Element sap.m.List#__component0---app--messageList ! sap.ui.core.Component 
+ Error: Missing template or factory function for aggregation items of Element sap.m.List#__component0---app--messageList !
+    at v.bindAggregation (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:416:25946)
+    at x.bindAggregation (https://openui5.hana.ondemand.com/resources/sap/m/library-preload.js:979:7122)
+    at v.applySettings (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:416:6451)
+    at https://openui5.hana.ondemand.com/resources/sap-ui-core.js:416:2799
+    at c.constructor (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:416:2872)
+    at c.constructor (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:512:1400)
+    at c.constructor (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:556:1101)
+    at c [as constructor] (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:434:4578)
+    at new c (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:434:4578)
+    at https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:790:20249 @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  112039ms] Uncaught (in promise) Error: Missing template or factory function for aggregation items of Element sap.m.List#__component0---app--messageList !
+    at v.bindAggregation (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:25945)
+    at x.bindAggregation (https://openui5.hana.ondemand.com/resources/sap/m/library-preload.js:978:7121)
+    at v.applySettings (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:6450)
+    at <anonymous> (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:2798)
+    at constructor (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:2871)
+    at constructor (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:511:1399)
+    at constructor (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:555:1100)
+    at c (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:433:4577)
+    at c (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:433:4577)
+    at <anonymous> (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:789:20248)
+    at j (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:4376)
+    at $.runAsOwner (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:469:5875)
+    at s.fnScopedRunWithOwner (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:1176:5117)
+    at se (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:789:8492)
+    at v (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:789:20109)
+    at M (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:4253)
+    at n (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:1200:7577)
+    at <anonymous> (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:789:20324)
+[  112039ms] Uncaught (in promise) Error: Missing template or factory function for aggregation items of Element sap.m.List#__component0---app--messageList !
+    at v.bindAggregation (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:25945)
+    at x.bindAggregation (https://openui5.hana.ondemand.com/resources/sap/m/library-preload.js:978:7121)
+    at v.applySettings (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:6450)
+    at <anonymous> (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:2798)
+    at constructor (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:2871)
+    at constructor (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:511:1399)
+    at constructor (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:555:1100)
+    at c (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:433:4577)
+    at c (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:433:4577)
+    at <anonymous> (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:789:20248)
+    at j (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:4376)
+    at $.runAsOwner (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:469:5875)
+    at s.fnScopedRunWithOwner (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:1176:5117)
+    at se (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:789:8492)
+    at v (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:789:20109)
+    at M (https://openui5.hana.ondemand.com/resources/sap-ui-core.js:415:4253)
+    at n (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:1200:7577)
+    at <anonymous> (https://openui5.hana.ondemand.com/resources/sap/ui/core/library-preload.js:789:20324)
+[  117845ms] [INFO] 2026-07-08 15:03:27 Device API logging initialized - DEVICE @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:1172
+[  117943ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[  117943ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[  117967ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[  117967ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[  117968ms] [ERROR] 2026-07-08 15:03:28.096100 failed to load JavaScript resource: chatbot/ui/Component-preload.js -  sap.ui.ModuleSystem @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  117968ms] [ERROR] 2026-07-08 15:03:28.096500 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  117975ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/i18n/i18n_en.properties:0
+[  117978ms] [ERROR] 2026-07-08 15:03:28.106300 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  121554ms] [INFO] 2026-07-08 15:03:31 Device API logging initialized - DEVICE @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:1172
+[  121641ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[  121641ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[  121654ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/Component-preload.js:0
+[  121654ms] [ERROR] Refused to execute script from 'http://localhost:8080/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled. @ http://localhost:8080/index.html:0
+[  121660ms] [ERROR] 2026-07-08 15:03:31.788399 failed to load JavaScript resource: chatbot/ui/Component-preload.js -  sap.ui.ModuleSystem @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  121661ms] [ERROR] 2026-07-08 15:03:31.788699 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  121666ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8080/i18n/i18n_en.properties:0
+[  121669ms] [ERROR] 2026-07-08 15:03:31.797099 The fallback locale 'en' is not contained in the list of supported locales [''] of the bundle 'i18n/i18n.properties' and will be ignored. -   @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:46
+[  124659ms] [ASSERT] ManagedObject.apply: encountered unknown setting 'class' for class 'sap.m.VBox' (value:'userBubble') @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:52
+[  124660ms] [ASSERT] ManagedObject.apply: encountered unknown setting 'class' for class 'sap.m.VBox' (value:'userBubble') @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:52
+[  131600ms] [ASSERT] ManagedObject.apply: encountered unknown setting 'class' for class 'sap.m.VBox' (value:'userBubble') @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:52
+[  131601ms] [ASSERT] ManagedObject.apply: encountered unknown setting 'class' for class 'sap.m.VBox' (value:'assistantBubble') @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:52
+[  131601ms] [ASSERT] ManagedObject.apply: encountered unknown setting 'class' for class 'sap.m.VBox' (value:'userBubble') @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:52
+[  131601ms] [ASSERT] ManagedObject.apply: encountered unknown setting 'class' for class 'sap.m.VBox' (value:'assistantBubble') @ https://openui5.hana.ondemand.com/resources/sap-ui-core.js:52

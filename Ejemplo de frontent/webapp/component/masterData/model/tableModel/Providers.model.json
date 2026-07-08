@@ -1,0 +1,27 @@
+{
+    "mFormCreate": {},
+    "mFormEdit": {},
+    "mExcludesProperties": {
+        "id_titular": true
+    },
+    "mConfigForm": {
+        "noToUperCase": false,
+        "toUperCaseAll": true
+    },
+    "mConfigExcel": {
+        "idTable": "tableProviders",
+        "fileName": "Proveedores"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/people/providers",
+        "URIFragmentFolder": "Providers",
+        "idTable": "tableProviders",
+        "idFragment": "FragmentProviders",
+        "mColumnsSearch": {
+            "aColumnsS": [["nombre_proveedor", 100]],
+            "aColumnsN": [["id"], ["numero_cuenta", 10]],
+            "aColumnsD": []
+        }
+    }
+}

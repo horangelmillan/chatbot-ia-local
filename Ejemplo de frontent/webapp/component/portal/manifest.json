@@ -1,0 +1,174 @@
+{
+    "_version": "1.58.0",
+    "sap.app": {
+        "id": "com.mundocloud.assetmanagement.component.portal",
+        "type": "component",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "DataSourcePortal": {
+                "uri": "model/Portal.model.json"
+            },
+            "DataSourceNotFound": {
+                "uri": "model/NotFound.model.json"
+            },
+            "DataSourceMain": {
+                "uri": "model/Main.model.json"
+            }
+        },
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": ["", "en"]
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.129.0",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.f": {},
+                "sap.ui.integration": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/styles.css"
+                }
+            ]
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "handleValidation": true,
+        "rootView": {
+            "viewName": "com.mundocloud.assetmanagement.component.portal.view.Portal",
+            "type": "XML",
+            "async": true,
+            "id": "Portal"
+        },
+        "models": {
+            "ModelPortal": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourcePortal"
+            },
+            "ModelNotFound": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceNotFound"
+            },
+            "ModelMain": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "DataSourceMain"
+            },
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.mundocloud.assetmanagement.component.portal.i18n.i18n",
+                    "fallbackLocale": "",
+                    "async": true,
+                    "supportedLocales": ["", "en"]
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "path": "com.mundocloud.assetmanagement.component.portal.view",
+                "controlId": "appPortal",
+                "controlAggregation": "pages",
+                "transition": "slide",
+                "clearControlAggregation": false,
+                "async": true,
+                "bypassed": {
+                    "target": "TargetNotFound"
+                }
+            },
+            "routes": [
+                {
+                    "name": "RouteMain",
+                    "pattern": "",
+                    "target": ["TargetMain"]
+                },
+                {
+                    "name": "RouteComponent",
+                    "pattern": "master-data",
+                    "target": {
+                        "name": "TargetComponent",
+                        "prefix": "masters"
+                    }
+                },
+                {
+                    "name": "RouteAssetInventory",
+                    "pattern": "asset-inventory",
+                    "target": {
+                        "name": "TargetAssetInventory",
+                        "prefix": "assets"
+                    }
+                }
+            ],
+            "targets": {
+                "TargetMain": {
+                    "type": "View",
+                    "id": "main",
+                    "name": "Main",
+                    "title": "Principal",
+                    "transition": "slide",
+                    "level": 0
+                },
+                "TargetNotFound": {
+                    "type": "View",
+                    "id": "notFound",
+                    "name": "NotFound",
+                    "title": "Página no encontrada",
+                    "transition": "slide"
+                },
+                "TargetComponent": {
+                    "type": "Component",
+                    "id": "TargetComponent",
+                    "name": "component",
+                    "usage": "component",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "level": 1
+                },
+                "TargetAssetInventory": {
+                    "type": "Component",
+                    "id": "assetInventory",
+                    "name": "TargetAssetInventory",
+                    "usage": "UsageAssetInventory",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "level": 1
+                }
+            }
+        },
+        "componentUsages": {
+            "component": {
+                "name": "com.mundocloud.assetmanagement.component.masterData",
+                "settings": {},
+                "componentData": {},
+                "lazy": true
+            },
+            "UsageAssetInventory": {
+                "name": "com.mundocloud.assetmanagement.component.assetInventory",
+                "settings": {},
+                "componentData": {},
+                "lazy": true
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "mResponsibles": {},
+    "mCountries/": {},
+    "mProviders": {},
+    "mUnitsMeasurement": {},
+    "mCriteria": {},
+    "mLogisticsCenters": {},
+    "mInternalOrders": {},
+    "mCostCenters": {},
+    "mSocieties": {},
+    "mAssetClass": {},
+    "mExcludesProperties": {
+        "excludes": true
+    },
+    "mConfigForm": {
+        "noToUperCase": ["id"],
+        "toUperCaseAll": true
+    },
+    "mProvider": {
+        "mFormCreate": {},
+        "mFormEdit": {},
+        "idFragment": "FragmentProviders",
+        "URLService": "/core/people/providers"
+    },
+    "mFormCreate": {
+        "excludes": {},
+        "activo": {}
+    },
+    "mFormEdit": {},
+    "mConfigExcel": {
+        "idTable": "tableAssetInventory",
+        "fileName": "Inventario de activos"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/asset_inventory/forms",
+        "idTable": "tableAssetInventory",
+        "URLFragments": "com.mundocloud.assetmanagement.component.assetInventory.view.fragments.",
+        "mColumnsSearch": {
+            "aColumnsS": [],
+            "aColumnsN": [["id"]],
+            "aColumnsD": []
+        }
+    }
+}

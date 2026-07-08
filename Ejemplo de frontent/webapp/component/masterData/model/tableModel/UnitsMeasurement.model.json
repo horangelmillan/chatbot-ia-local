@@ -1,0 +1,27 @@
+{
+    "mFormCreate": {},
+    "mFormEdit": {},
+    "mConfigForm": {
+        "noToUperCase": ["id"],
+        "toUperCaseAll": true
+    },
+    "mConfigExcel": {
+        "idTable": "tableUnitsMeasurement",
+        "fileName": "Unidades de Medida"
+    },
+    "mConfigView": {
+        "mEditMode": true,
+        "URLService": "/core/master_data/units_measurement",
+        "URIFragmentFolder": "UnitsMeasurement",
+        "idTable": "tableUnitsMeasurement",
+        "idFragment": "FragmentUnitsMeasurement",
+        "mColumnsSearch": {
+            "aColumnsS": [
+                ["unidad", 3],
+                ["descripcion", 50]
+            ],
+            "aColumnsN": [],
+            "aColumnsD": []
+        }
+    }
+}

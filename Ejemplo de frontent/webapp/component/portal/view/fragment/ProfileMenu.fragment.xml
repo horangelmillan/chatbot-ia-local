@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Popover title="Configuración de Perfil" placement="PreferredLeftOrFlip">
+        <VBox class="sapUiSmallMargin">
+            <Text text="Seleccione un tema:" />
+            <Select change="onThemeChange" selectedKey="{/appTheme}">
+                <items>
+                    <core:Item key="sap_fiori_3" text="Quartz Light" />
+                    <core:Item key="sap_fiori_3_dark" text="Quartz Dark" />
+                    <core:Item key="sap_fiori_3_hcb" text="High Contrast Black" />
+                    <core:Item key="sap_fiori_3_hcw" text="High Contrast White" />
+                    <core:Item key="sap_horizon" text="Horizon Light" />
+                    <core:Item key="sap_horizon_dark" text="Horizon Dark" />
+                    <core:Item key="sap_horizon_hcb" text="Horizon High Contrast Black" />
+                    <core:Item key="sap_horizon_hcw" text="Horizon High Contrast White" />
+                </items>
+            </Select>
+        </VBox>
+    </Popover>
+</core:FragmentDefinition>

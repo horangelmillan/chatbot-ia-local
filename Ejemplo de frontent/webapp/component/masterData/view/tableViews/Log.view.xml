@@ -1,0 +1,105 @@
+<mvc:View
+    controllerName="com.mundocloud.assetmanagement.component.masterData.controller.tableController.Log"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    class="sapUiSizeCompact"
+    xmlns:rm="sap.ui.table.rowmodes"
+    height="100%">
+	<m:Page class="sapUiContentPadding" id="log">
+		<m:customHeader>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer />
+				<c:Icon src="sap-icon://notes" alt="Cart" size="1rem" />
+				<m:Title text="Logs" titleStyle="H2" class="sapUiTinyMarginBeginEnd" />
+				<m:ToolbarSpacer />
+			</m:OverflowToolbar>
+		</m:customHeader>
+		<m:content>
+			<Table
+                id="TableLogs"
+                selectionMode="None"
+                rows="{
+					path: 'odata>/Logs',
+					sorter: {
+						path: 'id',
+						descending: true
+					}
+				}"
+                alternateRowColors="true"
+                enableCellFilter="true"
+                enableColumnFreeze="true"
+                fixedColumnCount="1"
+                enableBusyIndicator="true"
+                busyIndicatorDelay="0">
+				<rowMode>
+					<rm:Auto />
+				</rowMode>
+				<extension>
+					<m:OverflowToolbar class="sapUiSmallMarginTopBottom" style="Clear">
+						<m:Button
+                            id="addButtonLogs"
+                            type="Emphasized"
+                            icon="sap-icon://add-document"
+                            text="{i18n>buttonCreate}" />
+						<m:Button
+                            id="exportButtonLogs"
+                            type="Accept"
+                            icon="sap-icon://excel-attachment"
+                            text="{i18n>buttonExport}" />
+						<m:ToolbarSpacer />
+						<m:SearchField placeholder="{i18n>placeholderSearch}" width="50%" />
+						<m:Button id="btnUpdateDateLogs" icon="sap-icon://refresh" tooltip="" />
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column filterProperty="id" sortProperty="id" autoResizable="true" width="7rem">
+						<m:Label text="ID" />
+						<template>
+							<m:Link text="{odata>id}" />
+						</template>
+					</Column>
+					<Column filterProperty="event_type" sortProperty="event_type" autoResizable="true">
+						<m:Label text="Tipo de Evento" />
+						<template>
+							<m:Text text="{odata>event_type}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="event_description" sortProperty="event_description" autoResizable="true">
+						<m:Label text="Descripcion" />
+						<template>
+							<m:Text text="{odata>event_description}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="user_id" sortProperty="user_id" autoResizable="true">
+						<m:Label text="ID Usuario" />
+						<template>
+							<m:Text text="{odata>user_id}" wrapping="false" />
+						</template>
+					</Column>
+					<Column filterProperty="entity_id" sortProperty="entity_id" autoResizable="true">
+						<m:Label text="ID Entidad" />
+						<template>
+							<m:Text text="{odata>entity_id}" wrapping="false" />
+						</template>
+					</Column>
+					<!-- <Column
+						width="5em"
+						hAlign="Center"
+					>
+						<m:Label text="" />
+						<template>
+							<m:CheckBox
+								enabled="false"
+								displayOnly="true"
+								selected="{= ${odata>bloqueo} === 'true' ? true : false}"
+							/>
+						</template>
+					</Column> -->
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
+</mvc:View>
