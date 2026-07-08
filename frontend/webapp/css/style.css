@@ -1,7 +1,3 @@
-#messageList {
-  flex: 1;
-  overflow-y: auto;
-}
 .userBubble {
   background: #cce5ff;
   border-radius: 12px 12px 4px 12px;

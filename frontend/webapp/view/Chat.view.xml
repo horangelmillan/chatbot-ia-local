@@ -3,13 +3,13 @@
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc"
   height="100%">
-  <VBox id="messageContainer" height="100%">
-    <List id="messageList" width="100%" growing="true" growingThreshold="50" showSeparators="None"
-      noDataText="{i18n>noMessages}"
-      items="{path:'messages>/items', factory:'.itemFactory', templateShareable:false}" />
-  </VBox>
   <Page id="chatPage" title="{i18n>pageTitle}" showNavButton="false"
     class="sapUiResponsivePadding--header">
+    <content>
+      <List id="messageList" width="100%" growing="true" growingThreshold="50" showSeparators="None"
+        noDataText="{i18n>noMessages}"
+        items="{path:'messages>/items', factory:'.itemFactory', templateShareable:false}" />
+    </content>
     <footer>
       <Toolbar>
         <Input id="chatInput" value="{chatInput>/text}" liveChange=".onLiveChange" width="100%"
