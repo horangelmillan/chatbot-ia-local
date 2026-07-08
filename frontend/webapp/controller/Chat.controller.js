@@ -59,9 +59,7 @@ sap.ui.define([
       var bUser = oData.sender === "Usuario";
       var oVBox = new VBox({ items: [new Text({ text: oData.text })] });
       oVBox.addStyleClass(bUser ? "userBubble" : "assistantBubble");
-      var oItem = new CustomListItem({ content: [oVBox] });
-      oItem.addStyleClass(bUser ? "userItem" : "assistantItem");
-      return oItem;
+      return new CustomListItem({ content: [oVBox] });
     }
   });
 });
