@@ -38,12 +38,22 @@ sap.ui.define([
       var oList = this.getView().byId("messageList");
       if (oList) setTimeout(function () { oList.scrollToIndex(-1); }, 50);
     },
+    _buildHistory: function () {
+      var aItems = this._messagesModel.getProperty("/items");
+      var aHistory = [];
+      for (var i = Math.max(0, aItems.length - 20); i < aItems.length; i++) {
+        var o = aItems[i];
+        if (o.sender === "Usuario") aHistory.push({ role: "user", content: o.text });
+        else if (o.sender === "Asistente") aHistory.push({ role: "assistant", content: o.text });
+      }
+      return aHistory;
+    },
     _callBackend: function (sMessage) {
       var that = this;
       fetch("http://localhost:3001/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: sMessage })
+        body: JSON.stringify({ message: sMessage, history: this._buildHistory() })
       })
         .then(function (oRes) {
           if (!oRes.ok) throw new Error("Error " + oRes.status);
