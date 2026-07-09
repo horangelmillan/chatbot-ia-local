@@ -19,8 +19,9 @@
     }
   },
   "sap.ui5": {
+    "flexEnabled": false,
     "rootView": {
-      "viewName": "chatbot.ui.view.Chat",
+      "viewName": "chatbot.ui.view.App",
       "type": "XML",
       "id": "app"
     },
@@ -29,6 +30,29 @@
       "libs": {
         "sap.ui.core": {},
         "sap.m": {}
+      }
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "path": "chatbot.ui.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "transition": "slide",
+        "clearControlAggregation": false,
+        "async": true,
+        "type": "View",
+        "viewPath": "chatbot.ui.view"
+      },
+      "routes": [
+      ],
+      "targets": {
+      }
+    },
+    "config": {
+      "sample": {
+        "stretch": true
       }
     },
     "resources": {
@@ -47,7 +71,9 @@
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
           "bundleName": "chatbot.ui.i18n.i18n",
-          "supportedLocales": [""],
+          "supportedLocales": [
+            ""
+          ],
           "fallbackLocale": ""
         }
       }

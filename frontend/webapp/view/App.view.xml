@@ -1,0 +1,30 @@
+<mvc:View
+    controllerName="chatbot.ui.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    height="100vh">
+    <App id="app" height="100vh">
+        <Page id="chatPage" title="{i18n>pageTitle}"
+            class="sapUiResponsivePadding--header">
+            <content>
+                <List id="messageList" growing="true" growingThreshold="50"
+                    showSeparators="None"
+                    noDataText="{i18n>noMessages}"
+                    items="{path:'messages>/items', factory:'.itemFactory', templateShareable:false}" />
+            </content>
+
+            <footer>
+                <Toolbar>
+                    <Input id="chatInput" value="{chatInput>/text}" liveChange=".onLiveChange"
+                        width="100%"
+                        placeholder="{i18n>inputPlaceholder}" />
+                    <Button id="sendButton" text="{i18n>sendButton}" press=".onSend"
+                        enabled="{chatInput>/valid}" type="Emphasized" />
+                </Toolbar>
+
+            </footer>
+        </Page>
+
+    </App>
+</mvc:View>
