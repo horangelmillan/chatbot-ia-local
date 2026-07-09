@@ -24,7 +24,7 @@ sap.ui.define([
 			this._messagesModel.setProperty("/items", []);
 			this._inputModel.setProperty("/text", "");
 			this._inputModel.setProperty("/valid", false);
-			fetch("http://localhost:3001/api/chat/reset", { method: "POST" }).catch(function () {});
+			fetch("http://localhost:3001/api/chat/reset", { method: "POST" }).catch(function () { });
 		},
 		onSend: function () {
 			var sText = this._inputModel.getProperty("/text");
@@ -62,13 +62,31 @@ sap.ui.define([
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ message: sMessage, history: this._buildHistory() })
 			})
-		.then(function (oRes) {
-				if (!oRes.ok) return oRes.json().then(function (oErr) { throw new Error(oErr.reply || "Error " + oRes.status); });
-				return oRes.json();
-			})
-			.then(function (oData) { that._addMessage("Asistente", oData.reply, oData.buttons); })
-			.catch(function (oErr) { that._addMessage("Asistente", oErr.message); })
+				.then(function (oRes) {
+					if (!oRes.ok) return oRes.json().then(function (oErr) { throw new Error(oErr.reply || "Error " + oRes.status); });
+					return oRes.json();
+				})
+				.then(function (oData) { that._addMessage("Asistente", oData.reply, oData.buttons); })
+				.catch(function (oErr) { that._addMessage("Asistente", oErr.message); })
 				.finally(function () { Util.hideBusy(); });
+		},
+		_createButtonRow: function (sPath, aButtons, bDisabled, iSelectedIndex) {
+			return aButtons.map(function (b, i) {
+				var bSelected = bDisabled && i === iSelectedIndex;
+				return new Button({
+					text: b.label,
+					type: bSelected ? "Accept" : (bDisabled ? "Default" : "Emphasized"),
+					enabled: !bDisabled,
+					press: function () {
+						if (this._messagesModel.getProperty(sPath + "/_buttonsDisabled")) return;
+						this._messagesModel.setProperty(sPath + "/_buttonsDisabled", true);
+						this._messagesModel.setProperty(sPath + "/_selectedButtonIndex", i);
+						this._inputModel.setProperty("/text", b.message);
+						this._inputModel.setProperty("/valid", true);
+						this.onSend();
+					}.bind(this)
+				});
+			}, this);
 		},
 		itemFactory: function (sId, oContext) {
 			var oData = oContext && oContext.getObject();
@@ -76,17 +94,8 @@ sap.ui.define([
 			var bUser = oData.sender === "Usuario";
 			var aContent = [new Text({ text: oData.text })];
 			if (!bUser && oData.buttons && oData.buttons.length > 0) {
-				oData.buttons.forEach(function (b) {
-					aContent.push(new Button({
-						text: b.label,
-						type: "Emphasized",
-						press: function () {
-							this._inputModel.setProperty("/text", b.message);
-							this._inputModel.setProperty("/valid", true);
-							this.onSend();
-						}.bind(this)
-					}));
-				}, this);
+				var aBtns = this._createButtonRow(oContext.getPath(), oData.buttons, oData._buttonsDisabled, oData._selectedButtonIndex);
+				aContent = aContent.concat(aBtns);
 			}
 			var oVBox = new VBox({ items: aContent });
 			oVBox.addStyleClass(bUser ? "userBubble" : "assistantBubble");
