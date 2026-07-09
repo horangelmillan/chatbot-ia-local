@@ -55,8 +55,12 @@ async function decideAction(message) {
           last + "\n\n" +
           "Formato de respuesta SOLO JSON:\n" +
            '- Para consultar Northwind: {"intent":"query","entity":"...","filters":[{"field":"...","op":"eq","value":"..."}],"expand":["..."],"top":N}\n' +
-           '- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n' +
-           '- Si toca ofrecer opciones al usuario, agrega buttons a reply o query: {"intent":"reply","text":"...","buttons":[{"label":"Sí","message":"sí quiero seguir"}]}\n' +
+            '- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n' +
+            '- Cuando respondas datos de Northwind, sugiere 2-3 acciones de seguimiento en buttons:\n' +
+            '   * Si mostraste un pedido: botones para "Ver cliente", "Ver factura", "Buscar otro pedido"\n' +
+            '   * Si mostraste un cliente: botones para "Ver sus pedidos", "Buscar otro cliente"\n' +
+            '   * Si es una factura: botones para "Ver pedido completo", "Buscar otra factura"\n' +
+            '- Si toca ofrecer opciones al usuario, agrega buttons a reply o query: {"intent":"reply","text":"...","buttons":[{"label":"Sí","message":"sí quiero seguir"}]}\n' +
            '- Para continuar con lo ultimo consultado: {"intent":"continuation"}\n' +
           '- Fuera del alcance: {"intent":"unknown"}\n\n' +
           "NO inventes entidades, campos, operadores ni relaciones. Usa SOLO lo listado. Si te piden datos aleatorios o multiples entidades, usa reply."

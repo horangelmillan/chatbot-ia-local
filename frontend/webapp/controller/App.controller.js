@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/m/VBox",
 	"sap/m/Text",
 	"sap/m/Button",
-	"chatbot/ui/helper/Util.helper"
-], function (BaseController, JSONModel, CustomListItem, VBox, Text, Button, Util) {
+	"chatbot/ui/helper/Util.helper",
+	"chatbot/ui/config/WelcomeOptions"
+], function (BaseController, JSONModel, CustomListItem, VBox, Text, Button, Util, WelcomeOptions) {
 	"use strict";
 	return BaseController.extend("chatbot.ui.controller.App", {
 		onInit: function () {
@@ -15,6 +16,7 @@ sap.ui.define([
 			this._inputModel = new JSONModel({ text: "", valid: false });
 			this.getView().setModel(this._inputModel, "chatInput");
 			this.getView().byId("chatInput").focus();
+			this._showWelcome();
 		},
 		onLiveChange: function (oEvent) {
 			var sValue = oEvent.getParameter("value") || "";
@@ -26,6 +28,7 @@ sap.ui.define([
 			this._inputModel.setProperty("/text", "");
 			this._inputModel.setProperty("/valid", false);
 			fetch("http://localhost:3001/api/chat/reset", { method: "POST" }).catch(function () { });
+			this._showWelcome();
 		},
 		onSend: function () {
 			var sText = this._inputModel.getProperty("/text");
@@ -41,6 +44,11 @@ sap.ui.define([
 			aItems.push({ sender: sSender, text: sText, buttons: aButtons || null });
 			this._messagesModel.refresh(true);
 			this._scrollToBottom();
+		},
+		_showWelcome: function () {
+			this._addMessage("Asistente",
+				"¡Hola! Soy tu asistente de Northwind. Puedo consultar pedidos, clientes y facturación. Elige una opción o escríbeme directamente.",
+				WelcomeOptions);
 		},
 		_scrollToBottom: function () {
 			var oList = this.getView().byId("messageList");

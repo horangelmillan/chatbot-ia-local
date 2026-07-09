@@ -1,4 +1,4 @@
-# Botones Dinámicos por IA
+# Botones Dinámicos y Opciones de Bienvenida
 
 ## Objetivo
 
@@ -76,8 +76,24 @@ Usuario clickea [Sí]
  → Chatbot procesa y responde con nuevos datos + botones
 ```
 
+## Opciones estáticas de bienvenida
+
+Además de los botones generados por el LLM, existe un conjunto de opciones estáticas
+en el primer mensaje de bienvenida.
+
+**Origen:** `frontend/webapp/config/WelcomeOptions.js`
+
+**Flujo:**
+1. `onInit()` o `onNewSession()` → `_showWelcome()` → `_addMessage("Asistente", texto, WelcomeOptions)`
+2. El array de `WelcomeOptions` se pasa como `aButtons`, reutilizando el mismo renderizado de `_createButtonRow`
+3. No hay diferencia técnica: los botónes estáticos se comportan igual que los dinámicos del LLM
+
+**Extensibilidad:** para agregar una opción, solo se añade un objeto al array exportado por `WelcomeOptions.js`.
+El controller no se modifica. Si las opciones superan ~6, migrar a `sap.m.Select` / `SelectDialog`.
+
 ## Archivos modificados
 
 - `backend/routes/chat.js` — prompt del LLM + pase de `buttons` en respuesta
-- `frontend/webapp/controller/App.controller.js` — renderizado y estado de botones
+- `frontend/webapp/controller/App.controller.js` — renderizado y estado de botones, `_showWelcome()`
+- `frontend/webapp/config/WelcomeOptions.js` — opciones estáticas de bienvenida
 - `frontend/webapp/css/style.css` — margen para botones en burbujas
