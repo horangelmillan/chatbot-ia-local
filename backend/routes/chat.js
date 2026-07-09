@@ -55,10 +55,10 @@ async function decideAction(message) {
           last + "\n\n" +
           "Formato de respuesta SOLO JSON:\n" +
           '- Para consultar Northwind: {"intent":"query","entity":"...","filters":[{"field":"...","op":"eq","value":"..."}],"expand":["..."],"top":N}\n' +
-          '- Para responder tu mismo (saludos, analisis, opinion): {"intent":"reply","text":"..."}\n' +
+          '- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n' +
           '- Para continuar con lo ultimo consultado: {"intent":"continuation"}\n' +
           '- Fuera del alcance: {"intent":"unknown"}\n\n' +
-          "NO inventes entidades, campos, operadores ni relaciones. Usa SOLO lo listado."
+          "NO inventes entidades, campos, operadores ni relaciones. Usa SOLO lo listado. Si te piden datos aleatorios o multiples entidades, usa reply."
       },
       { role: "user", content: message }
     ],
@@ -211,7 +211,8 @@ router.post("/", async function (req, res) {
     var raw = await decideAction(message);
     var decision;
     try {
-      decision = JSON.parse(raw);
+      var cleaned = raw.replace(/```(?:json)?\s*([\s\S]*?)```/i, "$1").trim();
+      decision = JSON.parse(cleaned);
     } catch (e) {
       return res.status(500).json({ reply: "Error al procesar la respuesta del modelo." });
     }
