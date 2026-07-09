@@ -216,7 +216,9 @@ router.post("/", async function (req, res) {
       decision = JSON.parse(cleaned);
     } catch (e) {
       console.error("JSON parse error:", e.message, "| RAW:", raw);
-      return res.status(500).json({ reply: "Error al procesar la respuesta del modelo." });
+      var m = raw.match(/\{[\s\S]*?\}/);
+      if (m) try { decision = JSON.parse(m[0]); } catch (e2) { decision = { intent: "reply", text: raw.replace(/```/g, "").trim() }; }
+      else decision = { intent: "reply", text: raw.replace(/```/g, "").trim() };
     }
     if (decision.intent === "unknown") {
       return res.json({
