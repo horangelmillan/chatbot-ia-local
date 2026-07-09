@@ -14,6 +14,7 @@ sap.ui.define([
 			this.getView().setModel(this._messagesModel, "messages");
 			this._inputModel = new JSONModel({ text: "", valid: false });
 			this.getView().setModel(this._inputModel, "chatInput");
+			this.getView().byId("chatInput").focus();
 		},
 		onLiveChange: function (oEvent) {
 			var sValue = oEvent.getParameter("value") || "";

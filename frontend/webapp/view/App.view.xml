@@ -21,7 +21,8 @@
                         visible="{= ${messages>/items}.length > 0 }" />
                     <Input id="chatInput" value="{chatInput>/text}" liveChange=".onLiveChange"
                         width="100%"
-                        placeholder="{i18n>inputPlaceholder}" />
+                        placeholder="{i18n>inputPlaceholder}"
+                        submit=".onSend" />
                     <Button id="sendButton" text="{i18n>sendButton}" press=".onSend"
                         enabled="{chatInput>/valid}" type="Emphasized" />
                 </Toolbar>
