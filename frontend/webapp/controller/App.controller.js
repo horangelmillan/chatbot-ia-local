@@ -57,12 +57,12 @@ sap.ui.define([
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ message: sMessage, history: this._buildHistory() })
 			})
-				.then(function (oRes) {
-					if (!oRes.ok) throw new Error("Error " + oRes.status);
-					return oRes.json();
-				})
-				.then(function (oData) { that._addMessage("Asistente", oData.reply); })
-				.catch(function (oErr) { that._addMessage("Asistente", oErr.message); })
+		.then(function (oRes) {
+				if (!oRes.ok) return oRes.json().then(function (oErr) { throw new Error(oErr.reply || "Error " + oRes.status); });
+				return oRes.json();
+			})
+			.then(function (oData) { that._addMessage("Asistente", oData.reply); })
+			.catch(function (oErr) { that._addMessage("Asistente", oErr.message); })
 				.finally(function () { Util.hideBusy(); });
 		},
 		itemFactory: function (sId, oContext) {

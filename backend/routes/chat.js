@@ -209,11 +209,13 @@ router.post("/", async function (req, res) {
   }
   try {
     var raw = await decideAction(message);
+    console.log("=== RAW LLM ===", raw);
     var decision;
     try {
       var cleaned = raw.replace(/```(?:json)?\s*([\s\S]*?)```/i, "$1").trim();
       decision = JSON.parse(cleaned);
     } catch (e) {
+      console.error("JSON parse error:", e.message, "| RAW:", raw);
       return res.status(500).json({ reply: "Error al procesar la respuesta del modelo." });
     }
     if (decision.intent === "unknown") {
@@ -247,7 +249,10 @@ router.post("/", async function (req, res) {
     }
     return res.json({ reply: "No entendi, puedes repetirlo?" });
   } catch (error) {
-    console.error("Error en /api/chat:", error.message);
+    console.error("=== ERROR /api/chat ===");
+    console.error("Message:", error.message);
+    console.error("Stack:", error.stack);
+    if (error.response) console.error("Response data:", JSON.stringify(error.response.data).slice(0, 500));
     res.status(500).json({ reply: "Algo salio mal, intentalo de nuevo." });
   }
 });
