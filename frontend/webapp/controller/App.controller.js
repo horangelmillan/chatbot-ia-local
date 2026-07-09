@@ -4,8 +4,9 @@ sap.ui.define([
 	"sap/m/CustomListItem",
 	"sap/m/VBox",
 	"sap/m/Text",
+	"sap/m/Button",
 	"chatbot/ui/helper/Util.helper"
-], function (BaseController, JSONModel, CustomListItem, VBox, Text, Util) {
+], function (BaseController, JSONModel, CustomListItem, VBox, Text, Button, Util) {
 	"use strict";
 	return BaseController.extend("chatbot.ui.controller.App", {
 		onInit: function () {
@@ -34,9 +35,9 @@ sap.ui.define([
 			Util.showBusy();
 			this._callBackend(sText);
 		},
-		_addMessage: function (sSender, sText) {
+		_addMessage: function (sSender, sText, aButtons) {
 			var aItems = this._messagesModel.getProperty("/items");
-			aItems.push({ sender: sSender, text: sText });
+			aItems.push({ sender: sSender, text: sText, buttons: aButtons || null });
 			this._messagesModel.refresh(true);
 			this._scrollToBottom();
 		},
@@ -65,7 +66,7 @@ sap.ui.define([
 				if (!oRes.ok) return oRes.json().then(function (oErr) { throw new Error(oErr.reply || "Error " + oRes.status); });
 				return oRes.json();
 			})
-			.then(function (oData) { that._addMessage("Asistente", oData.reply); })
+			.then(function (oData) { that._addMessage("Asistente", oData.reply, oData.buttons); })
 			.catch(function (oErr) { that._addMessage("Asistente", oErr.message); })
 				.finally(function () { Util.hideBusy(); });
 		},
@@ -73,7 +74,21 @@ sap.ui.define([
 			var oData = oContext && oContext.getObject();
 			if (!oData) return new CustomListItem();
 			var bUser = oData.sender === "Usuario";
-			var oVBox = new VBox({ items: [new Text({ text: oData.text })] });
+			var aContent = [new Text({ text: oData.text })];
+			if (!bUser && oData.buttons && oData.buttons.length > 0) {
+				oData.buttons.forEach(function (b) {
+					aContent.push(new Button({
+						text: b.label,
+						type: "Emphasized",
+						press: function () {
+							this._inputModel.setProperty("/text", b.message);
+							this._inputModel.setProperty("/valid", true);
+							this.onSend();
+						}.bind(this)
+					}));
+				}, this);
+			}
+			var oVBox = new VBox({ items: aContent });
 			oVBox.addStyleClass(bUser ? "userBubble" : "assistantBubble");
 			return new CustomListItem({ content: [oVBox] });
 		}

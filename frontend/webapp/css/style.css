@@ -12,3 +12,6 @@
   margin: 4px auto 4px 8px;
   max-width: 60%;
 }
+.assistantBubble .sapMBtn {
+  margin: 6px 4px 0 0;
+}

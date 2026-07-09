@@ -54,9 +54,10 @@ async function decideAction(message) {
           "Entidades:\n" + schemaDesc + "\n\n" +
           last + "\n\n" +
           "Formato de respuesta SOLO JSON:\n" +
-          '- Para consultar Northwind: {"intent":"query","entity":"...","filters":[{"field":"...","op":"eq","value":"..."}],"expand":["..."],"top":N}\n' +
-          '- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n' +
-          '- Para continuar con lo ultimo consultado: {"intent":"continuation"}\n' +
+           '- Para consultar Northwind: {"intent":"query","entity":"...","filters":[{"field":"...","op":"eq","value":"..."}],"expand":["..."],"top":N}\n' +
+           '- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n' +
+           '- Si toca ofrecer opciones al usuario, agrega buttons a reply o query: {"intent":"reply","text":"...","buttons":[{"label":"Sí","message":"sí quiero seguir"}]}\n' +
+           '- Para continuar con lo ultimo consultado: {"intent":"continuation"}\n' +
           '- Fuera del alcance: {"intent":"unknown"}\n\n' +
           "NO inventes entidades, campos, operadores ni relaciones. Usa SOLO lo listado. Si te piden datos aleatorios o multiples entidades, usa reply."
       },
@@ -67,11 +68,13 @@ async function decideAction(message) {
   return response.data.choices[0].message.content;
 }
 
+var NUMERIC_FIELDS = ["OrderID", "ProductID"];
+
 async function queryNorthwind(entity, filters, expand, top) {
   var params = [];
   if (filters && filters.length > 0) {
     var parts = filters.map(function (f) {
-      var val = typeof f.value === "number" ? f.value : "'" + f.value + "'";
+      var val = NUMERIC_FIELDS.indexOf(f.field) >= 0 ? Number(f.value) : "'" + f.value + "'";
       return f.field + " " + f.op + " " + val;
     });
     params.push("$filter=" + encodeURIComponent(parts.join(" and ")));
@@ -226,7 +229,7 @@ router.post("/", async function (req, res) {
       });
     }
     if (decision.intent === "reply") {
-      return res.json({ reply: decision.text || "OK" });
+      return res.json({ reply: decision.text || "OK", buttons: decision.buttons || null });
     }
     if (decision.intent === "continuation") {
       if (!lastContext) {
@@ -247,7 +250,7 @@ router.post("/", async function (req, res) {
       var context = buildContext(decision.entity, data);
       lastContext = { intent: decision.entity, id: (decision.filters && decision.filters[0] ? decision.filters[0].value : ""), context: context };
       var reply = await generateReply(message, context, history);
-      return res.json({ reply: reply });
+      return res.json({ reply: reply, buttons: decision.buttons || null });
     }
     return res.json({ reply: "No entendi, puedes repetirlo?" });
   } catch (error) {
