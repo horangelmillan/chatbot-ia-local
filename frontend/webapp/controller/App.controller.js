@@ -35,10 +35,8 @@ sap.ui.define([
 			this._scrollToBottom();
 		},
 		_scrollToBottom: function () {
-			var oPage = this.getView().byId("chatPage");
-			if (!oPage) return;
-			var oContent = oPage.getDomRef("content") || oPage.$(".sapMPageScroll")[0];
-			if (oContent) setTimeout(function () { oContent.scrollTop = oContent.scrollHeight; }, 50);
+			var oList = this.getView().byId("messageList");
+			if (oList) oList.scrollToIndex(oList.getItems().length - 1);
 		},
 		_buildHistory: function () {
 			var aItems = this._messagesModel.getProperty("/items");
