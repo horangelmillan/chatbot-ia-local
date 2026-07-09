@@ -16,6 +16,9 @@
 
             <footer>
                 <Toolbar>
+                    <Button icon="sap-icon://reset" press=".onNewSession"
+                        tooltip="{i18n>newSessionTooltip}" type="Default"
+                        visible="{= ${messages>/items}.length > 0 }" />
                     <Input id="chatInput" value="{chatInput>/text}" liveChange=".onLiveChange"
                         width="100%"
                         placeholder="{i18n>inputPlaceholder}" />

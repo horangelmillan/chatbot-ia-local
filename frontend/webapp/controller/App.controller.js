@@ -19,6 +19,12 @@ sap.ui.define([
 			this._inputModel.setProperty("/text", sValue);
 			this._inputModel.setProperty("/valid", sValue.trim().length > 0);
 		},
+		onNewSession: function () {
+			this._messagesModel.setProperty("/items", []);
+			this._inputModel.setProperty("/text", "");
+			this._inputModel.setProperty("/valid", false);
+			fetch("http://localhost:3001/api/chat/reset", { method: "POST" }).catch(function () {});
+		},
 		onSend: function () {
 			var sText = this._inputModel.getProperty("/text");
 			if (!sText || sText.trim() === "") return;

@@ -259,4 +259,9 @@ router.post("/", async function (req, res) {
   }
 });
 
+router.post("/reset", function (req, res) {
+  lastContext = null;
+  res.json({ ok: true });
+});
+
 module.exports = router;
