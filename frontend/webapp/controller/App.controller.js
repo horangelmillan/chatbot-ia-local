@@ -33,6 +33,13 @@ sap.ui.define([
 		onSend: function () {
 			var sText = this._inputModel.getProperty("/text");
 			if (!sText || sText.trim() === "") return;
+			// ponytail: disable all unselected buttons from previous messages
+			var aItems = this._messagesModel.getProperty("/items");
+			for (var i = 0; i < aItems.length; i++) {
+				if (aItems[i].buttons && !aItems[i]._buttonsDisabled) {
+					this._messagesModel.setProperty("/items/" + i + "/_buttonsDisabled", true);
+				}
+			}
 			this._addMessage("Usuario", sText);
 			this._inputModel.setProperty("/text", "");
 			this._inputModel.setProperty("/valid", false);

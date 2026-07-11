@@ -53,10 +53,37 @@ El LLM puede emitir `buttons` tanto en `intent: "reply"` como en `intent: "query
 
 Cada mensaje en el modelo tiene dos propiedades efímeras:
 
-- `_buttonsDisabled: boolean` — true después del primer click
+- `_buttonsDisabled: boolean` — true después del primer click **o** cuando el usuario envía un nuevo mensaje sin clickear
 - `_selectedButtonIndex: number` — índice del botón clickeado
 
 Se actualizan vía `setProperty` con el path del contexto (`/items/N`) antes de enviar el mensaje.
+
+### Auto-deshabilitado al enviar mensaje
+
+Cuando el usuario envía cualquier mensaje (ya sea clickeando un botón o escribiendo),
+el método `onSend()` itera todos los mensajes y deshabilita cualquier botón que aún
+esté activo:
+
+```javascript
+var aItems = this._messagesModel.getProperty("/items");
+for (var i = 0; i < aItems.length; i++) {
+    if (aItems[i].buttons && !aItems[i]._buttonsDisabled) {
+        this._messagesModel.setProperty("/items/" + i + "/_buttonsDisabled", true);
+    }
+}
+```
+
+Esto evita que el usuario clickee una opción de un mensaje anterior y rompa el
+flujo conversacional. La deshabilitación ocurre **antes** de agregar el mensaje
+del usuario al modelo y llamar al backend.
+
+### Casos contemplados
+
+| Escenario | Comportamiento |
+|-----------|---------------|
+| Usuario clickea un botón | Ese botón se deshabilita en el click handler; `onSend()` deshabilita los botones de otros mensajes activos |
+| Usuario escribe y envía | `onSend()` deshabilita todos los botones de todos los mensajes activos |
+| Usuario clickea botón de bienvenida | Igual que cualquier botón — se deshabilitan los de bienvenida y cualquier otro activo |
 
 ## Flujo completo
 
@@ -65,13 +92,15 @@ Usuario: "quiero consultar un cliente"
  → LLM reply + buttons: [Cancelar]
  → Botón activo (azul)
 
-Usuario: "12345"
+Usuario: "12345"  (escribe, no clickea [Cancelar])
+ → Botón [Cancelar] → gris (Default, disabled)  ← auto-deshabilitado
  → LLM query + buttons: [Sí] [No]
  → Botones activos (azules)
 
 Usuario clickea [Sí]
  → Botón [Sí] → verde (Accept)
  → Botón [No] → gris (Default, disabled)
+ → Botón [Cancelar] ya estaba gris
  → Aparece bubble "sí, quiero consultar otro cliente"
  → Chatbot procesa y responde con nuevos datos + botones
 ```
@@ -94,6 +123,6 @@ El controller no se modifica. Si las opciones superan ~6, migrar a `sap.m.Select
 ## Archivos modificados
 
 - `backend/routes/chat.js` — prompt del LLM + pase de `buttons` en respuesta
-- `frontend/webapp/controller/App.controller.js` — renderizado y estado de botones, `_showWelcome()`
+- `frontend/webapp/controller/App.controller.js` — renderizado, estado de botones, auto-deshabilitado en `onSend()`, `_showWelcome()`
 - `frontend/webapp/config/WelcomeOptions.js` — opciones estáticas de bienvenida
 - `frontend/webapp/css/style.css` — margen para botones en burbujas
