@@ -72,6 +72,7 @@ Antes de modificar código:
 * Identifica los archivos que serán modificados.
 * Indica posibles impactos.
 * Señala riesgos si existen.
+* **Evalúa si el cambio afecta la arquitectura** (nuevos módulos, capas, servicios, APIs, bases de datos, colas, cachés, servicios externos o cambios en la comunicación entre componentes). Si es así, planifica la actualización de los diagramas en `docs/architecture/` y `docs/diagrams/`.
 
 Cuando el cambio sea pequeño, este resumen puede ser breve.
 
@@ -202,6 +203,7 @@ Cuando un cambio sea relevante:
 * Actualiza la documentación correspondiente.
 * Añade notas técnicas cuando sea necesario.
 * Mantén sincronizada la documentación con el código.
+* **Si el cambio afecta la arquitectura**, sigue el flujo: actualizar diagrama → actualizar documentación → verificar coherencia → eliminar elementos obsoletos. Los diagramas viven en `docs/architecture/` (Structurizr DSL + Mermaid) y `docs/diagrams/` (Mermaid).
 
 ---
 
