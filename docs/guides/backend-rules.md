@@ -1,5 +1,7 @@
 # Backend
 
+> **Principio arquitectónico:** El backend debe evolucionar hacia una **Arquitectura Hexagonal (Puertos y Adaptadores)**. La lógica de dominio no debe depender de Express, PostgreSQL, LM Studio ni ninguna infraestructura. Usa el skill `hexagonal-architecture` al crear o refactorizar módulos del backend.
+
 ## Endpoint: Chat
 
 POST /api/chat

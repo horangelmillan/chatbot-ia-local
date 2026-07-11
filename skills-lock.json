@@ -12,6 +12,12 @@
       "sourceType": "github",
       "skillPath": "plugins/sapui5-cli/skills/sapui5-cli/SKILL.md",
       "computedHash": "145034d441b585f04ddb201e6b0de8f6e1dcb120bd0b7e879b74d0ddf78d6c27"
+    },
+    "hexagonal-architecture": {
+      "source": "affaan-m/ECC",
+      "sourceType": "github",
+      "skillPath": "skills/hexagonal-architecture/SKILL.md",
+      "computedHash": "9C38A50D9CDF6815C52E66B6CFB45315E0992E20FD218053F7F3A5DA8451B4DC"
     }
   }
 }

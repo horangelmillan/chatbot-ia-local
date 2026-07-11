@@ -207,6 +207,16 @@ Cuando un cambio sea relevante:
 
 ---
 
+# Skills Disponibles
+
+El proyecto incluye skills de IA para tareas específicas. El agente debe cargar el skill correspondiente cuando la tarea coincida con su activación:
+
+| Skill | Activación | Propósito |
+|-------|-----------|-----------|
+| `sapui5` | Tareas de frontend (vistas XML, controladores, manifest.json, i18n, OPA5) | Desarrollo de interfaces SAPUI5/OpenUI5, MVC, data binding, tests |
+| `sapui5-cli` | Configuración de build, ui5.yaml, middlewares, servidor dev | Gestión del pipeline UI5 Tooling |
+| `hexagonal-architecture` | Refactorización del backend, separación de capas, nuevos módulos, adaptadores | Diseño guiado por dominio, puertos y adaptadores, composición limpia |
+
 # Comunicación
 
 Durante el trabajo:

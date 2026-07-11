@@ -24,3 +24,11 @@ Para visualizarlo, instala la extension `systemticks.c4-dsl-extension` en VS Cod
 - [technical/](technical/) — Documentacion tecnica detallada (rendimiento, hardware, seguridad, cache)
 - [guides/mvp-overview.md](guides/mvp-overview.md) — Vision general del proyecto
 - [guides/rag-concept.md](guides/rag-concept.md) — Especificacion del motor RAG
+
+## Skills de IA para el Desarrollo
+
+El proyecto utiliza skills de IA para guiar el desarrollo en áreas específicas:
+
+- **[SAPUI5](../.agents/skills/sapui5/SKILL.md)** — Desarrollo de frontend con OpenUI5/SAPUI5
+- **[SAPUI5 CLI](../.agents/skills/sapui5-cli/SKILL.md)** — Gestión del tooling UI5
+- **[Arquitectura Hexagonal](../.agents/skills/hexagonal-architecture/SKILL.md)** — Diseño y refactorización del backend con puertos y adaptadores

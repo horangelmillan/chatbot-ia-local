@@ -114,3 +114,17 @@
 - El backend es quien ejecuta las consultas contra la API
 - El LLM solo recibe **datos ya filtrados y formateados**
 - Schema validation evita que el LLM invente endpoints
+
+## Evolución Arquitectónica
+
+El backend actual sigue un estilo monolítico en capas planas (rutas → base de datos). Como dirección de mejora, se contempla una evolución hacia **Arquitectura Hexagonal (Puertos y Adaptadores)** para separar la lógica de dominio de los detalles de infraestructura (Express, PostgreSQL, LM Studio).
+
+Principios guía para esta evolución:
+
+- **Dominio puro**: reglas de negocio sin imports de frameworks
+- **Puertos de salida**: interfaces para repositorios, gateways (LLM, OData)
+- **Casos de uso**: orquestación sin acoplamiento a HTTP o bases de datos
+- **Adaptadores**: implementaciones concretas en los bordes del sistema
+- **Composition Root**: cableado centralizado en un solo punto
+
+La migración se hará por rebanadas verticales (strangler pattern), comenzando por los flujos de mayor cambio.
