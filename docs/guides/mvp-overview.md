@@ -54,7 +54,7 @@ SAPUI5 Chat → Node.js (Express) → LM Studio (Qwen3 8B)
 
 ## Estado
 
-Implementado y funcional con documentos de ejemplo en `documents/`.
+Implementado y funcional con documentos de ejemplo en `knowledge-base/`.
 La columna `embedding` en `document_chunks` está preparada para pgvector
 (próxima versión con búsqueda semántica).
 

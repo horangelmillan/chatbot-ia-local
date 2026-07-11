@@ -21,6 +21,6 @@ Para visualizarlo, instala la extension `systemticks.c4-dsl-extension` en VS Cod
 
 ## Referencias
 
-- [docs_tecnicos/](../docs_tecnicos/) — Documentacion tecnica detallada (rendimiento, hardware, seguridad, cache)
-- [01_MVP_OVERVIEW.md](../01_MVP_OVERVIEW.md) — Vision general del proyecto
-- [SISTEMA_RAG_CONCEPTO.md](../SISTEMA_RAG_CONCEPTO.md) — Especificacion del motor RAG
+- [technical/](technical/) — Documentacion tecnica detallada (rendimiento, hardware, seguridad, cache)
+- [guides/mvp-overview.md](guides/mvp-overview.md) — Vision general del proyecto
+- [guides/rag-concept.md](guides/rag-concept.md) — Especificacion del motor RAG

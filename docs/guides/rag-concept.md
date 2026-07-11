@@ -368,7 +368,7 @@ Los documentos originales NO serán almacenados en PostgreSQL.
 Ubicación:
 
 ```
-documents/
+knowledge-base/
 
 manuals/
 
