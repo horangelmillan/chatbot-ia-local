@@ -36,6 +36,10 @@ Y en la tabla de proyección (líneas 61-66):
 ### Opción B: Eliminar mención de PM2
 Si el escalamiento con PM2 no es una prioridad actual, eliminar las referencias y marcar como "futura mejora".
 
+## Resolución
+
+✅ Implementada **Opción B**: eliminadas referencias a PM2 en `04_cache_y_escalabilidad.md`. Reemplazado por NGINX en diagrama de escalabilidad.
+
 ## Impacto del cambio
 
 | Aspecto | Detalle |

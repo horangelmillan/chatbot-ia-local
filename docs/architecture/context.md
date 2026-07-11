@@ -4,7 +4,7 @@ El sistema **SAPUI5 Chat** es un asistente conversacional que permite a proveedo
 
 El sistema se integra con tres sistemas externos:
 - **LM Studio** — inferencia local del LLM (Qwen3 8B) para clasificar intenciones y generar respuestas
-- **Northwind OData** — API externa con datos de negocio (solo consulta)
+- **Northwind OData** — API externa con datos de negocio (solo consulta). Sustituye al ERP SAP S/4HANA Cloud para efectos de la demo.
 - **PostgreSQL 18** — base de datos documental con busqueda de texto completo en espanol
 
 ```mermaid

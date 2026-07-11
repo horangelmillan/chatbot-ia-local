@@ -8,7 +8,7 @@ El sistema se despliega en un entorno local con cuatro nodos fisicos/logicos mas
 | Servidor Backend | Node.js 22 | Express en puerto 3001, comunicacion con LM Studio (localhost:1234) |
 | Servidor GPU | LM Studio | GPU 16GB+ VRAM, Qwen3 8B Q4_K_M, contexto 32K tokens |
 | Servidor DB | PostgreSQL 18 | Base de datos chatbot_rag, FTS espanol |
-| Cloud | Northwind OData | API externa services.odata.org, solo GET |
+| Cloud | Northwind OData | API externa services.odata.org, solo GET. Sustituye a SAP S/4HANA Cloud (demo) |
 
 ```mermaid
 graph TB
@@ -27,7 +27,7 @@ graph TB
         end
     end
     subgraph "Internet"
-        NW["Northwind OData<br/>services.odata.org<br/>V3"]
+        NW["Northwind OData<br/>services.odata.org<br/>V3<br/>(demo: sustituye a SAP S/4HANA Cloud)"]
     end
 
     BROWSER -->|"HTTP :3001<br/>POST /api/chat"| BE

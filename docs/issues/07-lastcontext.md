@@ -42,6 +42,10 @@ El frontend generaría un UUID al iniciar y lo enviaría en cada `POST /api/chat
 ### Opción B: Documentar la limitación actual
 Cambiar la documentación a "Variable global compartida (no aislada por sesión)" y marcar como "mejora futura" la implementación por sesión.
 
+## Resolución
+
+✅ Implementada **Opción B**: documentada la limitación actual. Tabla de `04_cache_y_escalabilidad.md` ahora indica "Global (v1, compartido) — En v2: por sesión con X-Session-ID". Los docs de arquitectura reflejan que es variable global, no por sesión.
+
 ## Impacto del cambio
 
 | Aspecto | Detalle |

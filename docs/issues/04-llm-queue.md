@@ -61,6 +61,10 @@ async function processQueue() {
 ### Opción B: Eliminar la documentación de la cola
 Si se considera que LM Studio maneja correctamente la concurrencia por sí solo (versiones recientes lo hacen), eliminar la sección del documento técnico.
 
+## Resolución
+
+✅ Implementada **Opción B**: documentación de `04_cache_y_escalabilidad.md` actualizada — la cola es "futuro", LM Studio gestiona concurrencia internamente en v1.
+
 ## Impacto del cambio
 
 | Aspecto | Detalle |

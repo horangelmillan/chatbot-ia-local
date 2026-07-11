@@ -3,7 +3,7 @@
 
 ## Objetivo
 
-Implementar un motor de recuperación documental (Retrieval Augmented Generation - RAG) desacoplado del ERP SAP S/4HANA Cloud.
+Implementar un motor de recuperación documental (Retrieval Augmented Generation - RAG) desacoplado del ERP SAP S/4HANA Cloud. En la demo actual, los datos de negocio se consultan mediante **Northwind OData** (`services.odata.org`) como sustituto del ERP real.
 
 Su responsabilidad será localizar información oficial dentro de documentación corporativa (manuales, procedimientos y preguntas frecuentes) para que el Backend pueda responder consultas documentales sin depender del conocimiento interno del modelo LLM.
 
@@ -130,12 +130,12 @@ Finalizar
 
 # Formatos soportados
 
-| Formato | Librería |
-|----------|----------|
-| PDF | pdf-parse |
-| DOCX | mammoth |
-| Markdown | fs (lectura directa + regex) |
-| JSON | JSON.parse |
+| Formato | Librería | Estado |
+|----------|----------|:------:|
+| PDF | pdf-parse | ❌ Pendiente (v2) |
+| DOCX | mammoth | ❌ Pendiente (v2) |
+| Markdown | fs (lectura directa + regex) | ✅ v1 |
+| JSON | JSON.parse | ✅ v1 |
 
 Todos los formatos deberán convertirse a texto plano antes de ser procesados.
 
@@ -206,11 +206,11 @@ title
 content
 page
 token_count
-embedding
+embedding (TEXT, NULL en v1)
 created_at
 ```
 
-embedding permanecerá NULL en la primera versión.
+embedding permanecerá NULL en la primera versión. En v2 se migrará a `VECTOR(768)` con pgvector.
 
 ---
 
@@ -313,12 +313,10 @@ La arquitectura deberá quedar preparada para incorporar pgvector sin modificar 
 Cada fragmento dispondrá de un campo:
 
 ```
-embedding VECTOR
+embedding VECTOR(768)
 ```
 
-En la primera versión permanecerá vacío.
-
-En una segunda versión será generado utilizando un modelo de embeddings local.
+En la v1 (actual) es `TEXT NULL`. En v2 se migrará a `VECTOR(768)` con pgvector y se generará utilizando un modelo de embeddings local.
 
 Ejemplo:
 
@@ -441,7 +439,7 @@ Su única responsabilidad es localizar información oficial y devolver el fragme
 | Full Text Search (tsvector español) | ✅ Implementado |
 | Indexador (Markdown, JSON, TXT) | ✅ Implementado |
 | Indexador (PDF, DOCX) | ❌ Pendiente |
-| Document Engine (FAQ → Glosario → Chunks) | ✅ Implementado |
+| Document Engine (FAQ → Chunks) | ✅ Implementado |
 | POST /api/documents/index | ✅ Implementado |
 | GET /api/documents/search | ✅ Implementado |
 | GET /api/documents/faq/search | ✅ Implementado |

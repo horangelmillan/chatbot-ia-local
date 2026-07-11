@@ -66,6 +66,10 @@ parsers["docx"] = async function (filePath) {
 - Actualizar `01_arquitectura.md` para no listar `pdf-parse`/`mammoth` como dependencias activas
 - Eliminar mención de `remark` (no se usa)
 
+## Resolución
+
+✅ Implementada **Opción B**: tabla de formatos en `rag-concept.md` ahora muestra PDF/DOCX como "❌ Pendiente (v2)". Corregida línea de dependencias en `01_arquitectura.md` (pendientes de implementar). Eliminada mención de `remark`.
+
 ## Impacto del cambio
 
 | Aspecto | Detalle |

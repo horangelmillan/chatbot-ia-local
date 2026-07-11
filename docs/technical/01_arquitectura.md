@@ -39,7 +39,9 @@
 
 ## Flujo de una consulta
 
-### Escenario A — Consulta de datos (Northwind/SAP)
+### Escenario A — Consulta de datos (Northwind / SAP S/4HANA Cloud)
+
+> **Nota:** La implementación actual usa **Northwind OData** (`services.odata.org`) como API de demostración, sustituyendo al **ERP SAP S/4HANA Cloud** que sería la fuente real de datos de negocio en producción. El flujo es idéntico: el backend consulta una API OData validada y formatea los resultados.
 
 1. **Usuario escribe** en lenguaje natural: "¿Cuáles facturas se pagaron hoy?"
 2. **Frontend** envía mensaje + historial reciente al backend
@@ -79,7 +81,7 @@
 - Puerto 3001
 - Caché en memoria de última consulta (`lastContext`)
 - PostgreSQL 18 como base de datos documental
-- Dependencias adicionales: `pg`, `pdf-parse`, `mammoth`
+- Dependencias adicionales: `pg`, `pdf-parse`, `mammoth` (pendientes de implementar para v2)
 
 ### LLM Local (LM Studio + Qwen3 8B)
 - Modelo: Qwen3 8B (Instruct)

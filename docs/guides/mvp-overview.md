@@ -10,7 +10,7 @@ corporativa (FAQ, manuales) a través de un motor RAG.
 
 ```
 SAPUI5 Chat → Node.js (Express) → LM Studio (Qwen3 8B)
-                → Northwind OData (datos)
+                → Northwind OData (datos) — sustituye a SAP S/4HANA Cloud (demo)
                 → PostgreSQL 18 (documentos)
 ```
 

@@ -16,7 +16,7 @@ En un entorno de proveedores, las consultas más comunes son:
 |------|:---:|:---------:|
 | Respuestas genéricas (ej: "facturas pagadas hoy") | 5 min | Consulta 1 sola vez, responde instantáneo |
 | Respuestas por entidad (ej: orden X) | 2 min | Si 3 proveedores preguntan por la misma orden seguido |
-| Último contexto (lastContext) | Por sesión | "Analiza esa orden" sin re-consultar API |
+| Último contexto (lastContext) | Global (v1, compartido) | "Analiza esa orden" sin re-consultar API. En v2: por sesión con X-Session-ID |
 
 ### Sin dependencias adicionales
 
@@ -30,7 +30,7 @@ La caché se implementa con un `Map` en memoria en el backend Node.js, sin Redis
                      ┌──────────────┐
                      │  Load        │
                      │  Balancer    │
-                     │  (Node PM2)  │
+                      │  (NGINX)      │
                      └──────┬───────┘
                     ┌───────┴───────┐
                     │               │
@@ -62,14 +62,14 @@ Para más de 500 consultas/día:
 |:-----------:|:------:|:-------------:|:----------------:|
 | 50 | RX 9070 XT | Simple | 3-4s |
 | 200 | RX 9070 XT | Con caché | 2-5s |
-| 500 | RX 9070 XT + PM2 | Caché + 2 workers | 3-6s |
+| 500 | RX 9070 XT + workers | Caché + 2 workers | 3-6s |
 | 1000 | RTX 4090 + servidor backend | Caché + 4 workers | 3-8s |
 
 ## Límite de Concurrencia
 
 LM Studio (y Ollama, vLLM, etc.) procesan **1 request a la vez** por modelo.
 
-Solución: **Cola de requests** implementada en backend:
+Solución (futuro): implementar **cola de requests** en backend. LM Studio gestiona concurrencia internamente en v1:
 
 ```
 Request A ──▶ Cola ──▶ LLM ──▶ Respuesta A

@@ -13,7 +13,7 @@ El sistema se compone de dos contenedores principales (Frontend y Backend) y tre
 - API REST en puerto 3001
 - Clasifica intencion via LLM: query, reply, document_query, continuation, unknown
 - Valida consultas contra schema definido (entidades, filtros, expand)
-- Ejecuta busqueda documental en cascada: FAQ → Glosario → Chunks (FTS)
+- Ejecuta busqueda documental en cascada: FAQ → Chunks (FTS)
 - Cache en memoria lastContext para continuacion de conversacion
 
 ```mermaid
@@ -31,7 +31,7 @@ graph TB
         PG[("PostgreSQL 18<br/>chatbot_rag")]
     end
     subgraph "Cloud"
-        NW["Northwind OData<br/>services.odata.org<br/>V3"]
+        NW["Northwind OData<br/>services.odata.org<br/>V3<br/>(demo: sustituye a SAP S/4HANA Cloud)"]
     end
 
     FE -->|"HTTP POST/GET<br/>JSON"| BE

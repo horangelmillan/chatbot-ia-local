@@ -16,7 +16,7 @@ Para registrar una factura de proveedor debe seguir estos pasos:
 
 1. Ingrese al modulo de Facturacion.
 2. Seleccione la opcion "Registrar Factura".
-3. Complete los datos del proveedor (RUT o ID).
+3. Complete los datos del proveedor (ID fiscal).
 4. Ingrese el numero de factura y fecha de emision.
 5. Indique el monto total y desglose de impuestos.
 6. Adjunte el PDF de la factura original.

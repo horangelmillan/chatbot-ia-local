@@ -8,10 +8,10 @@ keywords: [glosario, terminos, definiciones]
 ## Glosario de Terminos Financieros
 
 ### Factura Electronica
-Documento tributario electronico que respalda una transaccion comercial. Tiene validez legal y se emite a traves del SII.
+Documento tributario electronico que respalda una transaccion comercial. Tiene validez legal y se emite a traves de la autoridad tributaria local.
 
-### RUT
-Rol Unico Tributario. Identificador numerico asignado a cada persona natural o juridica para fines tributarios.
+### ID Tributario
+Identificador numerico asignado por la autoridad fiscal local a cada persona natural o juridica para fines tributarios.
 
 ### Orden de Compra
 Documento emitido por el comprador que autoriza la compra de bienes o servicios a un proveedor especifico.

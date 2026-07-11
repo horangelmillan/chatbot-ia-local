@@ -51,6 +51,10 @@ Si se planea usar pgvector próximamente, definir el tipo real desde el schema:
 embedding vector(768)  -- con extensión pgvector habilitada
 ```
 
+## Resolución
+
+✅ Unificada documentación en `rag-concept.md`: `embedding TEXT (NULL en v1)` en modelo de datos, `VECTOR(768)` como objetivo de v2 en sección de preparación semántica.
+
 ## Impacto del cambio
 
 | Aspecto | Detalle |

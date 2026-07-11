@@ -22,7 +22,7 @@ Body
 
 | Intent | Descripción |
 |--------|-------------|
-| `query` | Consulta a Northwind (OData) |
+| `query` | Consulta a Northwind (OData) — sustituye a SAP S/4HANA Cloud en la demo |
 | `reply` | Respuesta directa del LLM (saludos, análisis, etc.) |
 | `document_query` | Consulta documental (FAQ, manuales) |
 | `continuation` | Continuar con el último contexto consultado |
