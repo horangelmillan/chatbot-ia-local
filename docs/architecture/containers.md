@@ -6,7 +6,7 @@ El sistema se compone de dos contenedores principales (Frontend y Backend) y tre
 - SPA tipo chat con burbujas de usuario (derecha) y asistente (izquierda)
 - Botones dinamicos generados por el LLM con estados visuales (activo: Emphasized, seleccionado: Accept, deshabilitado: Default)
 - Renderizado diferenciado para fragmentos documentales (borde naranja, cabecera)
-- Envia historial de ultimos 20 mensajes en cada request
+- Envia historial de ultimos 6 mensajes en cada request (configurable via CHAT_HISTORY_LIMIT)
 - Sin dependencias externas ni API keys
 
 **Backend (Node.js 22 + Express 4):**

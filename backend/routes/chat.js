@@ -5,6 +5,7 @@ const engine = require("../db/engine");
 const router = express.Router();
 const LM_URL = process.env.LM_STUDIO_URL + "/chat/completions";
 const NW_BASE = "https://services.odata.org/V3/Northwind/Northwind.svc";
+const MAX_HISTORY = parseInt(process.env.CHAT_HISTORY_LIMIT, 10) || 6;
 
 const ALLOWED = {
   Orders: { filters: ["OrderID", "CustomerID", "ShipCountry", "ShipCity", "OrderDate"], expand: ["Customer", "Order_Details"], maxTop: 50 },
@@ -196,7 +197,7 @@ async function generateReply(message, context, history) {
     }
   ];
   if (history && Array.isArray(history)) {
-    messages = messages.concat(history.slice(-6));
+    messages = messages.concat(history.slice(-MAX_HISTORY));
   }
   messages.push({
     role: "user",

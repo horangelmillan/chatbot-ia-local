@@ -42,3 +42,7 @@ Mover la mención del proxy a la sección "Frontend (SAPUI5)" dentro del mismo d
 | **Riesgo** | Bajo — solo documentación |
 | **Dependencias** | Ninguna |
 | **Verificación** | Revisión visual |
+
+## Resolución
+
+✅ Movida mención del proxy de sección Backend a Frontend en `01_arquitectura.md`. Documentado como proxy de desarrollo en `ui5.yaml`. Cerrado en lote 2026-07-11.

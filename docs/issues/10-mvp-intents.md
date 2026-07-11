@@ -49,3 +49,7 @@ Agregar `continuation` a:
 | **Riesgo** | Bajo — solo documentación |
 | **Dependencias** | Issue 07 (lastContext) para entender bien el comportamiento actual |
 | **Verificación** | Revisión visual |
+
+## Resolución
+
+✅ Agregado `continuation` a la lista de intents en `mvp-overview.md` línea 33. Actualizada referencia de historial de 20→6 mensajes (Issue 16). Cerrado en lote 2026-07-11.

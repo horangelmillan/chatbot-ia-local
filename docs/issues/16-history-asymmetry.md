@@ -66,3 +66,7 @@ Actualizar la documentación para reflejar la realidad:
 | **Riesgo** | Opción A: bajo. Opción B: medio (más tokens en decideAction, posible degradación). Opción C: bajo |
 | **Dependencias** | Ninguna |
 | **Verificación** | Opción A/B: verificar que el historial se mantiene correctamente en la conversación |
+
+## Resolución
+
+✅ Implementada **Opción A** con configurabilidad: frontend usa constante `MAX_HISTORY=6` en `App.controller.js`, backend usa env var `CHAT_HISTORY_LIMIT` (default 6) en `chat.js`. Documentado en `02_rendimiento.md` (sección Parámetros de Configuración). Actualizados docs: `mvp-overview.md`, `01_arquitectura.md`, `containers.md`. Cerrado en lote 2026-07-11.

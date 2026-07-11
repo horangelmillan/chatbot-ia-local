@@ -56,3 +56,7 @@ const ALLOWED = {
 | **Riesgo** | Bajo — solo documentación |
 | **Dependencias** | Ninguna |
 | **Verificación** | Revisión visual de que coincida con `backend/routes/chat.js:9-13` |
+
+## Resolución
+
+✅ Sincronizado ejemplo `ALLOWED` en `05_seguridad.md` con el código real (agregados `expand` y `maxTop`). Cerrado en lote 2026-07-11.

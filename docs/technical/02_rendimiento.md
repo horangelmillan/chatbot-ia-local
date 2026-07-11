@@ -43,7 +43,7 @@
 | Optimización | Ahorro |
 |-------------|--------|
 | Historial limitado a últimos 6 exchanges | ~40% tokens en generateReply |
-| System prompt corto (~80 tokens) | Reduce primera llamada |
+| System prompt decideAction (~500 tokens) | Clasifica intención con schema completo |
 | `decideAction` con temperature 0.1 | Respuesta rápida y precisa |
 | `generateReply` con temperature 0.8 | Respuesta natural |
 
@@ -67,3 +67,10 @@ API Cliente (0.5-2s) → LLM (1.5-3s) → Red (0.1s)
 | **Total por consulta** | **~1100-1500** | **~200-350** |
 
 **Consumo diario (200 consultas):** ~300K tokens → el LLM lo procesa en <5 minutos acumulados de GPU.
+
+## Parámetros de Configuración
+
+| Parámetro | Componente | Default | Descripción |
+|-----------|:----------:|:-------:|-------------|
+| `CHAT_HISTORY_LIMIT` | Backend (variable de entorno) | 6 | Número de mensajes de historial enviados al LLM en cada request. Reducir (~3-4) en equipos con VRAM limitada (<8GB) para ahorrar tokens de contexto. Aumentar (~10-12) si hay holgura de VRAM y se requiere contexto largo. |
+| `chatHistoryLimit` | Frontend (vía `GET /api/config`) | 6 | El frontend consulta `GET /api/config` al iniciar y sincroniza automáticamente su `MAX_HISTORY`. Para cambiar: editar `CHAT_HISTORY_LIMIT` en el entorno del backend y reiniciar. |

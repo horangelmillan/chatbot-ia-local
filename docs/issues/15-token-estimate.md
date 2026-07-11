@@ -50,3 +50,7 @@ Actualizar `02_rendimiento.md`:
 | **Riesgo** | Bajo — solo corrección de estimación |
 | **Dependencias** | Ninguna |
 | **Verificación** | Revisión visual. Opcional: contar tokens reales con un tokenizador |
+
+## Resolución
+
+✅ Corregida estimación en `02_rendimiento.md`: `~80 tokens` → `~500 tokens`. Cerrado en lote 2026-07-11.

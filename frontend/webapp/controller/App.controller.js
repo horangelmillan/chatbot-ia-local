@@ -16,7 +16,15 @@ sap.ui.define([
 			this._inputModel = new JSONModel({ text: "", valid: false });
 			this.getView().setModel(this._inputModel, "chatInput");
 			this.getView().byId("chatInput").focus();
+			this._maxHistory = 6;
+			this._loadConfig();
 			this._showWelcome();
+		},
+		_loadConfig: function () {
+			var that = this;
+			fetch("http://localhost:3001/api/config").then(function (oRes) { return oRes.json(); }).then(function (oData) {
+				if (oData.chatHistoryLimit) that._maxHistory = oData.chatHistoryLimit;
+			}).catch(function () { });
 		},
 		onLiveChange: function (oEvent) {
 			var sValue = oEvent.getParameter("value") || "";
@@ -64,7 +72,7 @@ sap.ui.define([
 		_buildHistory: function () {
 			var aItems = this._messagesModel.getProperty("/items");
 			var aHistory = [];
-			for (var i = Math.max(0, aItems.length - 20); i < aItems.length; i++) {
+			for (var i = Math.max(0, aItems.length - this._maxHistory); i < aItems.length; i++) {
 				var o = aItems[i];
 				if (o.sender === "Usuario") aHistory.push({ role: "user", content: o.text });
 				else if (o.sender === "Asistente") aHistory.push({ role: "assistant", content: o.text });

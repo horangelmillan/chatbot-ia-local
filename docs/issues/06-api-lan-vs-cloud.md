@@ -51,3 +51,7 @@ Mantener el diagrama de seguridad como "visión de producción" pero agregar una
 | **Riesgo** | Bajo — solo documentación |
 | **Dependencias** | Ninguna |
 | **Verificación** | Revisión visual de la corrección |
+
+## Resolución
+
+✅ Implementada **Opción A**: corregido diagrama de red en `05_seguridad.md` (API Cliente (LAN) → Northwind OData (Internet)). Actualizada sección de aislamiento de red con nota sobre despliegue productivo. Cerrado en lote 2026-07-11.

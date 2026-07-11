@@ -12,9 +12,9 @@ El backend define un schema estricto de lo que el LLM puede consultar:
 
 ```javascript
 const ALLOWED = {
-  Orders: { filters: ["OrderID", "CustomerID", "ShipCountry"] },
-  Customers: { filters: ["CustomerID", "CompanyName"] },
-  Order_Details: { filters: ["OrderID", "ProductID"] }
+  Orders: { filters: ["OrderID", "CustomerID", "ShipCountry", "ShipCity", "OrderDate"], expand: ["Customer", "Order_Details"], maxTop: 50 },
+  Customers: { filters: ["CustomerID", "CompanyName", "Country", "City"], expand: ["Orders"], maxTop: 50 },
+  Order_Details: { filters: ["OrderID", "ProductID"], expand: ["Order"], maxTop: 50 }
 };
 ```
 
@@ -47,7 +47,7 @@ LLM genera respuesta natural basada en ese texto
 ### 4. Aislamiento de Red
 
 ```
-[Proveedor Internet] ──▶ [Frontend] ──▶ [Backend] ──▶ [API Cliente (LAN)]
+[Proveedor Internet] ──▶ [Frontend] ──▶ [Backend] ──▶ [Northwind OData (Internet)]
                                                 │
                                                 ▼
                                           [LM Studio (localhost:1234)]
@@ -56,7 +56,7 @@ LLM genera respuesta natural basada en ese texto
 
 - LM Studio corre en `127.0.0.1` — solo accesible desde el backend
 - Backend solo expone `/api/chat` (POST) al frontend
-- API del cliente solo es accesible desde la red interna
+- Northwind OData es un servicio público en Internet (`services.odata.org`). En un despliegue productivo, esta API sería reemplazada por la API del cliente en la red interna (LAN).
 
 ### 5. Sin datos persistentes
 

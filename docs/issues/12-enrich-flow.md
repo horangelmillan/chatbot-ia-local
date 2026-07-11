@@ -60,3 +60,7 @@ Actualizar `backend-rules.md` flujo `query` para incluir:
 | **Riesgo** | Bajo — solo documentación |
 | **Dependencias** | Ninguna |
 | **Verificación** | Revisión visual de que coincida con `chat-flow.md` |
+
+## Resolución
+
+✅ Actualizado flujo `query` en `backend-rules.md` con pasos: enriquecer contexto, formatear datos, actualizar lastContext. Cerrado en lote 2026-07-11.

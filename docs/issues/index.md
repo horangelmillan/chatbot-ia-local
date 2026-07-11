@@ -21,15 +21,15 @@ No se implementa ningún cambio sin antes haberlo conversado y acordado con el u
 | 1 | [01-env-database.md](./01-env-database.md) | Falta `DATABASE_URL` en `.env` | 🔴 Crítica | ✅ |
 | 2 | [03-schema-sql.md](./03-schema-sql.md) | No existe `schema.sql` con DDL de BD | 🔴 Crítica | ✅ |
 | 3 | [02-glossary-insert.md](./02-glossary-insert.md) | Indexador nunca inserta en tabla `glossary` | 🔴 Crítica | ✅ |
-| 4 | [10-mvp-intents.md](./10-mvp-intents.md) | MVP overview omite intent `continuation` | 🟡 Grave | |
-| 5 | [12-enrich-flow.md](./12-enrich-flow.md) | `backend-rules.md` omite `enrichOrderContext` | 🟡 Grave | |
-| 6 | [14-allowed-schema.md](./14-allowed-schema.md) | Ejemplo `ALLOWED` desactualizado en seguridad | 🟡 Grave | |
-| 7 | [15-token-estimate.md](./15-token-estimate.md) | System prompt ~80 tokens, realidad ~400-500 | 🟡 Grave | |
-| 8 | [16-history-asymmetry.md](./16-history-asymmetry.md) | Historial 20 msgs enviado, `decideAction` no lo usa | 🟡 Grave | |
-| 9 | [13-continuation-flow.md](./13-continuation-flow.md) | `continuation` en tabla pero no en flujo documentado | 🟡 Grave | |
-| 10 | [05-diagrama-api-pg.md](./05-diagrama-api-pg.md) | Diagrama erróneo: flecha API Cliente → PostgreSQL | 🟡 Grave | |
-| 11 | [06-api-lan-vs-cloud.md](./06-api-lan-vs-cloud.md) | Seguridad dice API en LAN, es cloud (Internet) | 🟡 Grave | |
-| 12 | [19-proxy-location.md](./19-proxy-location.md) | Proxy documentado como backend, es frontend | 🟡 Grave | |
+| 4 | [10-mvp-intents.md](./10-mvp-intents.md) | MVP overview omite intent `continuation` | 🟡 Grave | ✅ |
+| 5 | [12-enrich-flow.md](./12-enrich-flow.md) | `backend-rules.md` omite `enrichOrderContext` | 🟡 Grave | ✅ |
+| 6 | [14-allowed-schema.md](./14-allowed-schema.md) | Ejemplo `ALLOWED` desactualizado en seguridad | 🟡 Grave | ✅ |
+| 7 | [15-token-estimate.md](./15-token-estimate.md) | System prompt ~80 tokens, realidad ~400-500 | 🟡 Grave | ✅ |
+| 8 | [16-history-asymmetry.md](./16-history-asymmetry.md) | Historial 20 msgs enviado, `decideAction` no lo usa | 🟡 Grave | ✅ |
+| 9 | [13-continuation-flow.md](./13-continuation-flow.md) | `continuation` en tabla pero no en flujo documentado | 🟡 Grave | ✅ |
+| 10 | [05-diagrama-api-pg.md](./05-diagrama-api-pg.md) | Diagrama erróneo: flecha API Cliente → PostgreSQL | 🟡 Grave | ✅ |
+| 11 | [06-api-lan-vs-cloud.md](./06-api-lan-vs-cloud.md) | Seguridad dice API en LAN, es cloud (Internet) | 🟡 Grave | ✅ |
+| 12 | [19-proxy-location.md](./19-proxy-location.md) | Proxy documentado como backend, es frontend | 🟡 Grave | ✅ |
 | 13 | [08-formatos-soporte.md](./08-formatos-soporte.md) | PDF/DOCX listados como soportados, no implementados | 🟠 Moderada | |
 | 14 | [21-remark-library.md](./21-remark-library.md) | "remark" listado como librería, no se usa | 🟠 Moderada | |
 | 15 | [11-faq-search-route.md](./11-faq-search-route.md) | Ruta `/faq/search` vs `/api/documents/faq/search` | 🟠 Moderada | |
@@ -39,26 +39,6 @@ No se implementa ningún cambio sin antes haberlo conversado y acordado con el u
 | 19 | [09-embedding-type.md](./09-embedding-type.md) | `embedding` como TEXT vs VECTOR (autocontradictorio) | 🟠 Moderada | |
 | 20 | [17-i18n-unused.md](./17-i18n-unused.md) | Claves i18n `reconCostos` y `typingIndicator` no usadas | 🔵 Leve | |
 | 21 | [18-ui5-version.md](./18-ui5-version.md) | Version mismatch: `minUI5Version` 1.120 vs OpenUI5 1.150 | 🔵 Leve | |
-| 2 | [03-schema-sql.md](./03-schema-sql.md) | No existe `schema.sql` con DDL de BD | 🔴 Crítica ✅ |
-| 3 | [02-glossary-insert.md](./02-glossary-insert.md) | Indexador nunca inserta en tabla `glossary` | 🔴 Crítica ✅ |
-| 4 | [10-mvp-intents.md](./10-mvp-intents.md) | MVP overview omite intent `continuation` | 🟡 Grave |
-| 5 | [12-enrich-flow.md](./12-enrich-flow.md) | `backend-rules.md` omite `enrichOrderContext` | 🟡 Grave |
-| 6 | [14-allowed-schema.md](./14-allowed-schema.md) | Ejemplo `ALLOWED` desactualizado en seguridad | 🟡 Grave |
-| 7 | [15-token-estimate.md](./15-token-estimate.md) | System prompt ~80 tokens, realidad ~400-500 | 🟡 Grave |
-| 8 | [16-history-asymmetry.md](./16-history-asymmetry.md) | Historial 20 msgs enviado, `decideAction` no lo usa | 🟡 Grave |
-| 9 | [13-continuation-flow.md](./13-continuation-flow.md) | `continuation` en tabla pero no en flujo documentado | 🟡 Grave |
-| 10 | [05-diagrama-api-pg.md](./05-diagrama-api-pg.md) | Diagrama erróneo: flecha API Cliente → PostgreSQL | 🟡 Grave |
-| 11 | [06-api-lan-vs-cloud.md](./06-api-lan-vs-cloud.md) | Seguridad dice API en LAN, es cloud (Internet) | 🟡 Grave |
-| 12 | [19-proxy-location.md](./19-proxy-location.md) | Proxy documentado como backend, es frontend | 🟡 Grave |
-| 13 | [08-formatos-soporte.md](./08-formatos-soporte.md) | PDF/DOCX listados como soportados, no implementados | 🟠 Moderada |
-| 14 | [21-remark-library.md](./21-remark-library.md) | "remark" listado como librería, no se usa | 🟠 Moderada |
-| 15 | [11-faq-search-route.md](./11-faq-search-route.md) | Ruta `/faq/search` vs `/api/documents/faq/search` | 🟠 Moderada |
-| 16 | [07-lastcontext.md](./07-lastcontext.md) | `lastContext` global, docs dicen "por sesión" | 🟠 Moderada |
-| 17 | [04-llm-queue.md](./04-llm-queue.md) | Cola de requests LLM documentada no implementada | 🟠 Moderada |
-| 18 | [20-pm2-dependency.md](./20-pm2-dependency.md) | PM2 mencionado, no instalado ni configurado | 🟠 Moderada |
-| 19 | [09-embedding-type.md](./09-embedding-type.md) | `embedding` como TEXT vs VECTOR (autocontradictorio) | 🟠 Moderada |
-| 20 | [17-i18n-unused.md](./17-i18n-unused.md) | Claves i18n `reconCostos` y `typingIndicator` no usadas | 🔵 Leve |
-| 21 | [18-ui5-version.md](./18-ui5-version.md) | Version mismatch: `minUI5Version` 1.120 vs OpenUI5 1.150 | 🔵 Leve |
 
 ## Leyenda
 

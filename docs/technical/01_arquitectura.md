@@ -3,46 +3,38 @@
 ## Diagrama de Flujo
 
 ```
-┌─────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│  Proveedor  │────▶│  Frontend    │────▶│  Backend      │────▶│  API Cliente │
-│  (Browser)  │     │  SAPUI5      │     │  Node.js      │     │  (OData/REST)│
-└─────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
-                          │                      │                      │
-                          │                      ▼                      │
-                          │              ┌──────────────┐              │
-                          │              │  LLM Local   │              │
-                          └──────────────│  Qwen3 8B   │              │
-                                         │  (LM Studio) │              │
-                                         └──────────────┘              │
-                                                                        │
-                          ┌──────────────────┐                          │
-                          │   PostgreSQL     │◀─────────────────────────┘
-                          │  chatbot_rag     │
-                          │ ─ documents      │
-                          │ ─ document_chunks│
-                          │ ─ faq            │
-                           │ ─ faq            │
-                          └──────────────────┘
-                               ▲
-                               │
-                          ┌──────────────┐
-                          │  Document    │
-                          │  Engine      │
-                          │  (Node.js)   │
-                          └──────────────┘
-                               ▲
-                               │
-                          ┌──────────────┐
-                          │  Indexador   │
-                          │  (Node.js)   │
-                          └──────────────┘
-                               ▲
-                               │
-                          ┌──────────────┐
-                          │  Documentos  │
-                          │  (Markdown,  │
-                          │   JSON, TXT) │
-                          └──────────────┘
+┌─────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────────┐
+│  Proveedor  │────▶│  Frontend    │────▶│  Backend      │────▶│ Northwind OData  │
+│  (Browser)  │     │  SAPUI5      │     │  Node.js      │     │ (services.odata) │
+└─────────────┘     └──────────────┘     └──────┬───────┘     └──────────────────┘
+                                                │
+                                          ┌─────┴──────┐
+                                          │ LM Studio   │
+                                          │ Qwen3 8B    │
+                                          │ (localhost) │
+                                          └─────────────┘
+                                                │
+                                          ┌─────┴──────────┐
+                                    ┌─────┤ PostgreSQL 18  │
+                                    │     │ chatbot_rag    │
+                                    │     └────────────────┘
+                                    │
+                               ┌────┴───────────┐
+                               │ Document Engine │
+                               │   (Node.js)     │
+                               └─────────────────┘
+                                    ▲
+                                    │
+                               ┌────┴───────┐
+                               │  Indexador  │
+                               │  (Node.js)  │
+                               └─────────────┘
+                                    ▲
+                                    │
+                               ┌────┴──────────┐
+                               │  Documentos   │
+                               │ (MD, JSON,TXT)│
+                               └───────────────┘
 ```
 
 ## Flujo de una consulta
@@ -79,12 +71,12 @@
 ### Frontend (SAPUI5)
 - Aplicación web OpenUI5 1.150.0
 - Interfaz tipo chat con burbujas (usuario derecha, asistente izquierda)
-- Envía historial de últimos 20 mensajes en cada request
+- Envía historial de últimos 6 mensajes en cada request (configurable vía backend `CHAT_HISTORY_LIMIT`)
+- Proxy de desarrollo (`ui5-middleware-simpleproxy` en `ui5.yaml`) redirige `/api` al backend `localhost:3001`
 - Sin dependencias externas, sin API keys
 
 ### Backend (Node.js + Express)
 - Puerto 3001
-- Proxy para desarrollo (ui5-middleware-simpleproxy)
 - Caché en memoria de última consulta (`lastContext`)
 - PostgreSQL 18 como base de datos documental
 - Dependencias adicionales: `pg`, `pdf-parse`, `mammoth`
@@ -106,7 +98,7 @@
 - **Document Engine** (`backend/db/engine.js`) — busca fragmentos oficiales en FAQ y chunks documentales
 - **Indexador** (`backend/db/indexer.js`) — parsea documentos Markdown/JSON/TXT, divide en chunks de 800 palabras, registra metadatos
 - **LLM solo detecta el intent** — nunca recibe el contenido del documento
-- APIs: `POST /api/documents/index`, `GET /api/documents/search`, `GET /api/documents/:id`
+- APIs: `GET /api/config`, `POST /api/documents/index`, `GET /api/documents/search`, `GET /api/documents/:id`
 
 ## Seguridad
 

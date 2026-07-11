@@ -74,3 +74,7 @@ Corregir el diagrama eliminando la flecha de API Cliente a PostgreSQL, y en su l
 | **Riesgo** | Bajo — solo documentación |
 | **Dependencias** | Ninguna |
 | **Verificación** | Revisión visual del diagrama corregido |
+
+## Resolución
+
+✅ Reemplazado diagrama ASCII en `01_arquitectura.md`: eliminada flecha incorrecta API Cliente → PostgreSQL, conectado Backend directamente a Northwind OData. Cerrado en lote 2026-07-11.

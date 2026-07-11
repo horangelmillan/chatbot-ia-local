@@ -16,6 +16,9 @@ app.use(cors({
 
 app.use(express.json({ limit: "10mb" }));
 
+app.get("/api/config", function (req, res) {
+  res.json({ chatHistoryLimit: parseInt(process.env.CHAT_HISTORY_LIMIT, 10) || 6 });
+});
 app.use("/api/chat", chatRouter);
 app.use("/api/documents", documentsRouter);
 

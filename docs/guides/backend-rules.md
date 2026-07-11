@@ -33,8 +33,10 @@ Body
 ### query
 - Validar entidad, filtros y expand contra schema definido.
 - Ejecutar consulta OData.
-- Formatear datos.
-- Enviar al LLM para generar respuesta natural.
+- **Enriquecer contexto** (si es `Orders`: calcular total + buscar órdenes similares del mismo cliente).
+- **Formatear datos en contexto legible** (`buildContext`: texto plano con totales, productos, órdenes similares).
+- **Actualizar `lastContext`** con la entidad consultada.
+- Enviar datos formateados + historial al LLM (`generateReply`).
 - Devolver `{ reply, buttons? }`.
 
 ### document_query
@@ -43,11 +45,23 @@ Body
 - Devolver el fragmento como `{ reply, type: "document" }`.
 - La IA nunca recibe el contenido del documento.
 
+### continuation
+- Verificar que exista un contexto previo (`lastContext`).
+- Si no existe, responder: "Aún no has consultado nada, pregúntame por alguna orden o cliente."
+- Si existe, enviar el mensaje actual + `lastContext.context` + historial al LLM (`generateReply`).
+- Devolver la respuesta generada.
+
 ### reply
 - Devolver el texto directamente.
 
 ### unknown
 - Responder que no puede ayudar con esa consulta.
+
+## Endpoint: Configuración
+
+GET /api/config
+- Expone parámetros de configuración del backend.
+- Respuesta: `{ chatHistoryLimit: 6 }` — el frontend lo consulta al iniciar para sincronizar `MAX_HISTORY`.
 
 ## Endpoints: Documentos
 

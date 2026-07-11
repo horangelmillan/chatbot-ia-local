@@ -49,3 +49,7 @@ Agregar sub-sección para `continuation` en el flujo documentado:
 | **Riesgo** | Bajo — solo documentación |
 | **Dependencias** | Issue 07 (lastContext) e Issue 10 (mvp intents) para consistencia completa |
 | **Verificación** | Revisión visual |
+
+## Resolución
+
+✅ Agregada sub-sección `### continuation` en `backend-rules.md` con el flujo completo. Cerrado en lote 2026-07-11.

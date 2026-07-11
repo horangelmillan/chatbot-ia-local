@@ -20,17 +20,18 @@ SAPUI5 Chat → Node.js (Express) → LM Studio (Qwen3 8B)
 - Chat con burbujas de usuario/asistente.
 - Botones dinámicos generados por la IA.
 - Renderizado diferenciado para fragmentos documentales (borde naranja).
-- Historial de últimos 20 mensajes.
+- Historial de últimos 6 mensajes (configurable vía `CHAT_HISTORY_LIMIT`).
 
 ### Backend (Node.js + Express, puerto 3001)
 - `POST /api/chat` — clasifica intención y responde.
+- `GET /api/config` — expone configuración del backend (ej: `chatHistoryLimit`).
 - `POST /api/documents/index` — indexa documentos.
 - `GET /api/documents/search` — busca fragmentos documentales.
 - `GET /api/documents/:id` — obtiene documento completo.
 - Caché en memoria (`lastContext`).
 
 ### LLM Local (LM Studio + Qwen3 8B, puerto 1234)
-- `decideAction` (temp 0.1): clasifica consultas: query, document_query, reply, unknown.
+- `decideAction` (temp 0.1): clasifica consultas: query, document_query, reply, continuation, unknown.
 - `generateReply` (temp 0.8): genera respuesta natural solo con datos proporcionados.
 
 ### Motor Documental (RAG)
