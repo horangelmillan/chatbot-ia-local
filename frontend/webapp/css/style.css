@@ -15,3 +15,20 @@
 .assistantBubble .sapMBtn {
   margin: 6px 4px 0 0;
 }
+.docBubble {
+  background: #fff8e1;
+  border-radius: 12px 12px 12px 4px;
+  padding: 10px 14px;
+  margin: 4px auto 4px 8px;
+  max-width: 60%;
+  border-left: 4px solid #f0ad4e;
+  font-size: 0.85rem;
+}
+.docBubble::before {
+  content: "📄 Documentación";
+  display: block;
+  font-size: 0.75rem;
+  color: #8a6d3b;
+  font-weight: bold;
+  margin-bottom: 6px;
+}

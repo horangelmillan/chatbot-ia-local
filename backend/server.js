@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const chatRouter = require("./routes/chat");
+const documentsRouter = require("./routes/documents");
 
 const app = express();
 const PORT = 3001;
@@ -13,9 +14,10 @@ app.use(cors({
   allowedHeaders: ["Content-Type"]
 }));
 
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 
 app.use("/api/chat", chatRouter);
+app.use("/api/documents", documentsRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor en http://localhost:${PORT}`);

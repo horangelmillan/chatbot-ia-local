@@ -1,62 +1,79 @@
 # Backend
 
-## Endpoint
+## Endpoint: Chat
 
-POST /chat
+POST /api/chat
 
 Body
 
-``` json
+```json
 {
-  "message":"texto del usuario"
+  "message": "texto del usuario",
+  "history": [{ "role": "user"|"assistant", "content": "..." }]
 }
 ```
 
 ## Flujo
 
-1.  Recibir mensaje.
-2.  Pedir al LLM que clasifique:
+1. Recibir mensaje.
+2. Pedir al LLM que clasifique la intención:
 
--   order
--   customer
--   invoice
--   unknown
+| Intent | Descripción |
+|--------|-------------|
+| `query` | Consulta a Northwind (OData) |
+| `reply` | Respuesta directa del LLM (saludos, análisis, etc.) |
+| `document_query` | Consulta documental (FAQ, manuales, glosario) |
+| `continuation` | Continuar con el último contexto consultado |
+| `unknown` | Fuera del alcance del asistente |
 
-Responder únicamente JSON.
+3. Según la intención:
 
-Ejemplo:
+### query
+- Validar entidad, filtros y expand contra schema definido.
+- Ejecutar consulta OData.
+- Formatear datos.
+- Enviar al LLM para generar respuesta natural.
+- Devolver `{ reply, buttons? }`.
 
-``` json
-{
- "intent":"order",
- "id":"10248"
-}
+### document_query
+- Llamar al Document Engine con `category` y `keywords`.
+- Buscar en orden: FAQ → Glosario → Chunks (Full Text Search).
+- Devolver el fragmento como `{ reply, type: "document" }`.
+- La IA nunca recibe el contenido del documento.
+
+### reply
+- Devolver el texto directamente.
+
+### unknown
+- Responder que no puede ayudar con esa consulta.
+
+## Endpoints: Documentos
+
+POST /api/documents/index
+- Indexa un archivo o directorio completo de documentos.
+- Body: `{ path }` o `{ directory }`.
+- Soporta: Markdown (con frontmatter), JSON, TXT.
+
+GET /api/documents/search?q=&category=
+- Busca fragmentos documentales por keywords.
+- Busca primero FAQs (por keywords array), luego glosario (ILIKE), luego chunks (FTS).
+- Devuelve el fragmento más relevante.
+
+GET /api/documents/:id
+- Obtiene un documento completo con todos sus chunks.
+
+## Formato de documentos
+
+Los documentos Markdown deben incluir frontmatter:
+
+```markdown
+---
+code: FAQ-001
+category: Facturacion
+keywords: [factura, proveedor, registro]
+question: ¿Cómo registro una factura?
+answer: Para registrar una factura...
+---
 ```
 
-3.  Según la intención:
-
-order: GET /Orders(10248)
-
-customer: GET /Customers('ALFKI')
-
-invoice: Simular con Orders.
-
-unknown: No consultar OData.
-
-4.  Construir un prompt:
-
-Eres un asistente especializado únicamente en proveedores, órdenes y
-facturación.
-
-Usa EXCLUSIVAMENTE la información entregada.
-
-Si la pregunta no pertenece al dominio responde:
-
-"No puedo ayudar con esa consulta. Soy un asistente especializado en
-procesos de proveedores y facturación."
-
-Nunca inventes datos.
-
-5.  Enviar al LM Studio.
-
-6.  Devolver la respuesta al frontend.
+Si incluyen `question` y `answer`, se indexan también como FAQ.

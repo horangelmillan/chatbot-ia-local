@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const engine = require("../db/engine");
 
 const router = express.Router();
 const LM_URL = process.env.LM_STUDIO_URL + "/chat/completions";
@@ -39,6 +40,8 @@ function validateQuery(entity, filters, expand, top) {
   return null;
 }
 
+var DOC_CATEGORIES = ["Facturacion", "Proveedores", "Pagos", "General"];
+
 async function decideAction(message) {
   var schemaDesc = Object.keys(ALLOWED).map(function (e) {
     return e + " (filtros: " + ALLOWED[e].filters.join(", ") + ", expand: " + ALLOWED[e].expand.join(", ") + ")";
@@ -50,12 +53,14 @@ async function decideAction(message) {
       {
         role: "system",
         content:
-          "Eres un planificador de consultas Northwind.\n\n" +
-          "Entidades:\n" + schemaDesc + "\n\n" +
+          "Eres un planificador de consultas.\n\n" +
+          "Northwind:\n" + schemaDesc + "\n\n" +
+          "Documentacion disponible:\n" + DOC_CATEGORIES.join(", ") + "\n\n" +
           last + "\n\n" +
           "Formato de respuesta SOLO JSON:\n" +
            '- Para consultar Northwind: {"intent":"query","entity":"...","filters":[{"field":"...","op":"eq","value":"..."}],"expand":["..."],"top":N}\n' +
-            '- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n' +
+           '- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n' +
+           '- Para preguntas sobre procesos internos, documentacion o FAQ: {"intent":"document_query","category":"Facturacion","keywords":["factura","registro"]}\n' +
             '- Cuando respondas datos de Northwind, sugiere 2-3 acciones de seguimiento en buttons:\n' +
             '   * Si mostraste un pedido: botones para "Ver cliente", "Ver factura", "Buscar otro pedido"\n' +
             '   * Si mostraste un cliente: botones para "Ver sus pedidos", "Buscar otro cliente"\n' +
@@ -63,7 +68,7 @@ async function decideAction(message) {
             '- Si toca ofrecer opciones al usuario, agrega buttons a reply o query: {"intent":"reply","text":"...","buttons":[{"label":"Sí","message":"sí quiero seguir"}]}\n' +
            '- Para continuar con lo ultimo consultado: {"intent":"continuation"}\n' +
           '- Fuera del alcance: {"intent":"unknown"}\n\n' +
-          "NO inventes entidades, campos, operadores ni relaciones. Usa SOLO lo listado. Si te piden datos aleatorios o multiples entidades, usa reply."
+          "NO inventes entidades, campos, operadores ni relaciones. Usa SOLO lo listado. Para documentacion, solo devuelve categoria y palabras clave, NO redactes la respuesta."
       },
       { role: "user", content: message }
     ],
@@ -241,6 +246,22 @@ router.post("/", async function (req, res) {
       }
       var reply = await generateReply(message, lastContext.context, history);
       return res.json({ reply: reply });
+    }
+    if (decision.intent === "document_query") {
+      var result = await engine.search(decision.category, decision.keywords);
+      if (!result) {
+        return res.json({ reply: "No encontre documentacion sobre ese tema." });
+      }
+      var data = result.data;
+      var reply;
+      if (result.type === "faq") {
+        reply = data.question + "\n\n" + data.answer;
+      } else if (result.type === "glossary") {
+        reply = data.term + ": " + data.definition;
+      } else {
+        reply = data.title ? data.title + "\n\n" + data.content : data.content;
+      }
+      return res.json({ reply: reply, type: "document" });
     }
     if (decision.intent === "query") {
       var error = validateQuery(decision.entity, decision.filters, decision.expand, decision.top);

@@ -39,9 +39,9 @@ sap.ui.define([
 			Util.showBusy();
 			this._callBackend(sText);
 		},
-		_addMessage: function (sSender, sText, aButtons) {
+		_addMessage: function (sSender, sText, aButtons, sType) {
 			var aItems = this._messagesModel.getProperty("/items");
-			aItems.push({ sender: sSender, text: sText, buttons: aButtons || null });
+			aItems.push({ sender: sSender, text: sText, buttons: aButtons || null, type: sType || null });
 			this._messagesModel.refresh(true);
 			this._scrollToBottom();
 		},
@@ -75,7 +75,7 @@ sap.ui.define([
 					if (!oRes.ok) return oRes.json().then(function (oErr) { throw new Error(oErr.reply || "Error " + oRes.status); });
 					return oRes.json();
 				})
-				.then(function (oData) { that._addMessage("Asistente", oData.reply, oData.buttons); })
+				.then(function (oData) { that._addMessage("Asistente", oData.reply, oData.buttons, oData.type); })
 				.catch(function (oErr) { that._addMessage("Asistente", oErr.message); })
 				.finally(function () { Util.hideBusy(); });
 		},
@@ -101,13 +101,14 @@ sap.ui.define([
 			var oData = oContext && oContext.getObject();
 			if (!oData) return new CustomListItem();
 			var bUser = oData.sender === "Usuario";
+			var bDoc = oData.type === "document";
 			var aContent = [new Text({ text: oData.text })];
 			if (!bUser && oData.buttons && oData.buttons.length > 0) {
 				var aBtns = this._createButtonRow(oContext.getPath(), oData.buttons, oData._buttonsDisabled, oData._selectedButtonIndex);
 				aContent = aContent.concat(aBtns);
 			}
 			var oVBox = new VBox({ items: aContent });
-			oVBox.addStyleClass(bUser ? "userBubble" : "assistantBubble");
+			oVBox.addStyleClass(bUser ? "userBubble" : bDoc ? "docBubble" : "assistantBubble");
 			return new CustomListItem({ content: [oVBox] });
 		}
 	});

@@ -7,16 +7,47 @@
 │  Proveedor  │────▶│  Frontend    │────▶│  Backend      │────▶│  API Cliente │
 │  (Browser)  │     │  SAPUI5      │     │  Node.js      │     │  (OData/REST)│
 └─────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
-                          │                      │
-                          │                      ▼
-                          │              ┌──────────────┐
-                          │              │  LLM Local   │
-                          └──────────────│  Qwen3 8B   │
-                                         │  (LM Studio) │
-                                         └──────────────┘
+                          │                      │                      │
+                          │                      ▼                      │
+                          │              ┌──────────────┐              │
+                          │              │  LLM Local   │              │
+                          └──────────────│  Qwen3 8B   │              │
+                                         │  (LM Studio) │              │
+                                         └──────────────┘              │
+                                                                        │
+                          ┌──────────────────┐                          │
+                          │   PostgreSQL     │◀─────────────────────────┘
+                          │  chatbot_rag     │
+                          │ ─ documents      │
+                          │ ─ document_chunks│
+                          │ ─ faq            │
+                          │ ─ glossary       │
+                          └──────────────────┘
+                               ▲
+                               │
+                          ┌──────────────┐
+                          │  Document    │
+                          │  Engine      │
+                          │  (Node.js)   │
+                          └──────────────┘
+                               ▲
+                               │
+                          ┌──────────────┐
+                          │  Indexador   │
+                          │  (Node.js)   │
+                          └──────────────┘
+                               ▲
+                               │
+                          ┌──────────────┐
+                          │  Documentos  │
+                          │  (Markdown,  │
+                          │   JSON, TXT) │
+                          └──────────────┘
 ```
 
 ## Flujo de una consulta
+
+### Escenario A — Consulta de datos (Northwind/SAP)
 
 1. **Usuario escribe** en lenguaje natural: "¿Cuáles facturas se pagaron hoy?"
 2. **Frontend** envía mensaje + historial reciente al backend
@@ -31,6 +62,18 @@
 8. **LLM genera** respuesta en lenguaje natural, concisa y basada solo en datos reales
 9. **Frontend** muestra la respuesta al proveedor
 
+### Escenario B — Consulta documental (RAG)
+
+1. **Usuario escribe**: "¿Cómo registro una factura de proveedor?"
+2. **Backend** consulta al **LLM** (`decideAction`)
+3. **LLM** devuelve: `{"intent":"document_query","category":"Facturación","keywords":["factura","registro","proveedor"]}`
+4. **Backend** llama al **Document Engine** con categoría + keywords
+5. **Document Engine** busca en PostgreSQL: FAQ → Glosario → Chunks (FTS)
+6. **PostgreSQL** devuelve el fragmento oficial
+7. **Backend** envía el fragmento al **Frontend** con `type: "document"`
+8. **Frontend** renderiza el fragmento con estilo documental (borde naranja, cabecera)
+9. **La IA nunca ve el contenido del documento**
+
 ## Componentes
 
 ### Frontend (SAPUI5)
@@ -43,7 +86,8 @@
 - Puerto 3001
 - Proxy para desarrollo (ui5-middleware-simpleproxy)
 - Caché en memoria de última consulta (`lastContext`)
-- Sin base de datos, sin estado persistente
+- PostgreSQL 18 como base de datos documental
+- Dependencias adicionales: `pg`, `pdf-parse`, `mammoth`
 
 ### LLM Local (LM Studio + Qwen3 8B)
 - Modelo: Qwen3 8B (Instruct)
@@ -56,6 +100,13 @@
 - El chatbot se adapta al schema expuesto
 - Solo consulta (GET), no escribe
 - Timeout configurable
+
+### Motor Documental (RAG)
+- **PostgreSQL 18** — base de datos `chatbot_rag`
+- **Document Engine** (`backend/db/engine.js`) — busca fragmentos oficiales en FAQ, glosario y chunks documentales
+- **Indexador** (`backend/db/indexer.js`) — parsea documentos Markdown/JSON/TXT, divide en chunks de 800 palabras, registra metadatos
+- **LLM solo detecta el intent** — nunca recibe el contenido del documento
+- APIs: `POST /api/documents/index`, `GET /api/documents/search`, `GET /api/documents/:id`
 
 ## Seguridad
 
