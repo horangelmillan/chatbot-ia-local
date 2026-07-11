@@ -1,0 +1,14 @@
+{
+  "name": "chatbot-local",
+  "private": true,
+  "packageManager": "pnpm@11.11.0",
+  "scripts": {
+    "dev": "concurrently -n BE,FE -c cyan,green \"pnpm run dev:backend\" \"pnpm run dev:frontend\"",
+    "dev:backend": "pnpm -C backend start",
+    "dev:frontend": "pnpm -C frontend start",
+    "install:all": "pnpm -C backend install && pnpm -C frontend install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

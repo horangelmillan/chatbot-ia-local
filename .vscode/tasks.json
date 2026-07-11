@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Backend",
+      "type": "shell",
+      "command": "pnpm -C backend start",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "group": "chatbot" }
+    },
+    {
+      "label": "Frontend",
+      "type": "shell",
+      "command": "pnpm -C frontend start",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "group": "chatbot" }
+    },
+    {
+      "label": "Dev: ChatBot",
+      "dependsOn": ["Backend", "Frontend"],
+      "dependsOrder": "parallel",
+      "presentation": { "panel": "dedicated" }
+    }
+  ]
+}

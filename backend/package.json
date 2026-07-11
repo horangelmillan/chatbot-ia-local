@@ -1,6 +1,7 @@
 {
   "name": "chatbot-backend",
   "version": "1.0.0",
+  "packageManager": "pnpm@11.11.0",
   "description": "Backend Express para SAPUI5 Chat",
   "main": "server.js",
   "scripts": {
