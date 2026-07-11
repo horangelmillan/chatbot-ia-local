@@ -229,25 +229,6 @@ Durante el trabajo:
 
 ---
 
-# Resolución de Issues (docs/issues/)
-
-Cuando trabajes sobre issues documentados en `docs/issues/`:
-
-**Cada issue se resuelve de forma INDIVIDUAL, UNO POR UNO.** Nunca en lote sin aprobación intermedia.
-
-Por cada issue, debes:
-
-1. **Presentar el issue al usuario** con su descripción, prioridad y propuesta de corrección.
-2. **Esperar decisión y aprobación** del usuario antes de implementar.
-3. **Implementar** los cambios acordados (código y/o documentación).
-4. **Presentar el diff** de lo que se cambió para revisión del usuario.
-5. **Avanzar al siguiente issue solo después de que el usuario confirme** que está de acuerdo con el resultado.
-
-No implementes dos o más issues en paralelo sin haber cerrado cada uno individualmente con el usuario.
-
-Este proceso está definido en `docs/issues/index.md` (ver "Proceso de resolución").
-
----
 
 # Definición de Finalización
 

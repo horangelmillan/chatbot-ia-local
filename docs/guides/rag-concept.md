@@ -134,7 +134,7 @@ Finalizar
 |----------|----------|
 | PDF | pdf-parse |
 | DOCX | mammoth |
-| Markdown | remark |
+| Markdown | fs (lectura directa + regex) |
 | JSON | JSON.parse |
 
 Todos los formatos deberán convertirse a texto plano antes de ser procesados.
