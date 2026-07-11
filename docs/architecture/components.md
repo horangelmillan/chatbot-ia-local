@@ -6,7 +6,7 @@ El backend Express se compone de seis modulos internos que se comunican entre si
 |-----------|---------|----------------|
 | Chat Router | `routes/chat.js` | Orquesta el flujo completo de consulta: decideAction, validacion, queryNorthwind, buildContext, generateReply |
 | Documents Router | `routes/documents.js` | CRUD documental: indexado, busqueda y recuperacion de documentos |
-| Document Engine | `db/engine.js` | Busqueda en cascada: FAQ (keywords array) → Glosario (ILIKE) → Chunks (FTS espanol) |
+| Document Engine | `db/engine.js` | Busqueda en cascada: FAQ (keywords array) → Chunks (FTS espanol) |
 | Indexer | `db/indexer.js` | Parseo de Markdown/JSON/TXT, extraccion de frontmatter, chunking de 800 palabras |
 | PG Pool | `db/pool.js` | Pool de conexiones PostgreSQL (max 5, timeout 30s) |
 | LM Client | (axios en chat.js) | Cliente HTTP para API compatible OpenAI de LM Studio |
@@ -34,7 +34,7 @@ graph TB
     DR -->|"search"| DE
     DR -->|"SELECT directo"| PL
     IX -->|"INSERT documentos + chunks"| PL
-    DE -->|"SELECT FAQ (keywords)<br/>SELECT Glosario (ILIKE)<br/>SELECT Chunks (FTS)"| PL
+    DE -->|"SELECT FAQ (keywords)<br/>SELECT Chunks (FTS)"| PL
     PL -->|"SQL"| PG
 
     style CR fill:#438dd5,color:#fff

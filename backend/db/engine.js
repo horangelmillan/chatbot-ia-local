@@ -19,18 +19,6 @@ async function searchFAQ(category, keywords) {
   return result.rows.length > 0 ? result.rows[0] : null;
 }
 
-async function searchGlossary(keywords) {
-  if (!keywords || keywords.length === 0) return null;
-  for (var i = 0; i < keywords.length; i++) {
-    var result = await pool.query(
-      "SELECT term, definition, category FROM glossary WHERE term ILIKE $1 LIMIT 1",
-      ["%" + keywords[i] + "%"]
-    );
-    if (result.rows.length > 0) return result.rows[0];
-  }
-  return null;
-}
-
 async function searchChunks(category, keywords) {
   if (!keywords || keywords.length === 0) return null;
   var tsquery = keywords.map(function (k) { return k.replace(/[^\w\s]/g, "") + ":*" }).join(" & ");
@@ -50,11 +38,9 @@ async function searchChunks(category, keywords) {
 async function search(category, keywords) {
   var result = await searchFAQ(category, keywords);
   if (result) return { type: "faq", data: result };
-  result = await searchGlossary(keywords);
-  if (result) return { type: "glossary", data: result };
   result = await searchChunks(category, keywords);
   if (result) return { type: "chunk", data: result };
   return null;
 }
 
-module.exports = { search, searchFAQ, searchGlossary, searchChunks };
+module.exports = { search, searchFAQ, searchChunks };

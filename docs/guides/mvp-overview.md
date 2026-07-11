@@ -4,7 +4,7 @@
 
 Construir un asistente conversacional integrado en SAPUI5 usando IA
 local, que permite consultar datos de negocio (OData) y documentación
-corporativa (FAQ, manuales, glosario) a través de un motor RAG.
+corporativa (FAQ, manuales) a través de un motor RAG.
 
 ## Arquitectura
 
@@ -35,7 +35,7 @@ SAPUI5 Chat → Node.js (Express) → LM Studio (Qwen3 8B)
 
 ### Motor Documental (RAG)
 - **PostgreSQL 18** — base de datos `chatbot_rag`.
-- **Document Engine** — busca FAQ → Glosario → Chunks (FTS español).
+- **Document Engine** — busca FAQ → Chunks (FTS español).
 - **Indexador** — parsea Markdown/JSON/TXT con frontmatter, chunking 800 palabras.
 - La IA **nunca recibe** el contenido de los documentos.
 
@@ -49,7 +49,6 @@ SAPUI5 Chat → Node.js (Express) → LM Studio (Qwen3 8B)
 
 ### Consultas documentales (RAG)
 - FAQ: registrar factura, alta de proveedor, plazos de pago.
-- Glosario: definición de términos (IVA, RUT, etc.).
 - Manuales: procedimientos de pago, políticas internas.
 
 ## Estado

@@ -24,7 +24,7 @@ Body
 |--------|-------------|
 | `query` | Consulta a Northwind (OData) |
 | `reply` | Respuesta directa del LLM (saludos, análisis, etc.) |
-| `document_query` | Consulta documental (FAQ, manuales, glosario) |
+| `document_query` | Consulta documental (FAQ, manuales) |
 | `continuation` | Continuar con el último contexto consultado |
 | `unknown` | Fuera del alcance del asistente |
 
@@ -39,7 +39,7 @@ Body
 
 ### document_query
 - Llamar al Document Engine con `category` y `keywords`.
-- Buscar en orden: FAQ → Glosario → Chunks (Full Text Search).
+- Buscar en orden: FAQ → Chunks (Full Text Search).
 - Devolver el fragmento como `{ reply, type: "document" }`.
 - La IA nunca recibe el contenido del documento.
 
@@ -58,7 +58,7 @@ POST /api/documents/index
 
 GET /api/documents/search?q=&category=
 - Busca fragmentos documentales por keywords.
-- Busca primero FAQs (por keywords array), luego glosario (ILIKE), luego chunks (FTS).
+- Busca primero FAQs (por keywords array), luego chunks (FTS).
 - Devuelve el fragmento más relevante.
 
 GET /api/documents/:id

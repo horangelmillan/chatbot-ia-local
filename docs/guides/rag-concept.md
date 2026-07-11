@@ -5,7 +5,7 @@
 
 Implementar un motor de recuperación documental (Retrieval Augmented Generation - RAG) desacoplado del ERP SAP S/4HANA Cloud.
 
-Su responsabilidad será localizar información oficial dentro de documentación corporativa (manuales, procedimientos, preguntas frecuentes y glosarios) para que el Backend pueda responder consultas documentales sin depender del conocimiento interno del modelo LLM.
+Su responsabilidad será localizar información oficial dentro de documentación corporativa (manuales, procedimientos y preguntas frecuentes) para que el Backend pueda responder consultas documentales sin depender del conocimiento interno del modelo LLM.
 
 El motor RAG NO toma decisiones de negocio, NO consulta SAP y NO genera respuestas finales. Su única responsabilidad es localizar el contenido oficial más relevante.
 
@@ -35,7 +35,6 @@ El motor RAG NO toma decisiones de negocio, NO consulta SAP y NO genera respuest
       documents
       document_chunks
       faq
-      glossary
 
              ▲
 
@@ -85,7 +84,6 @@ Funciones:
 
 - Buscar documentos.
 - Buscar FAQs.
-- Buscar glosario.
 - Obtener fragmentos.
 - Validar versiones.
 - Entregar únicamente contenido oficial.
@@ -230,16 +228,7 @@ version
 
 ---
 
-## glossary
 
-```
-id
-term
-definition
-category
-```
-
----
 
 # Estrategia de Recuperación
 
@@ -308,11 +297,9 @@ El Backend utilizará esta información para consultar el índice documental.
 Primera versión:
 
 1. Buscar FAQs.
-2. Buscar Glosario.
-3. Buscar Chunks mediante:
+2. Buscar Chunks mediante:
    - categoría
    - palabras clave
-   - LIKE
    - Full Text Search PostgreSQL
 
 Seleccionar el fragmento con mayor relevancia.
@@ -375,8 +362,6 @@ manuals/
 procedures/
 
 faq/
-
-glossary/
 ```
 
 PostgreSQL únicamente almacenará:
@@ -452,7 +437,7 @@ Su única responsabilidad es localizar información oficial y devolver el fragme
 | Tabla `documents` | ✅ Implementado |
 | Tabla `document_chunks` (con embedding NULL) | ✅ Implementado |
 | Tabla `faq` | ✅ Implementado |
-| Tabla `glossary` | ✅ Implementado |
+
 | Full Text Search (tsvector español) | ✅ Implementado |
 | Indexador (Markdown, JSON, TXT) | ✅ Implementado |
 | Indexador (PDF, DOCX) | ❌ Pendiente |
@@ -487,8 +472,7 @@ Pool de conexiones PostgreSQL (max 5 conexiones, timeout 30s).
 ### `backend/db/engine.js`
 Orden de búsqueda:
 1. **FAQ** — coincidencia exacta en array `keywords` + filtro por categoría.
-2. **Glosario** — búsqueda ILIKE por término.
-3. **Chunks** — PostgreSQL Full Text Search en español con ranking (`ts_rank`).
+2. **Chunks** — PostgreSQL Full Text Search en español con ranking (`ts_rank`).
 
 ### `backend/routes/documents.js`
 | Método | Ruta | Descripción |
@@ -512,12 +496,9 @@ Orden de búsqueda:
 ### `webapp/css/style.css`
 - Clase `.docBubble`: fondo amarillo claro, borde izquierdo naranja, cabecera "📄 Documentación".
 
-## Base de Datos
-
-Base de datos `chatbot_rag` en PostgreSQL 18, con tablas según el modelo definido.
-Columna `embedding` en `document_chunks` como TEXT (NULL en v1).
-
 ---
+
+
 
 # Futuras mejoras
 

@@ -24,17 +24,10 @@ sequenceDiagram
         DE-->>BE: {type:"faq", data}
         BE-->>FE: {reply: pregunta + respuesta, type:"document"}
     else Sin FAQ
-        DE->>PG: SELECT FROM glossary WHERE term ILIKE %keyword%
-        alt Glosario encontrado
-            PG-->>DE: Glossary row (term + definition)
-            DE-->>BE: {type:"glossary", data}
-            BE-->>FE: {reply: termino + definicion, type:"document"}
-        else Sin glosario
-            DE->>PG: SELECT FTS espanol FROM document_chunks<br/>WHERE to_tsvector(content) @@ to_tsquery($1)
-            PG-->>DE: Chunk con ts_rank > 0
-            DE-->>BE: {type:"chunk", data}
-            BE-->>FE: {reply: contenido del chunk, type:"document"}
-        end
+        DE->>PG: SELECT FTS espanol FROM document_chunks<br/>WHERE to_tsvector(content) @@ to_tsquery($1)
+        PG-->>DE: Chunk con ts_rank > 0
+        DE-->>BE: {type:"chunk", data}
+        BE-->>FE: {reply: contenido del chunk, type:"document"}
     end
     FE-->>U: Renderiza burbuja con borde naranja<br/>y cabecera "Documentacion"
     Note over FE: La IA nunca recibe el contenido del documento

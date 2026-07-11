@@ -256,8 +256,6 @@ router.post("/", async function (req, res) {
       var reply;
       if (result.type === "faq") {
         reply = data.question + "\n\n" + data.answer;
-      } else if (result.type === "glossary") {
-        reply = data.term + ": " + data.definition;
       } else {
         reply = data.title ? data.title + "\n\n" + data.content : data.content;
       }

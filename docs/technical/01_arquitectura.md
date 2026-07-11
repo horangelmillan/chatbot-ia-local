@@ -21,7 +21,7 @@
                           │ ─ documents      │
                           │ ─ document_chunks│
                           │ ─ faq            │
-                          │ ─ glossary       │
+                           │ ─ faq            │
                           └──────────────────┘
                                ▲
                                │
@@ -68,7 +68,7 @@
 2. **Backend** consulta al **LLM** (`decideAction`)
 3. **LLM** devuelve: `{"intent":"document_query","category":"Facturación","keywords":["factura","registro","proveedor"]}`
 4. **Backend** llama al **Document Engine** con categoría + keywords
-5. **Document Engine** busca en PostgreSQL: FAQ → Glosario → Chunks (FTS)
+5. **Document Engine** busca en PostgreSQL: FAQ → Chunks (FTS)
 6. **PostgreSQL** devuelve el fragmento oficial
 7. **Backend** envía el fragmento al **Frontend** con `type: "document"`
 8. **Frontend** renderiza el fragmento con estilo documental (borde naranja, cabecera)
@@ -103,7 +103,7 @@
 
 ### Motor Documental (RAG)
 - **PostgreSQL 18** — base de datos `chatbot_rag`
-- **Document Engine** (`backend/db/engine.js`) — busca fragmentos oficiales en FAQ, glosario y chunks documentales
+- **Document Engine** (`backend/db/engine.js`) — busca fragmentos oficiales en FAQ y chunks documentales
 - **Indexador** (`backend/db/indexer.js`) — parsea documentos Markdown/JSON/TXT, divide en chunks de 800 palabras, registra metadatos
 - **LLM solo detecta el intent** — nunca recibe el contenido del documento
 - APIs: `POST /api/documents/index`, `GET /api/documents/search`, `GET /api/documents/:id`
