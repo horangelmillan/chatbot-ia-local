@@ -61,7 +61,7 @@ El motor RAG NO toma decisiones de negocio, NO consulta SAP y NO genera respuest
 
 ## Servicio de Indexación
 
-Se ejecuta únicamente cuando se agregan o modifican documentos.
+Se ejecuta únicamente cuando se agregan o modifican documentos, o automáticamente al arranque del backend si `INDEX_KB_ON_START=true` (indexa el directorio `KNOWLEDGE_BASE_PATH`, por defecto `../knowledge-base`). También puede dispararse manualmente con `npm run seed:kb` o vía `POST /api/documents/index`.
 
 Responsabilidades:
 

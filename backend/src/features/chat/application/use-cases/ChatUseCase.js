@@ -33,6 +33,17 @@ class ChatUseCase {
       }
 
       if (decision.intent === "reply") {
+        const kw = this.extractKeywords(message);
+        if (kw.length && this.documentRepository) {
+          const hit = await this.documentRepository.search(null, kw);
+          if (hit) {
+            const data = hit.data;
+            const reply = hit.type === "faq"
+              ? `${data.question}\n\n${data.answer}`
+              : (data.title ? `${data.title}\n\n${data.content}` : data.content);
+            return { reply, type: "document" };
+          }
+        }
         return { reply: decision.text || "OK", buttons: decision.buttons || null };
       }
 
@@ -83,6 +94,17 @@ class ChatUseCase {
       if (error.response) console.error("Response data:", JSON.stringify(error.response.data).slice(0, 500));
       throw error;
     }
+  }
+
+  extractKeywords(message) {
+    const STOP = new Set([
+      "que", "como", "para", "por", "con", "una", "uno", "unos", "unas", "los", "las",
+      "del", "de", "la", "el", "se", "no", "me", "ya", "su", "si", "lo", "en", "es",
+      "un", "al", "y", "a", "o", "nos", "les", "mis", "tu", "como", "cual", "donde",
+      "cuando", "quiero", "puedo", "ayudas", "ayuda", "hola", "gracias", "porque"
+    ]);
+    return (message.toLowerCase().match(/[a-zñáéíóúü]{4,}/g) || [])
+      .filter((w) => !STOP.has(w));
   }
 
   async decideAction(message) {

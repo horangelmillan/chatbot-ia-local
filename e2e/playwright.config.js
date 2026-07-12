@@ -14,7 +14,11 @@ module.exports = defineConfig({
       port: 3001,
       cwd: "../backend",
       reuseExistingServer: true,
-      env: { NODE_ENV: "production" },
+      env: {
+        NODE_ENV: "production",
+        DATABASE_URL: "postgresql://chatbot_user:chatbot_pass_2026@localhost:5432/chatbot_rag_e2e",
+        INDEX_KB_ON_START: "false",
+      },
     },
     {
       command: "npx ui5 serve",

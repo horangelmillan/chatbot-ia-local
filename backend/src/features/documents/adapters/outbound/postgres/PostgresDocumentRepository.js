@@ -14,7 +14,8 @@ const searchFAQ = async (category, keywords) => {
     params.push(category);
     sql += ` AND category = $${params.length}`;
   }
-  sql += " LIMIT 1";
+  const kwMatch = `SELECT count(*) FROM unnest(keywords) k WHERE k = ANY(ARRAY[${keywords.map((_, i) => `$${i + 1}`).join(", ")}])`;
+  sql += ` ORDER BY (${kwMatch}) DESC, id LIMIT 1`;
   const result = await pool.query(sql, params);
   return result.rows.length > 0 ? result.rows[0] : null;
 };
