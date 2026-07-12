@@ -9,6 +9,9 @@ snap2.yml
 .playwright-cli/
 test-chat-flow.png
 
+# E2E
+test-results/
+
 # Coverage
 backend/coverage/
 

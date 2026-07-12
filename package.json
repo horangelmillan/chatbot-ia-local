@@ -6,7 +6,8 @@
     "dev": "concurrently -n BE,FE -c cyan,green \"pnpm run dev:backend\" \"pnpm run dev:frontend\"",
     "dev:backend": "pnpm -C backend start",
     "dev:frontend": "pnpm -C frontend start",
-    "install:all": "pnpm -C backend install && pnpm -C frontend install"
+    "install:all": "pnpm -C backend install && pnpm -C frontend install && pnpm -C e2e install",
+    "test:e2e": "pnpm -C e2e test"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
