@@ -219,6 +219,9 @@ El proyecto incluye skills de IA para tareas específicas. El agente debe cargar
 | `hexagonal-architecture` | Refactorización del backend, separación de capas, nuevos módulos, adaptadores | Diseño guiado por dominio, puertos y adaptadores, composición limpia |
 | `express-backend` | Creación o refactorización de rutas Express, middleware, handlers asíncronos, validación en adaptadores inbound | Patrones Express 4 para adaptadores de entrada en arquitectura hexagonal con CommonJS |
 | `node-pg-repository` | Implementación de repositorios PostgreSQL, consultas parametrizadas, transacciones, pool management | Patrones pg (node-postgres) para adaptadores de salida en arquitectura hexagonal con CommonJS |
+| `testing-backend` | Creación o ampliación de tests en `backend/src/**/__tests__/*.test.js` | Vitest + supertest + DB real para backend Express con arquitectura hexagonal |
+| `testing-frontend` | Creación de tests QUnit/OPA5 en `frontend/webapp/test/` | Tests unitarios (QUnit) e integración (OPA5) para frontend OpenUI5 |
+| `testing-e2e` | Creación de tests end-to-end que ejerciten frontend + backend real | Playwright contra backend real + frontend OpenUI5 + DB de prueba |
 | `playwright` | Tareas de frontend que requieran navegador (testing visual, E2E, scraping, screenshots, verificación de UI) | Automatización de navegador vía Playwright MCP + CLI para testing y verificación de interfaces SAPUI5 |
 
 # Comunicación

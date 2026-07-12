@@ -8,3 +8,7 @@ snap2.yml
 .playwright-mcp/
 .playwright-cli/
 test-chat-flow.png
+
+# Coverage
+backend/coverage/
+
