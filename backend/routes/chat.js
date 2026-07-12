@@ -1,11 +1,12 @@
 const express = require("express");
 const axios = require("axios");
 const { buildDocumentRepository } = require("../src/features/documents/composition/documentsContainer");
+const { buildLLM } = require("../src/features/chat/composition/chatContainer");
 
 const documentRepository = buildDocumentRepository();
+const llm = buildLLM();
 
 const router = express.Router();
-const LM_URL = process.env.LM_STUDIO_URL + "/chat/completions";
 const NW_BASE = "https://services.odata.org/V3/Northwind/Northwind.svc";
 const MAX_HISTORY = parseInt(process.env.CHAT_HISTORY_LIMIT, 10) || 6;
 
@@ -50,34 +51,30 @@ async function decideAction(message) {
     return e + " (filtros: " + ALLOWED[e].filters.join(", ") + ", expand: " + ALLOWED[e].expand.join(", ") + ")";
   }).join("\n");
   var last = lastContext ? "Ultimo contexto consultado: " + lastContext.intent + " (ID: " + lastContext.id + ")" : "No hay consulta previa.";
-  var response = await axios.post(LM_URL, {
-    model: "qwen/qwen3-8b",
-    messages: [
-      {
-        role: "system",
-        content:
-          "Eres un planificador de consultas.\n\n" +
-          "Northwind:\n" + schemaDesc + "\n\n" +
-          "Documentacion disponible:\n" + DOC_CATEGORIES.join(", ") + "\n\n" +
-          last + "\n\n" +
-          "Formato de respuesta SOLO JSON:\n" +
-           '- Para consultar Northwind: {"intent":"query","entity":"...","filters":[{"field":"...","op":"eq","value":"..."}],"expand":["..."],"top":N}\n' +
-           '- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n' +
-           '- Para preguntas sobre procesos internos, documentacion o FAQ: {"intent":"document_query","category":"Facturacion","keywords":["factura","registro"]}\n' +
-            '- Cuando respondas datos de Northwind, sugiere 2-3 acciones de seguimiento en buttons:\n' +
-            '   * Si mostraste un pedido: botones para "Ver cliente", "Ver factura", "Buscar otro pedido"\n' +
-            '   * Si mostraste un cliente: botones para "Ver sus pedidos", "Buscar otro cliente"\n' +
-            '   * Si es una factura: botones para "Ver pedido completo", "Buscar otra factura"\n' +
-            '- Si toca ofrecer opciones al usuario, agrega buttons a reply o query: {"intent":"reply","text":"...","buttons":[{"label":"Sí","message":"sí quiero seguir"}]}\n' +
-           '- Para continuar con lo ultimo consultado: {"intent":"continuation"}\n' +
-          '- Fuera del alcance: {"intent":"unknown"}\n\n' +
-          "NO inventes entidades, campos, operadores ni relaciones. Usa SOLO lo listado. Para documentacion, solo devuelve categoria y palabras clave, NO redactes la respuesta."
-      },
-      { role: "user", content: message }
-    ],
-    temperature: 0.1
-  });
-  return response.data.choices[0].message.content;
+  var messages = [
+    {
+      role: "system",
+      content:
+        "Eres un planificador de consultas.\n\n" +
+        "Northwind:\n" + schemaDesc + "\n\n" +
+        "Documentacion disponible:\n" + DOC_CATEGORIES.join(", ") + "\n\n" +
+        last + "\n\n" +
+        "Formato de respuesta SOLO JSON:\n" +
+         '- Para consultar Northwind: {"intent":"query","entity":"...","filters":[{"field":"...","op":"eq","value":"..."}],"expand":["..."],"top":N}\n' +
+         '- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n' +
+         '- Para preguntas sobre procesos internos, documentacion o FAQ: {"intent":"document_query","category":"Facturacion","keywords":["factura","registro"]}\n' +
+          '- Cuando respondas datos de Northwind, sugiere 2-3 acciones de seguimiento en buttons:\n' +
+          '   * Si mostraste un pedido: botones para "Ver cliente", "Ver factura", "Buscar otro pedido"\n' +
+          '   * Si mostraste un cliente: botones para "Ver sus pedidos", "Buscar otro cliente"\n' +
+          '   * Si es una factura: botones para "Ver pedido completo", "Buscar otra factura"\n' +
+          '- Si toca ofrecer opciones al usuario, agrega buttons a reply o query: {"intent":"reply","text":"...","buttons":[{"label":"Sí","message":"sí quiero seguir"}]}\n' +
+         '- Para continuar con lo ultimo consultado: {"intent":"continuation"}\n' +
+        '- Fuera del alcance: {"intent":"unknown"}\n\n' +
+        "NO inventes entidades, campos, operadores ni relaciones. Usa SOLO lo listado. Para documentacion, solo devuelve categoria y palabras clave, NO redactes la respuesta."
+    },
+    { role: "user", content: message }
+  ];
+  return await llm.chatCompletion(messages, 0.1);
 }
 
 var NUMERIC_FIELDS = ["OrderID", "ProductID"];
@@ -208,12 +205,7 @@ async function generateReply(message, context, history) {
       "Datos de Northwind:\n" + (context || "No hay datos.") + "\n\n" +
       "Responde de forma natural."
   });
-  var response = await axios.post(LM_URL, {
-    model: "qwen/qwen3-8b",
-    messages: messages,
-    temperature: 0.8
-  });
-  return response.data.choices[0].message.content;
+  return await llm.chatCompletion(messages, 0.8);
 }
 
 router.post("/", async function (req, res) {

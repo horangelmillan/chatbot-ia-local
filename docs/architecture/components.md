@@ -2,21 +2,23 @@
 
 El backend Express está en migración progresiva hacia **Arquitectura Hexagonal (Puertos y Adaptadores)** vía patrón Strangler Fig.
 
-## Estado actual (Slices 1-2 completados)
+## Estado actual (Slices 1-3 completados)
 
-Los puertos `DocumentRepositoryPort` y `DocumentIndexerPort` han sido extraídos. El backend legacy en `db/` se ha reducido a solo `schema.sql`.
+Los puertos `DocumentRepositoryPort`, `DocumentIndexerPort` y `LLMPort` han sido extraídos. El backend legacy en `db/` se ha reducido a solo `schema.sql`.
 
 | Componente | Archivo | Capa | Responsabilidad |
 |-----------|---------|------|----------------|
 | Chat Router | `routes/chat.js` | Inbound Adapter (legacy) | Orquesta el flujo de consulta: decideAction, validacion, queryNorthwind, buildContext, generateReply |
 | Documents Router | `routes/documents.js` | Inbound Adapter (legacy) | CRUD documental: indexado, busqueda y recuperacion de documentos |
 | PG Pool | `db/pool.js` / `src/shared/adapters/outbound/postgres/pool.js` | Compartido | Pool de conexiones PostgreSQL (max 5, timeout 30s) |
-| LM Client | (axios en chat.js) | Outbound Adapter (legacy) | Cliente HTTP para API compatible OpenAI de LM Studio |
 | **DocumentRepositoryPort** | `src/features/documents/application/ports/outbound/DocumentRepositoryPort.js` | **Application (Puerto)** | Contrato de busqueda documental: search, searchFAQ, searchChunks |
 | **DocumentIndexerPort** | `src/features/documents/application/ports/outbound/DocumentIndexerPort.js` | **Application (Puerto)** | Contrato de indexación: indexDocument, indexDirectory |
+| **LLMPort** | `src/features/chat/application/ports/outbound/LLMPort.js` | **Application (Puerto)** | Contrato de inferencia LLM: chatCompletion |
 | **PostgresDocumentRepository** | `src/features/documents/adapters/outbound/postgres/PostgresDocumentRepository.js` | **Infrastructure (Adaptador)** | Busqueda en cascada: FAQ (keywords array) → Chunks (FTS espanol) |
 | **PostgresDocumentIndexer** | `src/features/documents/adapters/outbound/postgres/PostgresDocumentIndexer.js` | **Infrastructure (Adaptador)** | Parseo, chunking y persistencia de documentos |
+| **LmStudioAdapter** | `src/features/chat/adapters/outbound/lmstudio/LmStudioAdapter.js` | **Infrastructure (Adaptador)** | Cliente HTTP para API compatible OpenAI de LM Studio |
 | **documentsContainer** | `src/features/documents/composition/documentsContainer.js` | **Composition Root** | Wiring de repositorio + indexador |
+| **chatContainer** | `src/features/chat/composition/chatContainer.js` | **Composition Root** | Wiring del LLM |
 
 ```mermaid
 graph TB
@@ -27,33 +29,39 @@ graph TB
     end
 
     subgraph "Backend - Adaptadores Extraidos (Hexagonal)"
-        PDR["PostgresDocumentRepository<br/>src/features/.../"]
-        PDI["PostgresDocumentIndexer<br/>src/features/.../"]
+        PDR["PostgresDocumentRepository"]
+        PDI["PostgresDocumentIndexer"]
+        LMS["LmStudioAdapter"]
     end
 
     subgraph "Backend - Capa de Aplicacion"
-        DRP["DocumentRepositoryPort<br/>(contrato)"]
-        DIP["DocumentIndexerPort<br/>(contrato)"]
+        DRP["DocumentRepositoryPort"]
+        DIP["DocumentIndexerPort"]
+        LLP["LLMPort"]
     end
 
     subgraph "Backend - Composition"
         DC["documentsContainer"]
+        CC["chatContainer"]
     end
 
     subgraph "Sistemas Externos"
-        LLM["LM Studio :1234"]
+        LLM["LM Studio :1234<br/>Qwen3 8B"]
         PG[("PostgreSQL 18<br/>chatbot_rag")]
         NW["Northwind OData"]
     end
 
-    DC -->|"buildDocumentRepository()"| PDR
-    DC -->|"buildDocumentIndexer()"| PDI
+    DC -->|"buildRepository()"| PDR
+    DC -->|"buildIndexer()"| PDI
+    CC -->|"buildLLM()"| LMS
     DR -->|"usa"| DC
     CR -->|"usa"| DC
+    CR -->|"usa"| CC
     PDR -.->|"implementa"| DRP
     PDI -.->|"implementa"| DIP
-    CR -->|"decideAction / generateReply<br/>axios HTTP"| LLM
-    CR -->|"validateQuery / queryNorthwind<br/>axios HTTP"| NW
+    LMS -.->|"implementa"| LLP
+    CR -->|"queryNorthwind<br/>axios HTTP"| NW
+    LMS -->|"chatCompletion<br/>axios HTTP"| LLM
     DR -->|"SELECT directo"| PL
     PDR -->|"SELECT FAQ (keywords)<br/>SELECT Chunks (FTS)"| PL
     PDI -->|"INSERT documentos + chunks"| PL
@@ -64,13 +72,16 @@ graph TB
     style PL fill:#85bbf0,color:#000
     style PDR fill:#5cb85c,color:#fff
     style PDI fill:#5cb85c,color:#fff
+    style LMS fill:#5cb85c,color:#fff
     style DRP fill:#f0ad4e,color:#fff
     style DIP fill:#f0ad4e,color:#fff
+    style LLP fill:#f0ad4e,color:#fff
     style DC fill:#5bc0de,color:#fff
+    style CC fill:#5bc0de,color:#fff
     style LLM fill:#999999,color:#fff
     style NW fill:#999999,color:#fff
     style PG fill:#999999,color:#fff
 ```
 
-> **Nota:** Componentes en verde = hexagonales extraídos. Azul oscuro = legacy. Este diagrama se actualiza con cada slice completado.
+> **Nota:** Verde = hexagonal extraído. Azul oscuro = legacy. Este diagrama se actualiza con cada slice completado.
 
