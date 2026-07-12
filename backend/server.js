@@ -22,6 +22,10 @@ app.get("/api/config", (req, res) => {
 app.use("/api/chat", chatRouter);
 app.use("/api/documents", documentsRouter);
 
-app.listen(PORT, () => {
-  console.log(`Servidor en http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log(`Servidor en http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

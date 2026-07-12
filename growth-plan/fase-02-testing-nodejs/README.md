@@ -32,13 +32,13 @@ Agregar pruebas automatizadas al backend del proyecto. Pasar de cero tests a ten
 | Test: PostgresDocumentRepository | 2-3 días |
 | **Total** | **~4 semanas** |
 
-## Archivos a crear
+## Archivos a crear (orden real de creación)
 
-- `backend/vitest.config.js` — configuración de Vitest
+- `backend/vitest.config.js` — configuración de Vitest con `globals: true`
+- `backend/server.js` (modificar) — exportar `app`, no hacer listen en modo test
 - `backend/src/features/chat/adapters/outbound/memory/__tests__/InMemoryChatContext.test.js`
 - `backend/src/features/chat/adapters/outbound/northwind/__tests__/NorthwindODataAdapter.test.js`
 - `backend/src/features/chat/application/use-cases/__tests__/ChatUseCase.test.js`
-- `backend/src/features/documents/adapters/outbound/postgres/__tests__/PostgresDocumentRepository.test.js`
 - `backend/routes/__tests__/chat.test.js`
 
 ## Criterio de éxito

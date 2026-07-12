@@ -2,31 +2,33 @@
 
 ## Setup
 
-- [ ] Crear rama: `git checkout -b growth/fase-02-testing-nodejs`
-- [ ] Instalar vitest: `pnpm add -D vitest`
-- [ ] Agregar script `"test": "vitest run"` en `backend/package.json`
-- [ ] Leer guía completa
-- [ ] Leer ejercicios completa
+- [x] Crear rama: `git checkout -b growth/fase-02-testing-nodejs`
+- [x] Instalar vitest: `pnpm add -D vitest`
+- [x] Agregar script `"test": "vitest run"` en `backend/package.json`
+- [x] Crear `vitest.config.js` con `globals: true`
+- [x] Leer guía completa
+- [x] Leer ejercicios completa
 
 ## Ejercicio 1: Exportar app
 
-- [ ] Agregar `if (process.env.NODE_ENV !== "test")` en server.js
-- [ ] Agregar `module.exports = app`
+- [x] Agregar `if (process.env.NODE_ENV !== "test")` en server.js
+- [x] Agregar `module.exports = app`
 - [ ] Commit
 
 ## Ejercicio 2: Test InMemoryChatContext
 
-- [ ] Crear carpeta `__tests__` junto al archivo
-- [ ] Test: get() devuelve null al inicio
-- [ ] Test: set + get funciona
-- [ ] Test: reset limpia
+- [x] Crear carpeta `__tests__` junto al archivo
+- [x] Test: get() devuelve null al inicio
+- [x] Test: set + get funciona
+- [x] Test: reset limpia
 - [ ] Commit
+- [ ] *Nota: se usó `.test.cjs` + `globals: true` en lugar de import explícito*
 
 ## Ejercicio 3: Test NorthwindODataAdapter
 
-- [ ] Test: getSchema() tiene 3 entidades
-- [ ] Test: cada entidad tiene filters, expand, maxTop
-- [ ] Test: getSchemaDescription contiene nombres
+- [x] Test: getSchema() tiene 3 entidades
+- [x] Test: cada entidad tiene filters, expand, maxTop
+- [x] Test: getSchemaDescription contiene nombres
 - [ ] Commit
 
 ## Ejercicio 4: Test ChatUseCase (el más importante)

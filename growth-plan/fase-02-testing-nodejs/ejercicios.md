@@ -21,6 +21,20 @@ Agregar script en `backend/package.json`:
 }
 ```
 
+**Crear** `backend/vitest.config.js` para que Vitest sepa dónde buscar tests y active las globales (`test`, `expect`, etc.) sin necesidad de importarlas:
+
+```javascript
+const { defineConfig } = require("vitest/config");
+module.exports = defineConfig({
+  test: {
+    include: ["src/**/__tests__/**/*.test.js"],
+    globals: true
+  }
+});
+```
+
+> **Nota:** `globals: true` permite usar `test()` y `expect()` sin importarlos. Si prefieres imports explícitos, omite `globals: true` y usa `import { test, expect } from "vitest"` en cada archivo — Vitest transforma los imports aunque el archivo sea `.cjs`.
+
 ---
 
 ## Ejercicio 1: Exportar `app` desde server.js
@@ -47,24 +61,33 @@ module.exports = app;
 
 **Crear:** `backend/src/features/chat/adapters/outbound/memory/__tests__/InMemoryChatContext.test.js`
 
-**Lo que debe probar:**
+**Lo que debe probar (importante: los tests deben ir dentro de bloques `test()`):**
 
 ```javascript
 const context = require("../InMemoryChatContext");
+import { expect, test } from "vitest";
 
 // ✅ Test 1: get() devuelve null al inicio
-expect(context.get()).toBeNull();
+test("get() devuelve null al inicio", () => {
+  expect(context.get()).toBeNull();
+});
 
 // ✅ Test 2: set() guarda y get() recupera
-context.set({ intent: "Orders", id: "10248" });
-expect(context.get()).toEqual({ intent: "Orders", id: "10248" });
+test("set() guarda y get() recupera", () => {
+  context.set({ intent: "Orders", id: "10248" });
+  expect(context.get()).toEqual({ intent: "Orders", id: "10248" });
+});
 
 // ✅ Test 3: reset() limpia
-context.reset();
-expect(context.get()).toBeNull();
+test("reset() limpia el contexto", () => {
+  context.reset();
+  expect(context.get()).toBeNull();
+});
 ```
 
 **Objetivo:** Primer test que pasa. Es simple, es tu primer "verde".
+
+> **Nota:** En la práctica se usó `.test.cjs` como extensión y `globals: true` en la config, eliminando la necesidad de los `import`. Ambas variantes son válidas.
 
 ---
 
