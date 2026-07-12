@@ -4,10 +4,15 @@
   "packageManager": "pnpm@11.11.0",
   "description": "Frontend SAPUI5 Chat",
   "scripts": {
-    "start": "ui5 serve -o index.html"
+    "start": "ui5 serve -o index.html",
+    "test": "karma start"
   },
   "devDependencies": {
     "@ui5/cli": "^4.0.57",
+    "karma": "^6.4.4",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-ui5": "^4.1.0",
+    "qunit": "^2.26.0",
     "ui5-middleware-livereload": "^3.3.1",
     "ui5-middleware-simpleproxy": "^3.8.0"
   }

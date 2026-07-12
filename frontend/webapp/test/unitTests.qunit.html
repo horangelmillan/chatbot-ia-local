@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Unit Tests</title>
+  <script id="sap-ui-bootstrap"
+    src="/resources/sap-ui-core.js"
+    data-sap-ui-libs="sap.m"
+    data-sap-ui-async="true"
+    data-sap-ui-resource-roots='{"chatbot.ui": "/base/webapp"}'
+    data-sap-ui-frame-options="trusted">
+  </script>
+  <script>
+    sap.ui.getCore().attachInit(function () {
+      sap.ui.require([
+        "sap/ui/qunit/qunit-css",
+        "sap/ui/thirdparty/qunit"
+      ], function () {
+        QUnit.config.autostart = false;
+        sap.ui.require([
+          "chatbot/ui/test/unit/config/WelcomeOptions",
+          "chatbot/ui/test/unit/model/models",
+          "chatbot/ui/test/unit/helper/Util.helper"
+        ], function () {
+          QUnit.start();
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+</body>
+</html>
