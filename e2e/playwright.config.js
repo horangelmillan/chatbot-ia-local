@@ -8,16 +8,4 @@ module.exports = defineConfig({
     baseURL: "http://localhost:8080",
     headless: true,
   },
-  webServer: [
-    {
-      command: "cd ../backend && node server.js",
-      port: 3001,
-      reuseExistingServer: true,
-    },
-    {
-      command: "cd ../frontend && npx ui5 serve",
-      port: 8080,
-      reuseExistingServer: true,
-    },
-  ],
 });
