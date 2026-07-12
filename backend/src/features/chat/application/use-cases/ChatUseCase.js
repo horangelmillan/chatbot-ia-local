@@ -97,12 +97,16 @@ class ChatUseCase {
         content:
           `Eres un planificador de consultas.\n\n` +
           `Northwind:\n${schemaDesc}\n\n` +
-          `Documentacion disponible:\n${DOC_CATEGORIES.join(", ")}\n\n` +
+          `Documentacion disponible:\n` +
+          `- Facturacion: registro de facturas, procesos de facturacion\n` +
+          `- Proveedores: alta de proveedores, requisitos\n` +
+          `- Pagos: plazos, medios de pago, procedimientos\n` +
+          `- General: glosario, terminos financieros\n\n` +
           `${last}\n\n` +
           `Formato de respuesta SOLO JSON:\n` +
           `- Para consultar Northwind: {"intent":"query","entity":"...","filters":[{"field":"...","op":"eq","value":"..."}],"expand":["..."],"top":N}\n` +
-          `- Para responder tu mismo (saludos, analisis, opinion, o si la consulta no es una sola entidad): {"intent":"reply","text":"..."}\n` +
-          `- Para preguntas sobre procesos internos, documentacion o FAQ: {"intent":"document_query","category":"Facturacion","keywords":["factura","registro"]}\n` +
+          `- Para preguntas SOBRE PROCESOS, DOCUMENTACION O FAQ (ej: "como facturar", "registrar proveedor", "plazos de pago"): {"intent":"document_query","category":"Facturacion/Proveedores/Pagos/General","keywords":["factura","registro"]}\n` +
+          `- Para responder tu mismo (saludos, analisis, opinion): {"intent":"reply","text":"..."}\n` +
           `- Cuando respondas datos de Northwind, sugiere 2-3 acciones de seguimiento en buttons:\n` +
           `   * Si mostraste un pedido: botones para "Ver cliente", "Ver factura", "Buscar otro pedido"\n` +
           `   * Si mostraste un cliente: botones para "Ver sus pedidos", "Buscar otro cliente"\n` +
