@@ -91,3 +91,17 @@ test("GET /api/documents/:id encontrado devuelve documento y chunks", async () =
   expect(res.body.document.code).toBe("DOC-001");
   expect(res.body.chunks).toHaveLength(1);
 });
+
+describe.skip("Autenticacion", () => {
+  test("POST /api/documents/index sin token devuelve 401", async () => {
+    const res = await request(app)
+      .post("/api/documents/index")
+      .send({ path: "/test.md" });
+    expect(res.status).toBe(401);
+  });
+
+  test("GET /api/documents/search sin token devuelve 401", async () => {
+    const res = await request(app).get("/api/documents/search?q=test");
+    expect(res.status).toBe(401);
+  });
+});

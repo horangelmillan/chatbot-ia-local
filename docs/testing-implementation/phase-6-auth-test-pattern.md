@@ -106,13 +106,18 @@ module.exports = { mockAuthModule, mockAuthMiddleware };
 
 ## Checklist
 
-- [ ] Agregar `describe.skip("Autenticacion")` en routes/__tests__/chat.test.js
-- [ ] Agregar tests: sin token → 401, con token válido → 200
-- [ ] Agregar `describe.skip("Autenticacion")` en routes/__tests__/documents.test.js
-- [ ] Agregar tests: sin token → 401
-- [ ] Crear `routes/__tests__/helpers/auth.js` con mock
-- [ ] Verificar: `pnpm test:backend` pasa (tests en skip no se ejecutan)
-- [ ] Verificar: quitar skip localmente y verificar que fallan (no hay auth aún)
+- [x] Agregar `describe.skip("Autenticacion")` en routes/__tests__/chat.test.js
+- [x] Agregar tests: sin token → 401, con token válido → 200
+- [x] Agregar `describe.skip("Autenticacion")` en routes/__tests__/documents.test.js
+- [x] Agregar tests: sin token → 401
+- [x] Crear `routes/__tests__/helpers/auth.js` con mock
+- [x] Verificar: `pnpm test:backend` pasa (tests en skip no se ejecutan) — 87 passed, 5 skipped
+- [x] Verificar: quitar skip localmente y confirmar que fallan (rutas abiertas → 200, no 401) — 4 assertions 401 fallan como se espera; la de token válido pasa
+
+## Notas de implementación (2026-07)
+
+- `helpers/auth.js` usa `require.cache` (estándar actual del proyecto; los propios tests de rutas lo usan). La Fase 7 marca este patrón como deuda a migrar, pero es aceptable hasta que se implemente auth.
+- Cuando se implemente auth, atender además: `server.js:16` (CORS `allowedHeaders` debe incluir `"Authorization"`) y `server.js:21` (`/api/config` está en `app`, no en router, así que auth debe aplicarse a nivel `app` o mover config al router).
 
 ## Criterios de aceptación
 

@@ -48,3 +48,27 @@ test("POST /api/chat/reset llama a reset del contexto", async () => {
   expect(res.status).toBe(200);
   expect(mockReset).toHaveBeenCalled();
 });
+
+describe.skip("Autenticacion", () => {
+  test("POST /api/chat sin token devuelve 401", async () => {
+    const res = await request(app)
+      .post("/api/chat")
+      .send({ message: "hola" })
+      .set("Authorization", "");
+    expect(res.status).toBe(401);
+  });
+
+  test("GET /api/config sin token devuelve 401", async () => {
+    const res = await request(app).get("/api/config");
+    expect(res.status).toBe(401);
+  });
+
+  test("POST /api/chat con token valido devuelve 200", async () => {
+    mockExecute.mockResolvedValue({ reply: "ok" });
+    const res = await request(app)
+      .post("/api/chat")
+      .send({ message: "hola" })
+      .set("Authorization", "Bearer valid-token");
+    expect(res.status).toBe(200);
+  });
+});

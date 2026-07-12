@@ -12,7 +12,7 @@
 | **3 — Frontend depth** | 🟡 Alta | 2-3h | Ninguna | ✅ Completa |
 | **4 — Silent tests + console** | 🟡 Alta | 1-2h | Ninguna | ✅ Completa |
 | **5 — CI pipeline** | 🟡 Alta | 2-3h | Fase 4 (tests deben ser silent en CI) | ✅ Implementada (pendiente validación en CI) |
-| **6 — Auth test pattern** | 🔵 Media | 1h | Ninguna (tests en skip hasta implementar auth) | Pendiente |
+| **6 — Auth test pattern** | 🔵 Media | 1h | Ninguna (tests en skip hasta implementar auth) | ✅ Completa |
 | **7 — Migraciones técnicas** | 🔵 Media | 3-4h | Fase 1-6 completadas | Pendiente |
 
 ## Cobertura actual vs objetivo
@@ -40,9 +40,9 @@
 - [x] Fase 3: Frontend depth
 - [x] Fase 4: Silent tests + console
 - [x] Fase 5: CI pipeline (workflows + linter ESLint)
-- [ ] Fase 6: Auth test pattern
+- [x] Fase 6: Auth test pattern
 - [ ] Fase 7: Migraciones técnicas
 
 ---
 
-**Siguiente:** [Fase 6 — Auth test pattern](./phase-6-auth-test-pattern.md)
+**Siguiente:** [Fase 7 — Migraciones técnicas](./phase-7-migrations.md)
