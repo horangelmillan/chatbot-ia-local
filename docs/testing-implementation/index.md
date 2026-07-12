@@ -7,7 +7,7 @@
 
 | Fase | Prioridad | Esfuerzo | Dependencias | Estado |
 |------|-----------|----------|--------------|--------|
-| **1 — ChatUseCase branches** | 🔴 Crítico | 2-3h | Ninguna | Pendiente |
+| **1 — ChatUseCase branches** | 🔴 Crítico | 2-3h | Ninguna | ✅ Completa |
 | **2 — E2E flujos completos** | 🔴 Crítico | 3-4h | Fase 4 (opcional, para evitar noise en CI) | Pendiente |
 | **3 — Frontend depth** | 🟡 Alta | 2-3h | Ninguna | Pendiente |
 | **4 — Silent tests + console** | 🟡 Alta | 1-2h | Ninguna | Pendiente |
@@ -19,9 +19,9 @@
 
 | Métrica | Actual | Objetivo | Cómo se mide |
 |---------|--------|----------|-------------|
-| Cobertura backend (statements) | 84% | ≥90% | `pnpm test:backend:coverage` |
-| Cobertura backend (branches) | 62% | ≥80% | `pnpm test:backend:coverage` |
-| ChatUseCase branch coverage | 69% | 100% | `pnpm test:backend:coverage` |
+| Cobertura backend (statements) | 91% | ≥90% | `pnpm test:backend:coverage` |
+| Cobertura backend (branches) | 84% | ≥80% | `pnpm test:backend:coverage` |
+| ChatUseCase branch coverage | 97% | 100% | `pnpm test:backend:coverage` |
 | Cobertura frontend | No medida | ≥60% | `karma-coverage` o `ui5-test-runner` |
 | E2E tests | 2 | ≥6 | `cd e2e && pnpm playwright test --list` |
 | CI pipeline | No existe | Existe y verde | `gh run list` |
@@ -35,7 +35,7 @@
 
 ## Progreso global
 
-- [ ] Fase 1: ChatUseCase branches
+- [x] Fase 1: ChatUseCase branches
 - [ ] Fase 2: E2E flujos completos
 - [ ] Fase 3: Frontend depth
 - [ ] Fase 4: Silent tests + console

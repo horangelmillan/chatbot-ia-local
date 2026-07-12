@@ -117,17 +117,17 @@ test("JSON con intent valido pero campos faltantes", async () => { /* ... */ });
 
 ## Checklist
 
-- [ ] Test: `enrichOrderContext` con Customer null
-- [ ] Test: `enrichOrderContext` con Order_Details vacío
-- [ ] Test: `enrichOrderContext` con descuento parcial
-- [ ] Test: `enrichOrderContext` con findSimilarOrders con resultados
-- [ ] Test: `buildContext` con contexto null
-- [ ] Test: `buildContext` con intent Orders
-- [ ] Test: `buildContext` con intent Customers
-- [ ] Test: JSON con campos extra
-- [ ] Test: JSON array en vez de objeto
-- [ ] Verificar: `pnpm test:backend` pasa
-- [ ] Verificar: cobertura de ChatUseCase branches ≥ 95%
+- [x] Test: `enrichOrderContext` con Customer null
+- [x] Test: `enrichOrderContext` con Order_Details vacío
+- [x] Test: `enrichOrderContext` con descuento parcial
+- [x] Test: `enrichOrderContext` con findSimilarOrders con resultados
+- [x] Test: `buildContext` con contexto null
+- [x] Test: `buildContext` con intent Orders (con y sin similarOrders)
+- [x] Test: `buildContext` con intent Customers (con/sin CustomerID, Orders, CompanyName)
+- [x] Test: JSON con campos extra
+- [x] Test: JSON array en vez de objeto
+- [x] Verificar: `pnpm test:backend` pasa
+- [x] Verificar: cobertura de ChatUseCase branches ≥ 95% (96.71%)
 
 ## Criterios de aceptación
 
