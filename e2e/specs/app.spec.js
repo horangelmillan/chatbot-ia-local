@@ -1,6 +1,8 @@
 const { test, expect } = require("@playwright/test");
 const { seedTestData, teardown } = require("../helpers/setup");
 
+const useRealLm = process.env.E2E_USE_REAL_LM === "true";
+
 test.describe("Flujo completo de chat", () => {
   test.beforeAll(async () => {
     await seedTestData();
@@ -38,25 +40,24 @@ test.describe("Flujo completo de chat", () => {
   });
 
   test("usuario pregunta por facturacion y recibe FAQ renderizado", async ({ page }) => {
-    await page.route("**/api/chat", async (route) => {
-      await route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          reply: "Debes seguir estos pasos: 1. Inicia sesion 2. Ve a facturacion 3. Descarga tu factura",
-          type: "document",
-        }),
+    if (!useRealLm) {
+      await page.route(/\/api\/chat$/, async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            reply: "¿Como facturar?\n\nDebes seguir estos pasos: 1. Inicia sesion 2. Ve a facturacion 3. Descarga tu factura",
+            type: "document",
+          }),
+        });
       });
-    });
+    }
 
     await page.goto("/index.html", { timeout: 20000 });
-    const input = page.locator("[id$='--chatInput'] input");
-    const sendBtn = page.locator("[id$='--sendButton']");
+    await page.locator("[id$='--chatInput'] input").fill("¿como facturo?");
+    await page.locator("[id$='--sendButton']").click();
 
-    await input.fill("¿como facturo?");
-    await sendBtn.click();
-
-    await expect(page.locator(".docBubble")).toBeVisible({ timeout: 15000 });
+    await expect(page.locator(".docBubble")).toBeVisible({ timeout: 20000 });
     await expect(page.locator(".docBubble")).toContainText(/factur/i);
   });
 
@@ -74,5 +75,35 @@ test.describe("Flujo completo de chat", () => {
 
     await expect(page.locator(".userBubble")).toHaveCount(0);
     await expect(page.locator(".assistantBubble")).toHaveCount(1);
+  });
+
+  test("la busqueda de documentos encuentra datos seed via API", async ({ request }) => {
+    const res = await request.get("http://localhost:3001/api/documents/search?q=devolucion");
+    const data = await res.json();
+    expect(data.found).toBe(true);
+    expect(data.type).toBe("faq");
+    expect(data.data.answer).toContain("30 dias");
+  });
+
+  test("usuario pregunta sobre devolucion y recibe documentacion", async ({ page }) => {
+    if (!useRealLm) {
+      await page.route(/\/api\/chat$/, async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            reply: "La politica de devolucion permite devoluciones dentro de los 30 dias posteriores a la compra.",
+            type: "document",
+          }),
+        });
+      });
+    }
+
+    await page.goto("/index.html", { timeout: 20000 });
+    await page.locator("[id$='--chatInput'] input").fill("¿como devuelvo un producto?");
+    await page.locator("[id$='--sendButton']").click();
+
+    await expect(page.locator(".docBubble")).toBeVisible({ timeout: 20000 });
+    await expect(page.locator(".docBubble")).toContainText(/devolucion/i);
   });
 });

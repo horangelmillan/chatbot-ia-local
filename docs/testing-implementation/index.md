@@ -23,7 +23,7 @@
 | Cobertura backend (branches) | 84% | ≥80% | `pnpm test:backend:coverage` |
 | ChatUseCase branch coverage | 97% | 100% | `pnpm test:backend:coverage` |
 | Cobertura frontend | No medida | ≥60% | `karma-coverage` o `ui5-test-runner` |
-| E2E tests | 2 | ≥6 | `cd e2e && pnpm playwright test --list` |
+| E2E tests | 2 | ≥7 | `cd e2e && pnpm playwright test --list` |
 | CI pipeline | No existe | Existe y verde | `gh run list` |
 
 ## Principios
