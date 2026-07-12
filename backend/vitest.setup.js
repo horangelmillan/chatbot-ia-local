@@ -15,10 +15,18 @@ const { Pool } = require("pg");
 let setupPool;
 
 beforeAll(async () => {
+  // Silenciar logs de LLM y parse errors durante tests (no oculta el registro de llamadas)
+  vi.spyOn(console, "log").mockImplementation(() => {});
+  vi.spyOn(console, "error").mockImplementation(() => {});
+
   setupPool = new Pool({ connectionString: TEST_DB_URL });
-  await setupPool.query(schema).catch(() => {});
+  await setupPool.query(schema).catch((err) => {
+    console.warn("Schema setup warning (non-fatal):", err.message);
+  });
 });
 
 afterAll(async () => {
+  // Restaurar console para otros reportes
+  vi.restoreAllMocks();
   if (setupPool) await setupPool.end();
 });

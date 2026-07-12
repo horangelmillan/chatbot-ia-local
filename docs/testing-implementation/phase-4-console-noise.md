@@ -108,11 +108,11 @@ test("error de parseo se loggea", async () => {
 
 ## Checklist
 
-- [ ] Agregar `vi.spyOn(console, "log").mockImplementation(() => {})` en vitest.setup.js
-- [ ] Agregar `vi.spyOn(console, "error").mockImplementation(() => {})` en vitest.setup.js
-- [ ] Reemplazar `.catch(() => {})` con `console.warn`
-- [ ] Verificar: `pnpm test:backend` sin ruido de RAW LLM/JSON parse
-- [ ] Verificar: `pnpm test:backend:coverage` sigue funcionando
+- [x] Agregar `vi.spyOn(console, "log").mockImplementation(() => {})` en vitest.setup.js
+- [x] Agregar `vi.spyOn(console, "error").mockImplementation(() => {})` en vitest.setup.js
+- [x] Reemplazar `.catch(() => {})` con `console.warn`
+- [x] Verificar: `pnpm test:backend` sin ruido de RAW LLM/JSON parse
+- [x] Verificar: `pnpm test:backend:coverage` sigue funcionando
 - [ ] Opcional: agregar test de console.error con spy
 
 ## Criterios de aceptación
