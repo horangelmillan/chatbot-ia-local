@@ -18,6 +18,18 @@
       "sourceType": "github",
       "skillPath": "skills/hexagonal-architecture/SKILL.md",
       "computedHash": "9C38A50D9CDF6815C52E66B6CFB45315E0992E20FD218053F7F3A5DA8451B4DC"
+    },
+    "express-backend": {
+      "source": "local",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/express-backend/SKILL.md",
+      "computedHash": "local"
+    },
+    "node-pg-repository": {
+      "source": "local",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/node-pg-repository/SKILL.md",
+      "computedHash": "local"
     }
   }
 }

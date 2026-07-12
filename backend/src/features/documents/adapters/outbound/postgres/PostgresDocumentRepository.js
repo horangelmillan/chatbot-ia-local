@@ -1,4 +1,4 @@
-const pool = require("./pool");
+const pool = require("../../../../../shared/adapters/outbound/postgres/pool");
 
 async function searchFAQ(category, keywords) {
   if (!keywords || keywords.length === 0) return null;

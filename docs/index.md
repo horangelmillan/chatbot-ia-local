@@ -29,6 +29,10 @@ Para visualizarlo, instala la extension `systemticks.c4-dsl-extension` en VS Cod
 
 El proyecto utiliza skills de IA para guiar el desarrollo en áreas específicas:
 
-- **[SAPUI5](../.agents/skills/sapui5/SKILL.md)** — Desarrollo de frontend con OpenUI5/SAPUI5
-- **[SAPUI5 CLI](../.agents/skills/sapui5-cli/SKILL.md)** — Gestión del tooling UI5
-- **[Arquitectura Hexagonal](../.agents/skills/hexagonal-architecture/SKILL.md)** — Diseño y refactorización del backend con puertos y adaptadores
+| Skill | Área | Propósito |
+|-------|------|-----------|
+| **[SAPUI5](../.agents/skills/sapui5/SKILL.md)** | Frontend | Desarrollo de interfaces OpenUI5/SAPUI5 |
+| **[SAPUI5 CLI](../.agents/skills/sapui5-cli/SKILL.md)** | Frontend | Gestión del tooling UI5 |
+| **[Arquitectura Hexagonal](../.agents/skills/hexagonal-architecture/SKILL.md)** | Backend | Diseño y refactorización con puertos y adaptadores |
+| **[Express Backend](../.agents/skills/express-backend/SKILL.md)** | Backend | Patrones Express 4 para adaptadores inbound hexagonales |
+| **[PostgreSQL Repository](../.agents/skills/node-pg-repository/SKILL.md)** | Backend | Patrones pg para adaptadores outbound hexagonales |

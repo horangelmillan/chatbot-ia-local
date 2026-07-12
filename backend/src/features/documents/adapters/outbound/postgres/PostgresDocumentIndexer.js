@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const pool = require("./pool");
+const pool = require("../../../../../shared/adapters/outbound/postgres/pool");
 
 var parsers = {};
 

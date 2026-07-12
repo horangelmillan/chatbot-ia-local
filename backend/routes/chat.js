@@ -1,6 +1,8 @@
 const express = require("express");
 const axios = require("axios");
-const engine = require("../db/engine");
+const { buildDocumentRepository } = require("../src/features/documents/composition/documentsContainer");
+
+const documentRepository = buildDocumentRepository();
 
 const router = express.Router();
 const LM_URL = process.env.LM_STUDIO_URL + "/chat/completions";
@@ -249,7 +251,7 @@ router.post("/", async function (req, res) {
       return res.json({ reply: reply });
     }
     if (decision.intent === "document_query") {
-      var result = await engine.search(decision.category, decision.keywords);
+      var result = await documentRepository.search(decision.category, decision.keywords);
       if (!result) {
         return res.json({ reply: "No encontre documentacion sobre ese tema." });
       }

@@ -217,6 +217,8 @@ El proyecto incluye skills de IA para tareas específicas. El agente debe cargar
 | `sapui5` | Tareas de frontend (vistas XML, controladores, manifest.json, i18n, OPA5) | Desarrollo de interfaces SAPUI5/OpenUI5, MVC, data binding, tests |
 | `sapui5-cli` | Configuración de build, ui5.yaml, middlewares, servidor dev | Gestión del pipeline UI5 Tooling |
 | `hexagonal-architecture` | Refactorización del backend, separación de capas, nuevos módulos, adaptadores | Diseño guiado por dominio, puertos y adaptadores, composición limpia |
+| `express-backend` | Creación o refactorización de rutas Express, middleware, handlers asíncronos, validación en adaptadores inbound | Patrones Express 4 para adaptadores de entrada en arquitectura hexagonal con CommonJS |
+| `node-pg-repository` | Implementación de repositorios PostgreSQL, consultas parametrizadas, transacciones, pool management | Patrones pg (node-postgres) para adaptadores de salida en arquitectura hexagonal con CommonJS |
 | `playwright` | Tareas de frontend que requieran navegador (testing visual, E2E, scraping, screenshots, verificación de UI) | Automatización de navegador vía Playwright MCP + CLI para testing y verificación de interfaces SAPUI5 |
 
 # Comunicación
