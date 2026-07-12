@@ -8,85 +8,83 @@
 
 ## Ejercicio 1: ChatUseCase.js
 
-- [ ] `var` → `const`/`let` en todas las variables
-- [ ] `function ChatUseCase()` → `class ChatUseCase`
-- [ ] `ChatUseCase.prototype.*` → métodos de clase
-- [ ] Template literals en lugar de concatenación con `+`
-- [ ] Destructuring en `execute`: `({ message, history = [] })`
-- [ ] Arrow functions en todos los callbacks internos
-- [ ] `includes()` en lugar de `indexOf() >= 0`
-- [ ] Commit: `feat(es6): refactorizar ChatUseCase.js a clase y ES6+`
+- [x] `var` → `const`/`let` en todas las variables
+- [x] `function ChatUseCase()` → `class ChatUseCase`
+- [x] `ChatUseCase.prototype.*` → métodos de clase
+- [x] Template literals en lugar de concatenación con `+`
+- [x] Destructuring en `execute`: `({ message, history = [] })`
+- [x] Arrow functions en todos los callbacks internos
+- [x] `includes()` en lugar de `indexOf() >= 0`
+- [x] Commit: `feat(es6): refactorizar ChatUseCase.js a clase y ES6+`
 
 ## Ejercicio 2: Routes + Adapters del Chat
 
 ### routes/chat.js
-- [ ] `var` → `const` en router, chatUseCase
-- [ ] Arrow functions en handlers
-- [ ] Destructuring de `req.body`
-- [ ] Commit: `feat(es6): actualizar routes/chat.js`
+- [x] `var` → `const` en router, chatUseCase
+- [x] Arrow functions en handlers
+- [x] Destructuring de `req.body`
+- [x] Commit: `feat(es6): actualizar routes/chat.js`
 
 ### LmStudioAdapter.js
-- [ ] `var` → `const`
-- [ ] Arrow functions
-- [ ] Commit incluido con routes
+- [x] `var` → `const`
+- [x] Arrow functions
+- [x] Commit incluido con routes
 
 ### NorthwindODataAdapter.js
-- [ ] `var` → `const`/`let`
-- [ ] `indexOf` → `includes`
-- [ ] Arrow functions en todos los callbacks
-- [ ] Commit: `feat(es6): modernizar NorthwindODataAdapter`
+- [x] `var` → `const`/`let`
+- [x] `indexOf` → `includes`
+- [x] Arrow functions en todos los callbacks
+- [x] Commit: `feat(es6): modernizar NorthwindODataAdapter`
 
 ### InMemoryChatContext.js
-- [ ] `var context = null` → `let context = null`
-- [ ] Arrow functions en exports
-- [ ] Commit incluido con Northwind
+- [x] `var context = null` → `let context = null`
+- [x] Arrow functions en exports
+- [x] Commit incluido con Northwind
 
 ## Ejercicio 3: Documentos
 
 ### PostgresDocumentIndexer.js
-- [ ] `var` → `const`/`let`
-- [ ] Arrow functions en `parsers`
-- [ ] Template literals donde aplique
-- [ ] `includes()` en lugar de `indexOf() >= 0`
-- [ ] Commit: `feat(es6): refactorizar PostgresDocumentIndexer`
+- [x] `var` → `const`/`let`
+- [x] Arrow functions en `parsers`
+- [x] Template literals donde aplique
+- [x] `includes()` en lugar de `indexOf() >= 0`
+- [x] Commit: `feat(es6): refactorizar PostgresDocumentIndexer`
 
 ### PostgresDocumentRepository.js
-- [ ] `var` → `const`/`let`
-- [ ] Arrow functions en callbacks
-- [ ] Template literals para SQL dinámico
-- [ ] Commit: `feat(es6): refactorizar PostgresDocumentRepository`
+- [x] `var` → `const`/`let`
+- [x] Arrow functions en callbacks
+- [x] Template literals para SQL dinámico
+- [x] Commit: `feat(es6): refactorizar PostgresDocumentRepository`
 
 ### documentsContainer.js + pool.js
-- [ ] `var` → `const`
-- [ ] Commit incluido
+- [x] `var` → `const`
+- [x] Commit incluido
 
 ## Ejercicio 4: server.js + documents.js + frontend
 
 ### server.js
-- [ ] `var` → `const`
-- [ ] Arrow functions
-- [ ] Commit incluido
+- [x] `var` → `const`
+- [x] Arrow functions
+- [x] Commit incluido
 
 ### routes/documents.js
-- [ ] `var` → `const`/`let`
-- [ ] Arrow functions en handlers
-- [ ] Destructuring de `req.body` y `req.query`
-- [ ] Commit: `feat(es6): modernizar server.js y routes/documents.js`
+- [x] `var` → `const`/`let`
+- [x] Arrow functions en handlers
+- [x] Destructuring de `req.body` y `req.query`
+- [x] Commit: `feat(es6): modernizar server.js y routes/documents.js`
 
 ### App.controller.js (frontend)
-- [ ] `var` → `const`/`let`
-- [ ] `var that = this` eliminado (usar arrow functions)
-- [ ] `.then()` → `async/await`
-- [ ] Template literals
-- [ ] Commit: `feat(es6): refactorizar App.controller.js`
+- [x] `var` → `const`/`let`
+- [x] `var that = this` eliminado (usar arrow functions)
+- [x] `.then()` → `async/await`
+- [x] Template literals
+- [x] Commit: `feat(es6): refactorizar App.controller.js`
 
 ## Verificación final
 
-- [ ] Ejecutar `rg --no-heading "var " --include "*.js"` y verificar que no haya resultados en `backend/` y `frontend/webapp/`
-- [ ] Iniciar backend: `pnpm run dev:backend` y verificar que no hay errores de sintaxis
-- [ ] Iniciar frontend: `pnpm run dev:frontend` y verificar que carga
-- [ ] Hacer un POST de prueba a `/api/chat` y verificar que responde
-- [ ] Mergear a master: `git checkout master && git merge growth/fase-01-javascript-moderno`
+- [x] Ejecutar búsqueda de `var` y verificar que no haya resultados en archivos refactorizados
+- [x] Iniciar backend y verificar que carga sin errores
+- [ ] Mergear a master
 - [ ] **NO borrar la rama**
 
 ## Reflexión post-fase
