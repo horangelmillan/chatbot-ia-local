@@ -78,21 +78,22 @@ test.describe("Flujo completo de chat", () => {
   });
 
   test("la busqueda de documentos encuentra datos seed via API", async ({ request }) => {
-    const res = await request.get("http://localhost:3001/api/documents/search?q=devolucion");
+    const res = await request.get("http://localhost:3001/api/documents/search?q=electronica");
     const data = await res.json();
     expect(data.found).toBe(true);
     expect(data.type).toBe("faq");
-    expect(data.data.answer).toContain("30 dias");
+    expect(data.data.category).toBe("General");
+    expect(data.data.answer).toContain("Factura Electronica");
   });
 
-  test("usuario pregunta sobre devolucion y recibe documentacion", async ({ page }) => {
+  test("usuario pregunta sobre facturacion electronica y recibe documentacion", async ({ page }) => {
     if (!useRealLm) {
       await page.route(/\/api\/chat$/, async (route) => {
         await route.fulfill({
           status: 200,
           contentType: "application/json",
           body: JSON.stringify({
-            reply: "La politica de devolucion permite devoluciones dentro de los 30 dias posteriores a la compra.",
+            reply: "Para facturar electronicamente debes ingresar al modulo de facturacion, seleccionar Factura Electronica y completar los datos del cliente.",
             type: "document",
           }),
         });
@@ -100,10 +101,10 @@ test.describe("Flujo completo de chat", () => {
     }
 
     await page.goto("/index.html", { timeout: 20000 });
-    await page.locator("[id$='--chatInput'] input").fill("¿como devuelvo un producto?");
+    await page.locator("[id$='--chatInput'] input").fill("¿como facturo electronico?");
     await page.locator("[id$='--sendButton']").click();
 
     await expect(page.locator(".docBubble")).toBeVisible({ timeout: 20000 });
-    await expect(page.locator(".docBubble")).toContainText(/devolucion/i);
+    await expect(page.locator(".docBubble")).toContainText(/factur/i);
   });
 });
