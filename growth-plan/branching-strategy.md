@@ -69,7 +69,7 @@ Muestra todas las ramas y commits. Las ramas `growth/*` encapsulan cada etapa de
 
 | Rama | Fase | Estado |
 |------|------|--------|
-| `growth/fase-01-javascript-moderno` | JavaScript moderno | Pendiente |
+| `growth/fase-01-javascript-moderno` | JavaScript moderno | Hecho |
 | `growth/fase-02-testing-nodejs` | Testing | Pendiente |
 | `growth/fase-03-express-produccion` | Express producción | Pendiente |
 | `growth/fase-04-patterns-bd` | BD patrones | Pendiente |

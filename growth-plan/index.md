@@ -6,7 +6,7 @@ Plan de mejora técnica para cerrar la brecha entre mi conocimiento conceptual y
 
 | Fase | Área | Tiempo estimado | Progreso |
 |------|------|----------------|----------|
-| 01 | JavaScript moderno (ES6+) | 2 semanas | Pendiente |
+| 01 | JavaScript moderno (ES6+) | 2 semanas | Hecho |
 | 02 | Testing en Node.js | 4 semanas | Pendiente |
 | 03 | Express en producción | 1 semana | Pendiente |
 | 04 | Patrones de base de datos | 1 semana | Pendiente |
