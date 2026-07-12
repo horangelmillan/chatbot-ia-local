@@ -1,0 +1,9 @@
+{
+  "browser": {
+    "browserName": "chromium"
+  },
+  "timeout": {
+    "action": 10000,
+    "navigation": 30000
+  }
+}
