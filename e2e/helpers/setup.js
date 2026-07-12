@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 const path = require("path");
-try { require("dotenv").config({ path: path.join(__dirname, "../../backend/.env") }); } catch (e) { }
-try { require("dotenv").config({ path: path.join(__dirname, "../.env") }); } catch (e) { }
+try { require("dotenv").config({ path: path.join(__dirname, "../../backend/.env") }); } catch { }
+try { require("dotenv").config({ path: path.join(__dirname, "../.env") }); } catch { }
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL_TEST || process.env.DATABASE_URL || "postgresql://chatbot_user:chatbot_pass_2026@localhost:5432/chatbot_rag",

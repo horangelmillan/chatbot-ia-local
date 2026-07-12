@@ -57,7 +57,7 @@ const findSimilarOrders = async (customerId, excludeOrderId) => {
       s._total = calcTotal(s.Order_Details);
     });
     return similar.slice(0, 3);
-  } catch (e) {
+  } catch {
     return null;
   }
 };

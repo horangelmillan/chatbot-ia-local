@@ -1,5 +1,4 @@
 const MAX_HISTORY = parseInt(process.env.CHAT_HISTORY_LIMIT, 10) ?? 6;
-const DOC_CATEGORIES = ["Facturacion", "Proveedores", "Pagos", "General"];
 
 class ChatUseCase {
   constructor(llm, odata, documentRepository, chatContext) {
@@ -24,7 +23,7 @@ class ChatUseCase {
       } catch (e) {
         console.error("JSON parse error:", e.message, "| RAW:", raw);
         const m = raw.match(/\{[\s\S]*?\}/);
-        if (m) try { decision = JSON.parse(m[0]); } catch (e2) { decision = { intent: "reply", text: raw.replace(/```/g, "").trim() }; }
+        if (m) try { decision = JSON.parse(m[0]); } catch { decision = { intent: "reply", text: raw.replace(/```/g, "").trim() }; }
         else decision = { intent: "reply", text: raw.replace(/```/g, "").trim() };
       }
 

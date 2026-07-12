@@ -86,7 +86,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Lint check - no linter configured yet"
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm lint
 ```
 
 ### 2. Workflow nocturno (`nightly.yml`)
@@ -159,6 +165,18 @@ Configurar en GitHub Secrets del repositorio:
 | `DATABASE_URL_TEST` | `postgresql://chatbot_user:...` |
 | `LM_STUDIO_URL` | (si aplica, para E2E con LLM real) |
 
+### 4. Ajustes aplicados vs. diseño original
+
+- **Linter real**: el job `lint` ya no es un placeholder. Se añadió ESLint 9 (flat config en
+  `eslint.config.js`, raíz) con soporte para backend (CJS/Node), tests (globals de Vitest),
+  frontend OpenUI5 (globals `sap`/`QUnit`/`sinon`) y E2E. Script `pnpm lint` en raíz.
+  `eslint:recommended` está activo; los `no-unused-vars` son *warning* (no rompen el pipeline).
+- **Frontend en CI necesita Chrome**: `karma-chrome-launcher` usa `ChromeHeadless` del sistema.
+  El job `test-frontend` instala Chrome vía `browser-actions/setup-chrome@v1` (exporta `CHROME_BIN`).
+- **E2E en nightly requiere schema**: el backend E2E no crea el schema automáticamente, así que
+  `nightly.yml` crea la BD `chatbot_rag_e2e` y aplica `backend/db/schema.sql` con un script Node
+  (`pg`) antes de correr Playwright. `E2E_USE_REAL_LM=false` para no depender de LM Studio.
+
 ### 4. Verificación local del workflow (opcional)
 
 ```bash
@@ -182,11 +200,13 @@ act -j test-backend
 
 ## Checklist
 
-- [ ] Crear `.github/workflows/test.yml` con jobs backend + frontend
-- [ ] Crear `.github/workflows/nightly.yml` con full suite + E2E
-- [ ] Verificar que `DATABASE_URL_TEST` funciona sin hardcode (usar secret/env)
-- [ ] Verificar: los workflows se ven en GitHub Actions > pestaña Actions
-- [ ] Verificar: un PR muestra el status check de CI
+- [x] Crear `.github/workflows/test.yml` con jobs backend + frontend + lint
+- [x] Crear `.github/workflows/nightly.yml` con full suite + E2E
+- [x] Añadir linter real (ESLint 9 en raíz, script `pnpm lint`)
+- [x] Verificar que `DATABASE_URL_TEST` funciona sin hardcode (usar secret/env)
+- [ ] Verificar en CI: los workflows se ven en GitHub Actions > pestaña Actions
+- [ ] Verificar en CI: un PR muestra el status check de CI
+- [ ] Verificar en CI: `pnpm lint` pasa (validado localmente: exit 0)
 
 ## Criterios de aceptación
 

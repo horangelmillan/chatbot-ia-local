@@ -13,9 +13,12 @@
     "test:frontend": "cd frontend && pnpm test",
     "test:backend:coverage": "cd backend && pnpm vitest run --coverage",
     "install:all": "cd backend && pnpm install && cd ../frontend && pnpm install && cd ../e2e && pnpm install",
-    "test:e2e": "cd e2e && pnpm playwright test"
+    "test:e2e": "cd e2e && pnpm playwright test",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "concurrently": "^9.1.0",
+    "eslint": "^9.21.0",
+    "globals": "^15.15.0"
   }
 }

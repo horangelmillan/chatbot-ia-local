@@ -1,0 +1,73 @@
+name: Nightly
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # 6 AM UTC daily
+  workflow_dispatch:
+
+jobs:
+  test-all:
+    name: Full test suite (incl. E2E)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: chatbot_rag_test
+          POSTGRES_USER: chatbot_user
+          POSTGRES_PASSWORD: chatbot_pass_2026
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - name: Install all
+        run: |
+          pnpm install -C backend
+          pnpm install -C frontend
+          pnpm install -C e2e
+      - name: Backend tests
+        run: pnpm -C backend test:coverage
+        env:
+          DATABASE_URL_TEST: postgresql://chatbot_user:chatbot_pass_2026@localhost:5432/chatbot_rag_test
+      - name: Frontend tests
+        run: pnpm -C frontend test
+      - name: Setup E2E database (schema)
+        # ponytail: el backend E2E no crea el schema solo; lo aplicamos contra chatbot_rag_e2e
+        run: |
+          cd backend
+          node -e "
+            const { Pool } = require('pg');
+            const fs = require('fs');
+            (async () => {
+              const admin = new Pool({ connectionString: 'postgresql://chatbot_user:chatbot_pass_2026@localhost:5432/postgres' });
+              await admin.query('CREATE DATABASE chatbot_rag_e2e').catch(() => {});
+              await admin.end();
+              const pool = new Pool({ connectionString: 'postgresql://chatbot_user:chatbot_pass_2026@localhost:5432/chatbot_rag_e2e' });
+              const schema = fs.readFileSync('db/schema.sql', 'utf-8').replace(/^CREATE DATABASE.*?;\s*/i, '');
+              await pool.query(schema);
+              await pool.end();
+            })().catch((e) => { console.error(e); process.exit(1); });
+          "
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+        working-directory: e2e
+      - name: E2E tests
+        run: pnpm test
+        working-directory: e2e
+        env:
+          DATABASE_URL_TEST: postgresql://chatbot_user:chatbot_pass_2026@localhost:5432/chatbot_rag_e2e
+          E2E_USE_REAL_LM: "false"
+      - uses: codecov/codecov-action@v5
+        with:
+          directory: backend/coverage
+          flags: backend
