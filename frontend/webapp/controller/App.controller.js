@@ -108,14 +108,14 @@ sap.ui.define([
 					text: b.label,
 					type: bSelected ? "Accept" : (bDisabled ? "Default" : "Emphasized"),
 					enabled: !bDisabled,
-					press: function () {
+					press: () => {
 						if (this._messagesModel.getProperty(`${sPath}/_buttonsDisabled`)) return;
 						this._messagesModel.setProperty(`${sPath}/_buttonsDisabled`, true);
 						this._messagesModel.setProperty(`${sPath}/_selectedButtonIndex`, i);
 						this._inputModel.setProperty("/text", b.message);
 						this._inputModel.setProperty("/valid", true);
 						this.onSend();
-					}.bind(this)
+					}
 				});
 			});
 		},
