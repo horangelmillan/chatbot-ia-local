@@ -8,7 +8,7 @@
 | Fase | Prioridad | Esfuerzo | Dependencias | Estado |
 |------|-----------|----------|--------------|--------|
 | **1 — ChatUseCase branches** | 🔴 Crítico | 2-3h | Ninguna | ✅ Completa |
-| **2 — E2E flujos completos** | 🔴 Crítico | 3-4h | Fase 4 (opcional, para evitar noise en CI) | Pendiente |
+| **2 — E2E flujos completos** | 🔴 Crítico | 3-4h | Fase 4 (opcional, para evitar noise en CI) | ✅ Completa |
 | **3 — Frontend depth** | 🟡 Alta | 2-3h | Ninguna | Pendiente |
 | **4 — Silent tests + console** | 🟡 Alta | 1-2h | Ninguna | Pendiente |
 | **5 — CI pipeline** | 🟡 Alta | 2-3h | Fase 4 (tests deben ser silent en CI) | Pendiente |
@@ -36,7 +36,7 @@
 ## Progreso global
 
 - [x] Fase 1: ChatUseCase branches
-- [ ] Fase 2: E2E flujos completos
+- [x] Fase 2: E2E flujos completos
 - [ ] Fase 3: Frontend depth
 - [ ] Fase 4: Silent tests + console
 - [ ] Fase 5: CI pipeline

@@ -136,12 +136,12 @@ e2e/fixtures/
 
 ## Checklist
 
-- [ ] Crear `e2e/helpers/setup.js` con seed + teardown
-- [ ] Test: enviar mensaje y esperar respuesta del asistente
-- [ ] Test: preguntar por facturación y ver FAQ renderizado
-- [ ] Test: nueva sesión limpia mensajes
-- [ ] Verificar selectores robustos (data-testid o ids fijos)
-- [ ] Verificar: `cd e2e && pnpm playwright test` pasa
+- [x] Crear `e2e/helpers/setup.js` con seed + teardown
+- [x] Test: enviar mensaje y esperar respuesta del asistente
+- [x] Test: preguntar por facturación y ver FAQ renderizado
+- [x] Test: nueva sesión limpia mensajes
+- [x] Verificar selectores robustos (data-testid o ids fijos)
+- [x] Verificar: `cd e2e && pnpm playwright test` pasa
 
 ## Criterios de aceptación
 
