@@ -4,3 +4,7 @@ node_modules/
 *.pdf
 page-snapshot.yml
 snap2.yml
+# Playwright
+.playwright-mcp/
+.playwright-cli/
+test-chat-flow.png

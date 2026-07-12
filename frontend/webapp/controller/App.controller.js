@@ -67,7 +67,7 @@ sap.ui.define([
 		},
 		_scrollToBottom: function () {
 			var oList = this.getView().byId("messageList");
-			if (oList) oList.scrollToIndex(oList.getItems().length - 1);
+			if (oList && oList.getDomRef()) oList.scrollToIndex(oList.getItems().length - 1);
 		},
 		_buildHistory: function () {
 			var aItems = this._messagesModel.getProperty("/items");
