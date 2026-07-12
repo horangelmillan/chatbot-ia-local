@@ -1,4 +1,4 @@
-const MAX_HISTORY = parseInt(process.env.CHAT_HISTORY_LIMIT, 10) || 6;
+const MAX_HISTORY = parseInt(process.env.CHAT_HISTORY_LIMIT, 10) ?? 6;
 const DOC_CATEGORIES = ["Facturacion", "Proveedores", "Pagos", "General"];
 
 class ChatUseCase {
