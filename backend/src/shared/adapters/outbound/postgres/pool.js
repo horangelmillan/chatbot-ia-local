@@ -6,7 +6,7 @@ const pool = new Pool({
   idleTimeoutMillis: 30000
 });
 
-pool.on("error", function (err) {
+pool.on("error", (err) => {
   console.error("PG pool error:", err.message);
 });
 
