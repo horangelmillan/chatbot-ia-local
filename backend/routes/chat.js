@@ -2,11 +2,12 @@ const express = require("express");
 const { buildChatUseCase } = require("../src/features/chat/composition/chatContainer");
 
 const router = express.Router();
-var chatUseCase = buildChatUseCase();
+const chatUseCase = buildChatUseCase();
 
-router.post("/", async function (req, res) {
+router.post("/", async (req, res) => {
   try {
-    var result = await chatUseCase.execute({ message: req.body.message, history: req.body.history });
+    const { message, history } = req.body;
+    const result = await chatUseCase.execute({ message, history });
     if (result.reply === "El mensaje no puede estar vacio.") {
       return res.status(400).json(result);
     }
@@ -17,9 +18,9 @@ router.post("/", async function (req, res) {
   }
 });
 
-router.post("/reset", function (req, res) {
-  var { buildChatContext } = require("../src/features/chat/composition/chatContainer");
-  var ctx = buildChatContext();
+router.post("/reset", (req, res) => {
+  const { buildChatContext } = require("../src/features/chat/composition/chatContainer");
+  const ctx = buildChatContext();
   ctx.reset();
   res.json({ ok: true });
 });
