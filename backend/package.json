@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "packageManager": "pnpm@11.11.0",
   "description": "Backend Express para SAPUI5 Chat",
-  "main": "server.js",
+  "main": "server.cjs",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.cjs",
     "seed:kb": "node scripts/seed-kb.js",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run --exclude '**/postgres/**'",
+    "test:integration": "vitest run src/features/documents/adapters/outbound/postgres"
   },
   "dependencies": {
     "axios": "^1.7.0",

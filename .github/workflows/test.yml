@@ -50,8 +50,8 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
-      - uses: browser-actions/setup-chrome@v1
       - run: pnpm install -C frontend
+      - run: pnpm -C frontend exec playwright install --with-deps chromium
       - run: pnpm -C frontend test
 
   lint:

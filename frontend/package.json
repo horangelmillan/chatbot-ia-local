@@ -5,15 +5,13 @@
   "description": "Frontend SAPUI5 Chat",
   "scripts": {
     "start": "ui5 serve -o index.html",
-    "test": "karma start"
+    "test": "ui5-test-runner --webapp webapp --ui5 https://ui5.sap.com --port 8888 --localhost 127.0.0.1 --url http://127.0.0.1:8888/test/unitTests.qunit.html --browser $/playwright.js --ci"
   },
   "devDependencies": {
     "@ui5/cli": "^4.0.57",
-    "karma": "^6.4.4",
-    "karma-chrome-launcher": "^3.2.0",
-    "karma-ui5": "^4.1.0",
-    "qunit": "^2.26.0",
+    "playwright": "^1.61.1",
     "ui5-middleware-livereload": "^3.3.1",
-    "ui5-middleware-simpleproxy": "^3.8.0"
+    "ui5-middleware-simpleproxy": "^3.8.0",
+    "ui5-test-runner": "^5.13.1"
   }
 }

@@ -13,7 +13,7 @@
 | **4 — Silent tests + console** | 🟡 Alta | 1-2h | Ninguna | ✅ Completa |
 | **5 — CI pipeline** | 🟡 Alta | 2-3h | Fase 4 (tests deben ser silent en CI) | ✅ Implementada (pendiente validación en CI) |
 | **6 — Auth test pattern** | 🔵 Media | 1h | Ninguna (tests en skip hasta implementar auth) | ✅ Completa |
-| **7 — Migraciones técnicas** | 🔵 Media | 3-4h | Fase 1-6 completadas | Pendiente |
+| **7 — Migraciones técnicas** | 🔵 Media | 3-4h | Fase 1-6 completadas | ✅ Completa |
 
 ## Cobertura actual vs objetivo
 
@@ -41,8 +41,9 @@
 - [x] Fase 4: Silent tests + console
 - [x] Fase 5: CI pipeline (workflows + linter ESLint)
 - [x] Fase 6: Auth test pattern
-- [ ] Fase 7: Migraciones técnicas
+- [x] Fase 7: Migraciones técnicas
 
 ---
 
-**Siguiente:** [Fase 7 — Migraciones técnicas](./phase-7-migrations.md)
+**Estado:** las 7 fases están completas. Pendiente únicamente la validación en CI real
+(Fase 5) y activar los tests de auth en `skip` cuando se implemente el middleware (Fase 6).

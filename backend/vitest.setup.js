@@ -1,7 +1,18 @@
 const fs = require("fs");
 const path = require("path");
 
-const TEST_DB_URL = process.env.DATABASE_URL_TEST || "postgresql://chatbot_user:chatbot_pass_2026@localhost:5432/chatbot_rag_test";
+require("dotenv").config({ path: path.resolve(__dirname, ".env.test") });
+
+const TEST_DB_URL = process.env.DATABASE_URL_TEST;
+
+if (!TEST_DB_URL) {
+  throw new Error(
+    "DATABASE_URL_TEST no configurada. " +
+    "Define la variable de entorno con la URL de la base de datos de prueba " +
+    "(p.ej. postgresql://chatbot_user:chatbot_pass@localhost:5432/chatbot_rag_test)."
+  );
+}
+
 process.env.DATABASE_URL = TEST_DB_URL;
 global.__TEST_DB_URL = TEST_DB_URL;
 

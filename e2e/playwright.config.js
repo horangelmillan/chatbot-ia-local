@@ -10,7 +10,7 @@ module.exports = defineConfig({
   },
   webServer: [
     {
-      command: "node server.js",
+      command: "node server.cjs",
       port: 3001,
       cwd: "../backend",
       reuseExistingServer: true,

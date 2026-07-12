@@ -135,22 +135,33 @@ sap.ui.define([
 ### 4. Ejecución
 
 ```shell
-# ui5-test-runner (recomendado)
-npx ui5-test-runner --url http://localhost:8080/test/testsuite.qunit.js
-
-# Karma (legacy, requiere karma-ui5)
-npx karma start
+# El runner (ui5-test-runner + playwright) sirve la app, abre Chromium y ejecuta la testpage.
+pnpm -C frontend test
 ```
+
+`pnpm test` invoca:
+
+```shell
+ui5-test-runner --webapp webapp --ui5 https://ui5.sap.com \
+  --port 8888 --localhost 127.0.0.1 \
+  --url http://127.0.0.1:8888/test/unitTests.qunit.html \
+  --browser $/playwright.js --ci
+```
+
+Notas:
+- La testpage `webapp/test/unitTests.qunit.html` es **autocontenida**: carga QUnit por `<script>`
+  síncrono ANTES del bootstrap de UI5 (para que el runner la detecte) y fija
+  `data-sap-ui-resource-roots='{"chatbot.ui": "/"}'`. **No** se usa UI5 Test Starter
+  (`testsuite.qunit.html`), porque el runner abre `Test.qunit.html` directamente sin aplicar los
+  resource-roots del `createSuite`, y `/test-resources/chatbot/ui/...` da 404 en un proyecto
+  *application*.
+- Karma quedó **retirado** (`karma-ui5` está deprecado por SAP).
 
 ## Dependencias
 
-Agregar a `frontend/package.json`:
-
-```json
-"devDependencies": {
-  "ui5-test-runner": "^1.0.0"
-}
-```
+En `frontend/package.json` (devDependencies): `ui5-test-runner`, `playwright`.
+QUnit se carga desde el CDN de UI5 (no hay dependencia local `qunit`).
+En CI: `pnpm -C frontend exec playwright install --with-deps chromium`.
 
 ## Referencias
 

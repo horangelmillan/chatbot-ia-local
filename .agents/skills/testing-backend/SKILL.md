@@ -64,7 +64,9 @@ Usar `vitest.setup.js` con `globalSetup`/`globalTeardown`:
 import { execSync } from "child_process";
 import { Pool } from "pg";
 
-const TEST_DB_URL = process.env.DATABASE_URL_TEST || "postgresql://chatbot_user:chatbot_pass_2026@localhost:5432/chatbot_rag_test";
+require("dotenv").config({ path: require("path").resolve(__dirname, ".env.test") });
+const TEST_DB_URL = process.env.DATABASE_URL_TEST;
+if (!TEST_DB_URL) throw new Error("DATABASE_URL_TEST no configurada (backend/.env.test)");
 
 let pool;
 
@@ -97,7 +99,7 @@ Usar `vi.mock()` sobre el container para aislar la ruta de la lógica real:
 ```js
 vi.mock("../../src/features/chat/composition/chatContainer");
 const request = require("supertest");
-const app = require("../../server");
+const app = require("../../server.cjs");
 const { buildChatUseCase } = require("../../src/features/chat/composition/chatContainer");
 
 test("POST /api/chat valido devuelve 200", async () => {
@@ -113,7 +115,7 @@ test("POST /api/chat valido devuelve 200", async () => {
 1. Crear DB: `CREATE DATABASE chatbot_rag_test;`
 2. El `vitest.setup.js` corre `db/schema.sql` contra ella en `globalSetup`
 3. Cada suite limpia datos en `beforeEach` con `TRUNCATE ... CASCADE`
-4. Usar `DATABASE_URL_TEST` en `.env.test` o fallback a `chatbot_rag_test`
+4. Definir `DATABASE_URL_TEST` en `backend/.env.test` (gitignored; ver `.env.test.example`). Sin fallback: si falta, el setup falla con error claro.
 
 ## Coverage
 

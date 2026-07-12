@@ -1,5 +1,7 @@
 node_modules/
 .env
+.env.*
+!.env*.example
 *.docx
 *.pdf
 page-snapshot.yml
@@ -14,4 +16,8 @@ test-results/
 
 # Coverage
 backend/coverage/
+
+# UI5 test runner output
+frontend/report/
+frontend/coverage/
 
