@@ -154,17 +154,18 @@ config.set({
 | `frontend/webapp/test/unit/base/Base.controller.js` | Crear — tests para `showMessage` con ambos branches |
 | `frontend/webapp/test/unit/helper/Util.helper.js` | Reemplazar — tests reales con spy en BusyIndicator |
 | `frontend/webapp/test/unit/config/WelcomeOptions.js` | Reemplazar — tests de validación de datos |
-| `frontend/webapp/test/testsuite.qunit.js` | Agregar entrada para `Base.controller` |
-| `frontend/karma.conf.js` | Agregar `karma-coverage` (opcional) |
+| `frontend/webapp/test/unitTests.qunit.html` | **Agregar módulo `Base.controller` al `sap.ui.require`** (obligatorio: `pnpm test` usa Karma en modo `html` y solo carga lo listado aquí, NO `testsuite.qunit.js`) |
+| `frontend/webapp/test/testsuite.qunit.js` | Agregar entrada para `Base.controller` (UI5 Test Runner) |
+| `frontend/karma.conf.js` | Agregar `karma-coverage` (opcional, omitido) |
 
 ## Checklist
 
-- [ ] Crear test para `Base.controller.showMessage` con tipo normal
-- [ ] Crear test para `Base.controller.showMessage` con tipo error
-- [ ] Reemplazar test de `Util.helper` con spy en `BusyIndicator`
-- [ ] Reemplazar test de `WelcomeOptions` con validación de contenido
-- [ ] Registrar `Base.controller` en `testsuite.qunit.js`
-- [ ] Verificar: `cd frontend && pnpm test` pasa
+- [x] Crear test para `Base.controller.showMessage` con tipo normal
+- [x] Crear test para `Base.controller.showMessage` con tipo error
+- [x] Reemplazar test de `Util.helper` con spy en `BusyIndicator`
+- [x] Reemplazar test de `WelcomeOptions` con validación de contenido
+- [x] Registrar `Base.controller` en `unitTests.qunit.html` (Karma) **y** `testsuite.qunit.js` (Test Runner)
+- [x] Verificar: `cd frontend && pnpm test` pasa (17/17 SUCCESS)
 
 ## Criterios de aceptación
 

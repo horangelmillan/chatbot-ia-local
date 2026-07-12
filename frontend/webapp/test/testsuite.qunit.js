@@ -11,6 +11,7 @@ sap.ui.define(function () {
       "WelcomeOptions": { title: "Welcome Options", module: "test/unit/config/WelcomeOptions" },
       "models": { title: "Models", module: "test/unit/model/models" },
       "App.controller": { title: "App Controller Unit", module: "test/unit/controller/App.controller" },
+      "Base.controller": { title: "Base Controller Unit", module: "test/unit/base/Base.controller" },
       "App.integration": { title: "App Integration", module: "test/integration/App.journey" }
     }
   };
